@@ -9,9 +9,10 @@ import {
   Style,
   TextInput,
   Image,
+  Number,
 } from '@makeswift/runtime/controls'
 import { ReactRuntime } from '@makeswift/runtime/react'
-import { Box, Button, Lights, Navigation } from 'components'
+import { Box, Button, Lights, Navigation, PopupVideo } from 'components'
 
 ReactRuntime.registerComponent(Button, {
   type: 'button',
@@ -117,5 +118,35 @@ ReactRuntime.registerComponent(Lights, {
   label: 'Lights',
   props: {
     className: Style({ properties: [Style.Width, Style.Margin, Style.Padding] }),
+  },
+})
+
+const ASPECT_RATIO = 16 / 9
+
+ReactRuntime.registerComponent(PopupVideo, {
+  type: 'heroVideo',
+  label: 'Video Popup',
+  props: {
+    className: Style({
+      properties: [Style.Margin, Style.Padding, Style.Width, Style.Border],
+    }),
+    preview: Image({ label: 'Preview', format: Image.Format.WithDimensions }),
+    previewAltText: TextInput({ label: 'Preview `alt` text' }),
+    isAboveTheFold: Checkbox({ label: 'Above the fold' }),
+    video: Shape({
+      type: {
+        url: TextInput({ label: 'Video URL' }),
+        aspectRatio: Number({
+          labelOrientation: 'vertical',
+          label: 'Video aspect ratio',
+          step: 0.01,
+          defaultValue: ASPECT_RATIO,
+        }),
+        autoPlay: Checkbox({ label: 'Autoplay' }),
+        controls: Checkbox({ label: 'Show Controls' }),
+        loop: Checkbox({ label: 'Loop' }),
+        muted: Checkbox({ label: 'Muted' }),
+      },
+    }),
   },
 })
