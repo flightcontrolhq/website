@@ -1,6 +1,6 @@
-import { Checkbox, Color, Link, Select, Style, TextInput } from '@makeswift/runtime/controls'
+import { Checkbox, Color, Link, Select, Slot, Style, TextInput } from '@makeswift/runtime/controls'
 import { ReactRuntime } from '@makeswift/runtime/react'
-import { Button } from 'components'
+import { Box, Button } from 'components'
 
 ReactRuntime.registerComponent(Button, {
   type: 'button',
@@ -34,5 +34,15 @@ ReactRuntime.registerComponent(Button, {
       defaultValue: true,
     }),
     cornerColor: Color({ label: 'Corner color' }),
+  },
+})
+
+ReactRuntime.registerComponent(Box, {
+  type: 'box',
+  label: 'Box',
+  props: {
+    className: Style({ properties: [Style.Width, Style.Margin, Style.Padding, Style.Border] }),
+    cornerColor: Color({ label: 'Corner color' }),
+    children: Slot(),
   },
 })
