@@ -19,7 +19,8 @@
           "maxInstances": 1,
           "buildCommand": "npm run build",
           "startCommand": "npm run start",
-          "envVariables": {}
+          "envVariables": {},
+          "healthCheckPath": "/health"
         }
       ]
     }
