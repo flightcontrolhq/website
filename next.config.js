@@ -1,9 +1,10 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const withMakeswiftInitializer = require("@makeswift/runtime/next/plugin");
+
+const withMakeswift = withMakeswiftInitializer();
+
+module.exports = withMakeswift({
   reactStrictMode: true,
   images: {
-    domains: ['s.mkswft.com'],
+    domains: ["s.mkswft.com"],
   },
-}
-
-module.exports = nextConfig
+});
