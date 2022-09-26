@@ -1,0 +1,26 @@
+{
+  "environments": [
+    {
+      "id": "production",
+      "name": "Production",
+      "region": "us-west-2",
+      "source": {
+        "branch": "main"
+      },
+      "services": [
+        {
+          "id": "website",
+          "name": "Website",
+          "type": "fargate",
+          "cpu": 0.25,
+          "memory": 0.5,
+          "domain": "www.flightcontrol.dev",
+          "minInstances": 1,
+          "maxInstances": 1,
+          "buildCommand": "npm run build",
+          "startCommand": "npm run start",
+          "envVariables": {}
+      ]
+    }
+  ]
+}
