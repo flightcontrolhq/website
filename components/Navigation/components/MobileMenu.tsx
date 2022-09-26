@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { Button } from 'components'
 import { AnimatePresence, motion } from 'framer-motion'
+
 import { ImageWithDimensions, LinkValue } from 'lib/makeswift/types'
 
 import { Props as NavigationProps } from '../../Navigation'

@@ -1,13 +1,13 @@
 import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
-import { placeholders } from 'lib/makeswift/placeholders'
-import { ImageWithDimensions } from 'lib/makeswift/types'
 import Image from 'next/image'
 import { useState, MouseEvent, useRef, ComponentPropsWithoutRef, Ref, forwardRef } from 'react'
 import ReactPlayer from 'react-player'
 
 import { BodyMask } from 'components/BodyMask'
 import { Corners } from 'components/Corners'
+import { placeholders } from 'lib/makeswift/placeholders'
+import { ImageWithDimensions } from 'lib/makeswift/types'
 
 import { PlayButton } from './PlayButton'
 

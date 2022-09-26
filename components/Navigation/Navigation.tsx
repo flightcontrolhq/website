@@ -1,10 +1,11 @@
 import classNames from 'classnames'
 import { Button } from 'components'
 import { AnimatePresence } from 'framer-motion'
-import { ImageWithDimensions, LinkValue } from 'lib/makeswift/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ComponentPropsWithoutRef, forwardRef, Ref, useState } from 'react'
+
+import { ImageWithDimensions, LinkValue } from 'lib/makeswift/types'
 
 import { Close, Hamburger, IconButton, TextButton, MobileMenu } from './components'
 
