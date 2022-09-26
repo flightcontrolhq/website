@@ -1,0 +1,82 @@
+import classNames from 'classnames'
+import { useTransform, transform, useTime } from 'framer-motion'
+import React, { useState, useRef, useEffect, useMemo, ComponentPropsWithoutRef } from 'react'
+
+import { Column } from './components/Column'
+import { DOT_RADIUS, X_DISTANCE_BETWEEN_DOTS } from './constants'
+
+type BaseProps = {
+  className?: string
+  cornerColor?: string
+  children?: any
+  duration?: number
+}
+
+type Props = BaseProps & Omit<ComponentPropsWithoutRef<'div'>, keyof BaseProps>
+
+export function Lights({ duration = 4000, className, ...props }: Props) {
+  const [points, setPoints] = useState<number[]>([])
+  const [width, setWidth] = useState<number>(0)
+  const [firstColumnOffsetX, setFirstColumnOffsetX] = useState<number>(0)
+  const time = useTime()
+
+  const transformTimeToXPosition = useMemo(
+    () => transform([0, duration], [-800, width + 800]),
+    [duration, width],
+  )
+
+  const x = useTransform(time, value => {
+    return transformTimeToXPosition(value % duration)
+  })
+
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    window.addEventListener('resize', resize)
+    resize()
+    return () => window.removeEventListener('resize', resize)
+
+    function resize() {
+      const width = ref.current?.getBoundingClientRect().width ?? 0
+
+      const oneDotAndSpace = X_DISTANCE_BETWEEN_DOTS + DOT_RADIUS * 2
+      const extraDot = DOT_RADIUS * 2
+
+      const widthAvailableForDots = width - extraDot
+      const count = Math.floor(widthAvailableForDots / oneDotAndSpace)
+      const firstColumnOffsetX = (widthAvailableForDots % oneDotAndSpace) / 2
+
+      setWidth(width)
+      setFirstColumnOffsetX(firstColumnOffsetX)
+      setPoints(new Array(count + 1).fill('').map((_, i) => i))
+    }
+  }, [])
+
+  return (
+    <div
+      className={classNames(className, 'w-full flex justify-center items-center')}
+      ref={ref}
+      {...props}
+    >
+      <svg
+        width={width}
+        height={56}
+        viewBox={`0 0 ${width} 56`}
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+      >
+        {points.map((index, i) => {
+          return (
+            <Column
+              key={index}
+              firstColumnOffset={firstColumnOffsetX}
+              numberOfColumns={points.length}
+              columnPosition={i}
+              x={x}
+            />
+          )
+        })}
+      </svg>
+    </div>
+  )
+}

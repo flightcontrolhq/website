@@ -11,7 +11,7 @@ import {
   Image,
 } from '@makeswift/runtime/controls'
 import { ReactRuntime } from '@makeswift/runtime/react'
-import { Box, Button, Navigation } from 'components'
+import { Box, Button, Lights, Navigation } from 'components'
 
 ReactRuntime.registerComponent(Button, {
   type: 'button',
@@ -109,5 +109,13 @@ ReactRuntime.registerComponent(Navigation, {
         },
       }),
     }),
+  },
+})
+
+ReactRuntime.registerComponent(Lights, {
+  type: 'lights',
+  label: 'Lights',
+  props: {
+    className: Style({ properties: [Style.Width, Style.Margin, Style.Padding] }),
   },
 })
