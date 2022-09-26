@@ -124,8 +124,8 @@ ReactRuntime.registerComponent(Lights, {
 const ASPECT_RATIO = 16 / 9
 
 ReactRuntime.registerComponent(PopupVideo, {
-  type: 'heroVideo',
-  label: 'Video Popup',
+  type: 'popupVideo',
+  label: 'Popup Video',
   props: {
     className: Style({
       properties: [Style.Margin, Style.Padding, Style.Width, Style.Border],
