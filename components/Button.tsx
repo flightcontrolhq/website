@@ -51,7 +51,7 @@ export function Button({
   const cornerPosition = isTapped ? 0 - borderOffset : -6 - borderOffset
 
   return (
-    <Link href={link?.href ?? '#'} target={link?.target}>
+    <Link passHref href={link?.href ?? '#'} target={link?.target}>
       <motion.a
         onClick={link?.onClick}
         {...props}

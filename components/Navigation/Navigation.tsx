@@ -49,7 +49,11 @@ export const Navigation = forwardRef(function Navigation(
       >
         <div className="z-[99999] flex flex-row items-center justify-start ">
           {logo.image ? (
-            <Link className="outline-thick flex-shrink-0 rounded-md" href={logo.link ?? ''}>
+            <Link
+              passHref
+              className="outline-thick flex-shrink-0 rounded-md"
+              href={logo.link ?? ''}
+            >
               <Image
                 alt={'Flight control logo'}
                 src={logo.image.url}
