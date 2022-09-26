@@ -2,16 +2,6 @@ import { Checkbox, Color, Link, Select, Style, TextInput } from '@makeswift/runt
 import { ReactRuntime } from '@makeswift/runtime/react'
 import { Button } from 'components'
 
-// Register your components here!
-
-ReactRuntime.registerComponent(props => <p {...props}>Hello, world!</p>, {
-  type: 'hello-world',
-  label: 'Hello, world!',
-  props: {
-    className: Style({ properties: Style.All }),
-  },
-})
-
 ReactRuntime.registerComponent(Button, {
   type: 'button',
   label: 'Button',
