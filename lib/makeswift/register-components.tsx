@@ -51,7 +51,7 @@ ReactRuntime.registerComponent(Button, {
 
 ReactRuntime.registerComponent(Box, {
   type: 'box',
-  label: 'Box',
+  label: 'FC Box',
   props: {
     className: Style({ properties: [Style.Width, Style.Margin, Style.Padding, Style.Border] }),
     height: Select({

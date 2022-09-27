@@ -39,7 +39,7 @@ export function Box({
       }}
     >
       {cornersVisible && (
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 z-10">
           <Corners color={props.cornerColor} />
         </div>
       )}
