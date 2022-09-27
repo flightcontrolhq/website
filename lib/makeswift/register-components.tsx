@@ -92,17 +92,19 @@ ReactRuntime.registerComponent(Navigation, {
     className: Style({ properties: [Style.Width, Style.Margin, Style.Padding] }),
     logo: Shape({
       type: {
-        image: Image({ format: Image.Format.WithDimensions, label: 'Logo Image' }),
-        link: Link({ label: 'Logo Link' }),
+        image: Image({ format: Image.Format.WithDimensions, label: 'Logo image' }),
+        link: Link({ label: 'Logo link' }),
+        alt: TextInput({ label: 'Logo ALT text' }),
       },
     }),
     center: List({
+      label: 'Center Links',
       getItemLabel: function (item) {
         return item?.text ?? 'Untitled'
       },
       type: Shape({
         type: {
-          text: TextInput({ defaultValue: '', label: 'Button Text' }),
+          text: TextInput({ defaultValue: '', label: 'Button text' }),
           link: Link({ label: 'Link' }),
           variant: Select({
             label: 'Variant',
@@ -117,12 +119,13 @@ ReactRuntime.registerComponent(Navigation, {
       }),
     }),
     right: List({
+      label: 'Right links',
       getItemLabel: function (item) {
         return item?.text ?? 'Untitled'
       },
       type: Shape({
         type: {
-          text: TextInput({ defaultValue: '', label: 'Button Text' }),
+          text: TextInput({ defaultValue: '', label: 'Button text' }),
           link: Link({ label: 'Link' }),
           variant: Select({
             label: 'Variant',

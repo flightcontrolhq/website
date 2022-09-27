@@ -14,6 +14,7 @@ type BaseProps = {
   logo: {
     image?: ImageWithDimensions
     link?: LinkValue
+    alt?: string
   }
   center: {
     link?: LinkValue
@@ -52,11 +53,12 @@ export const Navigation = forwardRef(function Navigation(
           {logo.image ? (
             <Link
               passHref
-              className="outline-thick flex-shrink-0 rounded-md"
+              className="cursor-pointer outline-thick flex-shrink-0 rounded-md"
               href={logo.link ?? ''}
             >
               <Image
-                alt={'Flight control logo'}
+                className="cursor-pointer"
+                alt={logo.alt}
                 src={logo.image.url}
                 width={logo.image.dimensions.width}
                 height={logo.image.dimensions.height}
@@ -68,27 +70,27 @@ export const Navigation = forwardRef(function Navigation(
             <div className="text-xl">Logo placeholder</div>
           )}
         </div>
-        <div className="hidden items-center justify-center space-x-8 md:flex">
+        <div className="hidden items-center justify-center space-x-5 md:flex">
           {center.map((link, i) =>
             link.variant === 'solid' ? (
-              <Button key={i} variant="solid" href={link?.link?.href ?? ''}>
+              <Button key={i} variant="solid" size="small" link={link?.link}>
                 {link.text}
               </Button>
             ) : (
-              <TextButton key={i} href={link?.link?.href ?? ''}>
+              <TextButton key={i} link={link?.link}>
                 {link.text}
               </TextButton>
             ),
           )}
         </div>
-        <div className="hidden items-center justify-end space-x-7 md:flex">
+        <div className="hidden items-center justify-end space-x-5 md:flex">
           {right.map((link, i) =>
             link.variant === 'solid' ? (
-              <Button key={i} variant="solid" size="small" href={link?.link?.href ?? ''}>
+              <Button key={i} variant="solid" size="small" link={link?.link}>
                 {link.text}
               </Button>
             ) : (
-              <TextButton key={i} href={link?.link?.href ?? ''}>
+              <TextButton key={i} link={link?.link}>
                 {link.text}
               </TextButton>
             ),
