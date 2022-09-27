@@ -54,6 +54,30 @@ ReactRuntime.registerComponent(Box, {
   label: 'Box',
   props: {
     className: Style({ properties: [Style.Width, Style.Margin, Style.Padding, Style.Border] }),
+    height: Select({
+      options: [
+        {
+          label: 'Auto',
+          value: 'auto',
+        },
+        { label: 'Stretch', value: 'stretch' },
+      ],
+      defaultValue: 'auto',
+      label: 'Height',
+    }),
+    alignItems: Select({
+      options: [
+        {
+          label: 'Top',
+          value: 'top',
+        },
+        { label: 'Middle', value: 'middle' },
+        { label: 'Bottom', value: 'bottom' },
+        { label: 'Space between', value: 'spaceBetween' },
+      ],
+      defaultValue: 'top',
+      label: 'Align items',
+    }),
     cornerColor: Color({ labelOrientation: 'vertical', label: 'Corner color' }),
     cornersVisible: Checkbox({ label: 'Corners visible', defaultValue: true }),
     backgroundColor: Color({ labelOrientation: 'vertical', label: 'Background color' }),
