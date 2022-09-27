@@ -12,7 +12,7 @@ import {
   Number,
 } from '@makeswift/runtime/controls'
 import { ReactRuntime } from '@makeswift/runtime/react'
-import { Box, Button, Lights, Navigation, PopupVideo } from 'components'
+import { Box, Button, Lights, Navigation, Plane, PopupVideo } from 'components'
 
 ReactRuntime.registerComponent(Button, {
   type: 'button',
@@ -54,7 +54,9 @@ ReactRuntime.registerComponent(Box, {
   label: 'Box',
   props: {
     className: Style({ properties: [Style.Width, Style.Margin, Style.Padding, Style.Border] }),
-    cornerColor: Color({ label: 'Corner color' }),
+    cornerColor: Color({ labelOrientation: 'vertical', label: 'Corner color' }),
+    cornersVisible: Checkbox({ label: 'Corners visible', defaultValue: true }),
+    backgroundColor: Color({ labelOrientation: 'vertical', label: 'Background color' }),
     children: Slot(),
   },
 })
@@ -149,4 +151,10 @@ ReactRuntime.registerComponent(PopupVideo, {
       },
     }),
   },
+})
+
+ReactRuntime.registerComponent(Plane, {
+  type: 'plane',
+  label: 'Plane',
+  props: {},
 })

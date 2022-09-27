@@ -1,6 +1,6 @@
 import classNames from 'classnames'
-import { useTransform, transform, useTime } from 'framer-motion'
-import React, { useState, useRef, useEffect, useMemo, ComponentPropsWithoutRef } from 'react'
+import { useTransform, transform, useTime, motion } from 'framer-motion'
+import React, { useState, useRef, useMemo, ComponentPropsWithoutRef, useLayoutEffect } from 'react'
 
 import { Column } from './components/Column'
 import { DOT_RADIUS, X_DISTANCE_BETWEEN_DOTS } from './constants'
@@ -31,7 +31,7 @@ export function Lights({ duration = 4000, className, ...props }: Props) {
 
   const ref = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener('resize', resize)
     resize()
     return () => window.removeEventListener('resize', resize)
@@ -58,9 +58,11 @@ export function Lights({ duration = 4000, className, ...props }: Props) {
       ref={ref}
       {...props}
     >
-      <svg
+      <motion.svg
         width={width}
         height={56}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: width ? 1 : 0 }}
         viewBox={`0 0 ${width} 56`}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -76,7 +78,7 @@ export function Lights({ duration = 4000, className, ...props }: Props) {
             />
           )
         })}
-      </svg>
+      </motion.svg>
     </div>
   )
 }

@@ -54,6 +54,7 @@ export function Column({ columnPosition, numberOfColumns, firstColumnOffset, x }
           (X_DISTANCE_BETWEEN_DOTS + DOT_RADIUS * 2) * columnPosition
         }
         cy={Y_DISTANCE_AROUND_DOTS + DOT_RADIUS}
+        initial={{ fill: GRAY, opacity: 1 }}
         style={{ fill, opacity }}
       />
       <motion.circle
@@ -63,7 +64,8 @@ export function Column({ columnPosition, numberOfColumns, firstColumnOffset, x }
           DOT_RADIUS +
           (X_DISTANCE_BETWEEN_DOTS + DOT_RADIUS * 2) * columnPosition
         }
-        cy={Y_DISTANCE_AROUND_DOTS + DOT_RADIUS * 2 + Y_DISTANCE_BETWEEN_DOTS}
+        cy={Y_DISTANCE_AROUND_DOTS + DOT_RADIUS * 3 + Y_DISTANCE_BETWEEN_DOTS}
+        initial={{ fill: GRAY, opacity: 1 }}
         style={{ fill, opacity }}
       />
       <motion.circle
@@ -73,7 +75,8 @@ export function Column({ columnPosition, numberOfColumns, firstColumnOffset, x }
           DOT_RADIUS +
           (X_DISTANCE_BETWEEN_DOTS + DOT_RADIUS * 2) * columnPosition
         }
-        cy={Y_DISTANCE_AROUND_DOTS + DOT_RADIUS * 4 + Y_DISTANCE_BETWEEN_DOTS * 2}
+        cy={Y_DISTANCE_AROUND_DOTS + DOT_RADIUS * 5 + Y_DISTANCE_BETWEEN_DOTS * 2}
+        initial={{ fill: GRAY, opacity: 1 }}
         style={{ fill, opacity }}
       />
     </React.Fragment>
