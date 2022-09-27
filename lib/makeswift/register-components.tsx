@@ -160,7 +160,7 @@ ReactRuntime.registerComponent(PopupVideo, {
       properties: [Style.Margin, Style.Padding, Style.Width, Style.Border],
     }),
     preview: Image({ label: 'Preview', format: Image.Format.WithDimensions }),
-    previewAltText: TextInput({ label: 'Preview `alt` text' }),
+    previewAltText: TextInput({ label: 'Preview ALT text' }),
     isAboveTheFold: Checkbox({ label: 'Above the fold' }),
     video: Shape({
       type: {

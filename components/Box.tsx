@@ -38,11 +38,7 @@ export function Box({
         backgroundColor: backgroundColor,
       }}
     >
-      {cornersVisible && (
-        <div className="absolute inset-0 z-10">
-          <Corners color={props.cornerColor} />
-        </div>
-      )}
+      {cornersVisible && <Corners className="absolute z-10" color={props.cornerColor} />}
       <div
         className={classNames(
           'flex w-full',

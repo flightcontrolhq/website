@@ -14,7 +14,7 @@ export function Corners({ size = 'large', color = 'white', ...props }: BaseProps
     <>
       {/* top left */}
       <svg
-        className="absolute top-0 left-0"
+        className={`${props.className} absolute top-0 left-0`}
         width={unitValue}
         height={unitValue}
         viewBox={`0 0 ${unitValue} ${unitValue}`}
@@ -39,7 +39,7 @@ export function Corners({ size = 'large', color = 'white', ...props }: BaseProps
 
       {/* bottom left */}
       <svg
-        className="absolute bottom-0 left-0"
+        className={`${props.className} absolute bottom-0 left-0`}
         width={unitValue}
         height={unitValue}
         viewBox={`0 0 ${unitValue} ${unitValue}`}
@@ -67,7 +67,7 @@ export function Corners({ size = 'large', color = 'white', ...props }: BaseProps
       </svg>
       {/* top right */}
       <svg
-        className="absolute top-0 right-0"
+        className={`${props.className} absolute top-0 right-0`}
         width={unitValue}
         height={unitValue}
         viewBox={`0 0 ${unitValue} ${unitValue}`}
@@ -95,7 +95,7 @@ export function Corners({ size = 'large', color = 'white', ...props }: BaseProps
       </svg>
       {/* bottom right */}
       <svg
-        className="absolute bottom-0 right-0"
+        className={`${props.className} absolute bottom-0 right-0`}
         width={unitValue}
         height={unitValue}
         viewBox={`0 0 ${unitValue} ${unitValue}`}
