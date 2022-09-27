@@ -5,6 +5,11 @@ module.exports = {
   content: ["./components/**/*.{ts,tsx}", "./pages/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        tablet: '575px', // this is tablet breakpoint in Makeswift 
+        desktop: '768px', // this is desktop breakpoint in Makeswift 
+        // Hang tight we are working on making them customizable :) 
+      },
       fontFamily: {
         sans: ["Epilogue", ...defaultTheme.fontFamily.sans],
       },

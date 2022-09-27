@@ -23,14 +23,12 @@ export function Plane(props: Props) {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['0 1', '1 0'],
+    offset: ['0 1.5', '1 -.2'],
   })
   const x = useTransform(scrollYProgress, [0, 1], [0, width])
 
   const smoothX = useSpring(x, {
-    stiffness: 50,
-    damping: 20,
-    restDelta: 0.001,
+    duration: 0.5,
   })
 
   return (
@@ -46,7 +44,7 @@ export function Plane(props: Props) {
       {...props}
     >
       <motion.div style={{ x: smoothX }}>
-        <div className="transform -translate-x-1/2 w-[300px] md:w-[600px]">
+        <div className="transform -translate-x-1/2 w-[300px] tablet:w-[450px] desktop:w-[600px]">
           <Image
             onLoad={() => {
               return setIsLoaded(true)
