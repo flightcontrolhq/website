@@ -2,7 +2,9 @@ import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import { forwardRef, Ref, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react'
 
-type Props = {}
+type Props = {
+  isAboveTheFold?: boolean
+}
 
 export const Plane = forwardRef(function Plane(props: Props, forwardedRef: Ref<HTMLDivElement>) {
   const ref = useRef<HTMLDivElement>(null)
@@ -52,10 +54,12 @@ export const Plane = forwardRef(function Plane(props: Props, forwardedRef: Ref<H
             onLoad={() => {
               return setIsLoaded(true)
             }}
+            layout="responsive"
             width={1200}
             height={1040}
             src={'/plane.png'}
             alt="Plane animating across the screen"
+            priority={props.isAboveTheFold}
           />
         </div>
       </motion.div>

@@ -183,5 +183,7 @@ ReactRuntime.registerComponent(PopupVideo, {
 ReactRuntime.registerComponent(Plane, {
   type: 'plane',
   label: 'Plane',
-  props: {},
+  props: {
+    isAboveTheFold: Checkbox({ label: 'Above the fold' }),
+  },
 })
