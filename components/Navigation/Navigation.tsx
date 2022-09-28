@@ -46,7 +46,7 @@ export const Navigation = forwardRef(function Navigation(
         id={id}
         className={classNames(
           className,
-          'grid grid-cols-2 md:grid-cols-3 bg-black px-5 py-5 md:px-10 ',
+          'flex justify-between items-center lg:grid  lg:grid-cols-3 bg-black px-5 py-5 md:px-10 ',
         )}
       >
         <div className="z-[99999] flex flex-row items-center justify-start ">
