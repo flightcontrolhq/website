@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, forwardRef, Ref } from 'react'
 
 import { Corners } from './Corners'
 
@@ -8,24 +8,27 @@ type BaseProps = {
   cornersVisible?: boolean
   backgroundColor?: string
   cornerColor?: string
-  // todo:@josh why is ReactNode not working here
   height?: 'stretch' | 'auto'
   alignItems?: 'top' | 'middle' | 'bottom' | 'spaceBetween'
+  // todo:@josh why is ReactNode not working here
   children?: any // ReactNode
 }
 
 type Props = BaseProps & Omit<ComponentPropsWithoutRef<'div'>, keyof BaseProps>
 
-// todo:@josh why are we getting a console error for not forwarding the ref on this and other components
-export function Box({
-  cornersVisible = true,
-  height = 'auto',
-  alignItems = 'top',
-  backgroundColor = 'transparent',
-  ...props
-}: Props) {
+export const Box = forwardRef(function Box(
+  {
+    cornersVisible = true,
+    height = 'auto',
+    alignItems = 'top',
+    backgroundColor = 'transparent',
+    ...props
+  }: Props,
+  ref: Ref<HTMLDivElement>,
+) {
   return (
     <div
+      ref={ref}
       className={classNames(
         props.className,
         'relative z-0 p-8 flex',
@@ -58,4 +61,4 @@ export function Box({
       </div>
     </div>
   )
-}
+})

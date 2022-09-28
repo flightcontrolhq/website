@@ -1,11 +1,13 @@
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { forwardRef, Ref, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react'
 
 type Props = {}
 
-export function Plane(props: Props) {
+export const Plane = forwardRef(function Plane(props: Props, forwardedRef: Ref<HTMLDivElement>) {
   const ref = useRef<HTMLDivElement>(null)
+  useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(forwardedRef, () => ref.current)
+
   const [isLoaded, setIsLoaded] = useState(false)
 
   const [width, setWidth] = useState(0)
@@ -26,21 +28,22 @@ export function Plane(props: Props) {
     offset: ['0 1.5', '1 -.2'],
   })
   const x = useTransform(scrollYProgress, [0, 1], [0, width])
-
-  const smoothX = useSpring(x, {
-    duration: 0.5,
-  })
-
+  const smoothX = useSpring(x, { duration: 0.5 })
   return (
     <motion.div
       initial={{
         opacity: 0,
+        y: '-50%',
+        x: '-60%',
       }}
       animate={{
         opacity: isLoaded ? 1 : 0,
+        y: '-50%',
+        x: isLoaded ? '-50%' : '-70%',
       }}
+      transition={{ duration: 0.3, type: 'tween', ease: [0.165, 0.84, 0.44, 1] }}
+      className={`absolute w-full z-[-1] top-1/2 left-1/2`}
       ref={ref}
-      className={`absolute w-full z-[-1] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2`}
       {...props}
     >
       <motion.div style={{ x: smoothX }}>
@@ -58,4 +61,4 @@ export function Plane(props: Props) {
       </motion.div>
     </motion.div>
   )
-}
+})

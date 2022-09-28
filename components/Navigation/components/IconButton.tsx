@@ -17,7 +17,6 @@ export const IconButton = forwardRef(function IconButton(
     name,
     size = 'medium',
     color = 'gray',
-
     active = false,
     type = 'button',
     loading = false,

@@ -123,7 +123,7 @@ export function Corners({ size = 'large', color = 'white', ...props }: BaseProps
               width={unitValue}
               height={unitValue}
               fill="white"
-              transform={'translate(${unitValue} ${unitValue}) rotate(-180)'}
+              transform={`translate(${unitValue} ${unitValue}) rotate(-180)`}
             />
           </clipPath>
         </defs>

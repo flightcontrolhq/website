@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion'
 import Link from 'next/link'
-import { useState } from 'react'
+import { forwardRef, Ref, useState } from 'react'
 import { MouseEvent } from 'react'
 
 import { Corners } from './Corners'
@@ -32,15 +32,18 @@ type BaseProps = {
 
 type Props = BaseProps & Omit<HTMLMotionProps<'a'>, keyof BaseProps>
 
-export function Button({
-  showArrows = true,
-  variant = 'solid',
-  size = 'large',
-  link,
-  className,
-  cornerColor,
-  ...props
-}: Props) {
+export const Button = forwardRef(function Button(
+  {
+    showArrows = true,
+    variant = 'solid',
+    size = 'large',
+    link,
+    className,
+    cornerColor,
+    ...props
+  }: Props,
+  ref: Ref<HTMLAnchorElement>,
+) {
   const [isHovered, setHovered] = useState(false)
   const [isTapped, setTapped] = useState(false)
 
@@ -51,8 +54,10 @@ export function Button({
   const cornerPosition = isTapped ? 0 - borderOffset : -6 - borderOffset
 
   return (
-    <Link passHref href={link?.href ?? '#'} target={link?.target}>
+    <Link passHref href={link?.href ?? '#'}>
       <motion.a
+        ref={ref}
+        target={link?.target ?? undefined}
         onClick={link?.onClick}
         {...props}
         onFocus={() => setHovered(true)}
@@ -190,4 +195,4 @@ export function Button({
       </motion.a>
     </Link>
   )
-}
+})

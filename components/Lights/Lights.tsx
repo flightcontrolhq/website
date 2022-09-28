@@ -1,6 +1,15 @@
 import classNames from 'classnames'
 import { useTransform, transform, useTime, motion } from 'framer-motion'
-import React, { useState, useRef, useMemo, ComponentPropsWithoutRef, useLayoutEffect } from 'react'
+import React, {
+  useState,
+  useRef,
+  useMemo,
+  ComponentPropsWithoutRef,
+  useLayoutEffect,
+  forwardRef,
+  useImperativeHandle,
+  Ref,
+} from 'react'
 
 import { Column } from './components/Column'
 import { DOT_RADIUS, X_DISTANCE_BETWEEN_DOTS } from './constants'
@@ -14,7 +23,10 @@ type BaseProps = {
 
 type Props = BaseProps & Omit<ComponentPropsWithoutRef<'div'>, keyof BaseProps>
 
-export function Lights({ duration = 4000, className, ...props }: Props) {
+export const Lights = forwardRef(function Lights(
+  { duration = 4000, className, ...props }: Props,
+  forwardedRef: Ref<HTMLDivElement>,
+) {
   const [points, setPoints] = useState<number[]>([])
   const [width, setWidth] = useState<number>(0)
   const [firstColumnOffsetX, setFirstColumnOffsetX] = useState<number>(0)
@@ -30,6 +42,7 @@ export function Lights({ duration = 4000, className, ...props }: Props) {
   })
 
   const ref = useRef<HTMLDivElement>(null)
+  useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(forwardedRef, () => ref.current)
 
   useLayoutEffect(() => {
     window.addEventListener('resize', resize)
@@ -81,4 +94,4 @@ export function Lights({ duration = 4000, className, ...props }: Props) {
       </motion.svg>
     </div>
   )
-}
+})

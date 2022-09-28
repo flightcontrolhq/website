@@ -56,14 +56,16 @@ export const Navigation = forwardRef(function Navigation(
               className="cursor-pointer outline-thick flex-shrink-0 rounded-md"
               href={logo.link ?? ''}
             >
-              <Image
-                className="cursor-pointer"
-                alt={logo.alt}
-                src={logo.image.url}
-                width={logo.image.dimensions.width}
-                height={logo.image.dimensions.height}
-                priority={true}
-              />
+              <a className="flex justify-center items-center">
+                <Image
+                  className="cursor-pointer"
+                  alt={logo.alt}
+                  src={logo.image.url}
+                  width={logo.image.dimensions.width}
+                  height={logo.image.dimensions.height}
+                  priority={true}
+                />
+              </a>
             </Link>
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
@@ -96,16 +98,24 @@ export const Navigation = forwardRef(function Navigation(
             ),
           )}
         </div>
-        <div className="z-[99999]  items-center justify-end self-center justify-self-end md:hidden">
+        <div className="z-[99999] items-center justify-end self-center justify-self-end md:hidden">
           <IconButton onClick={() => setIsOpen(prev => !prev)}>
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence mode="wait">
               {isOpen ? (
-                <Close initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
+                <Close
+                  key="close"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  transition={{ duration: 0.1 }}
+                />
               ) : (
                 <Hamburger
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  key="hamburger"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  transition={{ duration: 0.1 }}
                 />
               )}
             </AnimatePresence>
