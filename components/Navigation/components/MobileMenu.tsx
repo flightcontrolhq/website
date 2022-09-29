@@ -57,7 +57,7 @@ export function MobileMenu({
             className,
           )}
         >
-          <div className="relative flex h-full w-full flex-col items-center space-y-5 pt-40">
+          <div className="relative flex h-full w-full flex-col items-center space-y-5 pt-28">
             {center.map((link, i) =>
               link.variant === 'solid' ? (
                 <Button key={i} size="small" variant="solid" href={link?.link?.href ?? ''}>
