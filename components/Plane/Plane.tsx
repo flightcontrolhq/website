@@ -49,7 +49,7 @@ export const Plane = forwardRef(function Plane(props: Props, forwardedRef: Ref<H
       {...props}
     >
       <motion.div style={{ x: smoothX }}>
-        <div className="transform -translate-x-1/2 w-[300px] tablet:w-[450px] desktop:w-[600px]">
+        <div className="transform -translate-x-1/2 w-[400px] tablet:w-[500px] desktop:w-[600px]">
           <Image
             onLoad={() => {
               return setIsLoaded(true)
