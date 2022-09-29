@@ -11,16 +11,20 @@ import {
   Y_DISTANCE_BETWEEN_DOTS,
 } from '../constants'
 
-const getOpacity = transform([-250, -150, 150, 250], [0, 1, 1, 0])
-
 type Props = {
   columnPosition: number
   numberOfColumns: number
   firstColumnOffset: number
   x: MotionValue<any>
+  width: number
 }
 
-export function Column({ columnPosition, numberOfColumns, firstColumnOffset, x }: Props) {
+export function Column({ columnPosition, numberOfColumns, firstColumnOffset, width, x }: Props) {
+  const getOpacity = useMemo(
+    () => transform(width < 600 ? [-150, -50, 50, 150] : [-250, -150, 150, 250], [0, 1, 1, 0]),
+    [width],
+  )
+
   const backgroundColor = useMemo(
     () => transform([0, numberOfColumns], [GREEN, BLUE])(columnPosition),
     [columnPosition, numberOfColumns],

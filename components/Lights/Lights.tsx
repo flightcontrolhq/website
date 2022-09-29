@@ -14,17 +14,21 @@ import React, {
 import { Column } from './components/Column'
 import { DOT_RADIUS, X_DISTANCE_BETWEEN_DOTS } from './constants'
 
+const transformWidthToDuration = transform(
+  [0, 600, 1200, 3000, 10000],
+  [3000, 3000, 4000, 5000, 8000],
+)
+
 type BaseProps = {
   className?: string
   cornerColor?: string
   children?: any
-  duration?: number
 }
 
 type Props = BaseProps & Omit<ComponentPropsWithoutRef<'div'>, keyof BaseProps>
 
 export const Lights = forwardRef(function Lights(
-  { duration = 4000, className, ...props }: Props,
+  { className, ...props }: Props,
   forwardedRef: Ref<HTMLDivElement>,
 ) {
   const [points, setPoints] = useState<number[]>([])
@@ -32,13 +36,14 @@ export const Lights = forwardRef(function Lights(
   const [firstColumnOffsetX, setFirstColumnOffsetX] = useState<number>(0)
   const time = useTime()
 
-  const transformTimeToXPosition = useMemo(
-    () => transform([0, duration], [-800, width + 800]),
-    [duration, width],
+  const transformDurationToXPosition = useMemo(
+    () => transform([0, transformWidthToDuration(width)], [-400, width + 400]),
+    [width],
   )
 
   const x = useTransform(time, value => {
-    return transformTimeToXPosition(value % duration)
+    const duration = transformWidthToDuration(width)
+    return transformDurationToXPosition(value % duration)
   })
 
   const ref = useRef<HTMLDivElement>(null)
@@ -87,6 +92,7 @@ export const Lights = forwardRef(function Lights(
               firstColumnOffset={firstColumnOffsetX}
               numberOfColumns={points.length}
               columnPosition={i}
+              width={width}
               x={x}
             />
           )
