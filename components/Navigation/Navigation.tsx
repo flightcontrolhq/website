@@ -46,10 +46,11 @@ export const Navigation = forwardRef(function Navigation(
         id={id}
         className={classNames(
           className,
-          'flex justify-between items-center lg:grid  lg:grid-cols-3 bg-black px-5 py-5 md:px-10 ',
+          'flex justify-between items-center lg:grid  lg:grid-cols-3 bg-black px-5 py-5 md:px-10',
+          isOpen && 'touch-none',
         )}
       >
-        <div className="z-[99999] flex flex-row items-center justify-start ">
+        <div className={classNames('z-[99999] flex flex-row items-center justify-start ')}>
           {logo.image ? (
             <Link
               passHref
@@ -98,7 +99,11 @@ export const Navigation = forwardRef(function Navigation(
             ),
           )}
         </div>
-        <div className="z-[99999] items-center justify-end self-center justify-self-end md:hidden">
+        <div
+          className={classNames(
+            'z-[99999] items-center justify-end self-center justify-self-end md:hidden',
+          )}
+        >
           <IconButton onClick={() => setIsOpen(prev => !prev)}>
             <AnimatePresence mode="wait">
               {isOpen ? (
