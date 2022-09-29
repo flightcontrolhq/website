@@ -87,7 +87,6 @@ export const Button = forwardRef(function Button(
         className={classNames(
           className,
           'relative z-0 flex flex-shrink select-none items-center  justify-center whitespace-nowrap text-white outline-none',
-
           {
             small: 'text-sm font-bold leading-none',
             large: 'text-xl font-extrabold leading-none',

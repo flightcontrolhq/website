@@ -22,7 +22,7 @@ ReactRuntime.registerComponent(Button, {
     className: Style({
       properties: [Style.TextStyle, Style.Width, Style.Margin],
     }),
-    text: TextInput({ defaultValue: '', label: 'Button Text' }),
+    text: TextInput({ defaultValue: 'Button text', label: 'Button Text' }),
     link: Link({ label: 'Link' }),
     size: Select({
       label: 'Size',
@@ -105,7 +105,7 @@ ReactRuntime.registerComponent(Navigation, {
       },
       type: Shape({
         type: {
-          text: TextInput({ defaultValue: '', label: 'Button text' }),
+          text: TextInput({ defaultValue: 'Button text', label: 'Button text' }),
           link: Link({ label: 'Link' }),
           variant: Select({
             label: 'Variant',
@@ -126,7 +126,7 @@ ReactRuntime.registerComponent(Navigation, {
       },
       type: Shape({
         type: {
-          text: TextInput({ defaultValue: '', label: 'Button text' }),
+          text: TextInput({ defaultValue: 'Button text', label: 'Button text' }),
           link: Link({ label: 'Link' }),
           variant: Select({
             label: 'Variant',
