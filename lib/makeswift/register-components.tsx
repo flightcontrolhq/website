@@ -10,9 +10,10 @@ import {
   TextInput,
   Image,
   Number,
+  TextArea,
 } from '@makeswift/runtime/controls'
 import { ReactRuntime } from '@makeswift/runtime/react'
-import { Box, Button, Lights, Navigation, Plane, PopupVideo } from 'components'
+import { Box, Button, Code, Lights, Navigation, Plane, PopupVideo } from 'components'
 
 ReactRuntime.registerComponent(Button, {
   type: 'button',
@@ -185,5 +186,27 @@ ReactRuntime.registerComponent(Plane, {
   label: 'Plane',
   props: {
     isAboveTheFold: Checkbox({ label: 'Above the fold' }),
+  },
+})
+
+ReactRuntime.registerComponent(Code, {
+  type: 'code',
+  label: 'Code',
+  props: {
+    className: Style({
+      properties: [Style.Width, Style.Margin, Style.Padding, Style.Border, Style.BorderRadius],
+    }),
+    code: TextArea({ label: 'Code', defaultValue: "const flightControl = 'is cool!'" }),
+    language: Select({
+      label: 'Language',
+      labelOrientation: 'horizontal',
+      options: [
+        { value: 'tsx', label: 'tsx' },
+        { value: 'ts', label: 'ts' },
+        { value: 'js', label: 'js' },
+        { value: 'json', label: 'json' },
+      ],
+      defaultValue: 'ts',
+    }),
   },
 })
