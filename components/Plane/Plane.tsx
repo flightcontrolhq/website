@@ -36,7 +36,7 @@ export const Plane = forwardRef(function Plane(props: Props, forwardedRef: Ref<H
       initial={{
         opacity: 0,
         y: '-50%',
-        x: '-60%',
+        x: '-70%',
       }}
       animate={{
         opacity: isLoaded ? 1 : 0,
