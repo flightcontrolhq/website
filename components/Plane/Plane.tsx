@@ -1,6 +1,6 @@
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import { forwardRef, Ref, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react'
+import { forwardRef, Ref, useEffect, useImperativeHandle, useRef, useState } from 'react'
 
 type Props = {
   isAboveTheFold?: boolean
@@ -14,7 +14,7 @@ export const Plane = forwardRef(function Plane(props: Props, forwardedRef: Ref<H
 
   const [width, setWidth] = useState(0)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     window.addEventListener('resize', resize)
     resize()
     return () => window.removeEventListener('resize', resize)

@@ -5,10 +5,10 @@ import React, {
   useRef,
   useMemo,
   ComponentPropsWithoutRef,
-  useLayoutEffect,
   forwardRef,
   useImperativeHandle,
   Ref,
+  useEffect,
 } from 'react'
 
 import { Column } from './components/Column'
@@ -49,7 +49,7 @@ export const Lights = forwardRef(function Lights(
   const ref = useRef<HTMLDivElement>(null)
   useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(forwardedRef, () => ref.current)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     window.addEventListener('resize', resize)
     resize()
     return () => window.removeEventListener('resize', resize)
