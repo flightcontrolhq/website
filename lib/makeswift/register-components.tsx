@@ -194,7 +194,7 @@ ReactRuntime.registerComponent(Code, {
   label: 'Code',
   props: {
     className: Style({
-      properties: [Style.Width, Style.Margin, Style.Padding, Style.Border, Style.BorderRadius],
+      properties: Style.All,
     }),
     code: TextArea({ label: 'Code', defaultValue: "const flightControl = 'is cool!'" }),
     language: Select({
@@ -207,6 +207,9 @@ ReactRuntime.registerComponent(Code, {
         { value: 'json', label: 'json' },
       ],
       defaultValue: 'ts',
+    }),
+    maxHeight: Number({
+      label: 'Max height',
     }),
   },
 })
