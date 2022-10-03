@@ -1,4 +1,5 @@
 {
+  "$schema": "https://app.flightcontrol.dev/schema.json",
   "environments": [
     {
       "id": "production",
@@ -12,6 +13,7 @@
           "id": "website",
           "name": "Website",
           "type": "fargate",
+          "buildType": "nixpacks",
           "cpu": 0.25,
           "memory": 0.5,
           "domain": "www.flightcontrol.dev",
