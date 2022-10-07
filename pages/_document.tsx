@@ -5,7 +5,13 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <script
+            src="https://impressive-ziggy-stardust.flightcontrol.dev/script.js"
+            data-site="MJTFLQYZ"
+            defer
+          ></script>
+        </Head>
         <body>
           <Main />
           <NextScript />
