@@ -1,0 +1,67 @@
+---
+index: 7
+heading: Example Setup
+title: Custom Dockerfile Example
+sidebarTitle: Docker
+---
+
+Please note, while using custom docker images, you will get build errors related to Docker Hub unauthenticated pull limit `toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: [https://www.docker.com/increase-rate-limit](https://www.docker.com/increase-rate-limit)`, there are couple of workarounds:
+
+1. Use AWS ECR public image instead of using Docker Hub, ECR will support unlimited free pulls within AWS resources
+2. If you have Docker hub account, you can use `DOCKER_USERNAME` and `DOCKER_PASSWORD`, environment variables, and Flightcontrol will authenticate the pull request automatically for you.
+
+{% spacer /%}
+
+```json
+{
+  "environments": [
+    {
+      "id": "production",
+      "name": "Production",
+      "region": "us-west-2",
+      "source": {
+        "branch": "main"
+      },
+      "services": [
+        {
+          "id": "my-webapp",
+          "name": "My Webapp",
+          "type": "fargate",
+          "dockerfilePath": "Dockerfile",
+          "dockerContext": ".",
+          "cpu": 0.25,
+          "memory": 0.5,
+          "domain": "www.example.com",
+          "port": 8080,
+          "minInstances": 1,
+          "maxInstances": 1,
+          "envVariables": {
+            "DATABASE_URL": {
+              "fromService": {
+                "id": "db",
+                "value": "dbConnectionString"
+              }
+            },
+						"DOCKER_USERNAME": {
+              "fromParameterStore": "docker.hub.username"
+            },
+						"DOCKER_PASSWORD": {
+              "fromParameterStore": "docker.hub.password"
+            }
+          }
+        },
+        {
+          "id": "db",
+          "name": "Database",
+          "type": "rds",
+          "engine": "postgres",
+          "engineVersion": "12",
+          "instanceSize": "db.t2.micro",
+          "storage": 20,
+          "private": false
+        }
+      ]
+    }
+  ]
+}
+```

@@ -1,0 +1,31 @@
+import cn from "https://cdn.skypack.dev/classnames@2.3.1"
+
+export const Button = ({ title, href, target, lightBlue, fuchsia, medium, large, transparent }) => {
+    let extraProps = {}
+    if (target === "_blank") {
+      extraProps = {
+        target: "_blank",
+        rel: "noreferrer"
+      }
+    }
+    return <a className={cn(
+        "unstyled-link antialiased w-min flex-none focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-200 flex self-center whitespace-nowrap cursor-pointer ease-in-out transform select-none no-underline font-medium",
+        {
+          "px-3 py-1.5 text-sm rounded-md": !medium && !large,
+          "px-4 py-2 text-base rounded-md": medium,
+          "px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg rounded-md sm:rounded-lg": large,
+          "text-white hover:text-white focus:ring-white": !transparent,
+          "hover:bg-gray-100 focus:ring-offset-gray-400": transparent,
+          "bg-blueGray-900 hover:bg-blueGray-700 focus:ring-offset-blueGray-400": !transparent && !lightBlue && !fuchsia,
+          "bg-sky-500 hover:bg-sky-600 focus:ring-offset-sky-300": lightBlue,
+          "bg-fuchsia-700 hover:bg-fuchsia-600 focus:ring-offset-fuchsia-300": fuchsia
+        }
+      )} href={href} {...extraProps}>{title}</a>
+}
+
+<Button title="Button" href="/" />
+<Button title="Button" href="/" transparent />
+<Button fuchsia title="Button" href="/" />
+<Button medium title="Button" href="/" lightBlue />
+<Button title="Button" href="/" />
+<Button large title="Button" href="/" />

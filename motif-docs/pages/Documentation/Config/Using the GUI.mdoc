@@ -1,0 +1,19 @@
+---
+heading: Project Configuration
+title: Using the Flightcontrol GUI
+---
+
+If you don't want to maintain your own file, you can choose to configure your project using our GUI, where you'll have the options to:
+- Choose the **branch** to be used
+- The **AWS region** and **account**
+- Choose an **`Environment` name** from a fixed list of names
+- Optionally choose a framework preset, which will add the services and configuration needed
+- Add the `Services` you want
+   - For each service, you can select a builder type
+
+Please note there are currently some limitations, such as:
+- You can only set up ONE `Environment` on creation, but you'll be able to add more once the project has been created.
+- You can't select manual trigger, so by default it will deploy every commit pushed to the selected **branch**
+
+When you first create a project, you will be able to create **one single `Environment`** and add services to it, as well as configure things like the AWS Region, AWS Account . 
+After creation, you will be able to add more `Environment`s.

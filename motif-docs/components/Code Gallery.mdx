@@ -1,0 +1,64 @@
+export const cards = [
+  {
+    title: "Markdoc",
+    href: "/guides",
+    cover: "v1652948650/Markdoc_Playground_caiqqe.svg"
+  },
+  {
+    title: "Components",
+    href: "/guides",
+    cover: "v1652948516/Motif_UI_Kit_izcgb8.svg"
+  },
+  {
+    title: "Release notes",
+    href: "/changelog",
+    cover: "v1652948516/Beautiful_Release_Notes_lf9qb0.svg"
+  },
+  {
+    title: "Markdoc",
+    href: "/guides",
+    cover: "v1652950827/Docs_UI_Kit_q0mlmz.svg"
+  },
+  {
+    title: "Components",
+    href: "/guides",
+    cover: "v1652950827/Icons_y6ffug.svg"
+  },
+  {
+    title: "Release notes",
+    href: "/changelog",
+    cover: "v1652951184/Menus_ljg4im.svg"
+  },
+  {
+    title: "Components",
+    href: "/guides",
+    cover: "v1652951051/Markdoc_z4mgjs.svg"
+  },
+  {
+    title: "Markdoc",
+    href: "/guides",
+    cover: "v1652951020/Terminals_bgpao2.svg"
+  },
+  {
+    title: "Release notes",
+    href: "/changelog",
+    cover: "v1652951294/Canvas_Draw_e8hhsm.svg"
+  }
+]
+
+export const GalleryItem = ({ card }) => {
+  return <div
+    className="h-48 bg-gray-100 rounded-lg hover:shadow-xl transition cursor-pointer duration-300 bg-cover bg-center"
+    style={{
+      backgroundImage: `url(https://res.cloudinary.com/djp21wtxm/image/upload/${card.cover})`
+    }}
+    />
+}
+
+export const SampleCodeGallery = () => {
+  return <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+    { cards.map(card => <GalleryItem card={card} />)}
+  </div>
+}
+
+<SampleCodeGallery />

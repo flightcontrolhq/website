@@ -1,0 +1,402 @@
+import { Disclosure } from "https://cdn.skypack.dev/@headlessui/react@1.4.3"
+import cn from "https://cdn.skypack.dev/classnames@2.3.1"
+import { MenuFill, XFill } from "https://cdn.motif.land/motifheroicons"
+import { Button } from "https://cdn.motif.land/motifblocks@0.0.8"
+
+export const NavigationBar = ({ className, items, large, path, buttonTitle, buttonHref, border, Icon }) => {
+  return <Disclosure
+      as="nav"
+      className={className}
+      style={{
+        ...(border === "dashed" ? {
+            borderBottomWidth:"1px",
+            borderStyle:"dashed",
+            borderColor:"rgb(229 231 235)"
+          } : {}),
+        ...(border === "solid" ? {
+            borderBottomWidth:"1px",
+            borderColor:"rgb(229 231 235)"
+          } : {}),
+        ...(large ? {} : {
+            backgroundColor: "rgb(255 255 255)"
+          })
+      }}>
+    {({ open }) => (<>
+      <style>{`
+        .QjBJIxeHke {
+          margin-left: auto;
+          margin-right: auto;
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+
+        @media (min-width: 640px) {
+          .QjBJIxeHke {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .QjBJIxeHke {
+            padding-left: 2rem;
+            padding-right: 2rem;
+          }
+        }
+
+        .EVRx5j9gLT {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .EVRx5j9gLT-small {
+          height: 4rem;
+        }
+        .EVRx5j9gLT-large {
+          height: 5rem;
+        }
+        @media (min-width: 640px) {
+          .EVRx5j9gLT-large {
+            height: 6rem;
+          }
+        }
+
+        .QjBJIxeHke-icon {
+          display: flex;
+          flex-shrink: 0;
+          align-items: center;
+          padding-left: 0.25rem;
+        }
+        @media (min-width: 640px) {
+          .QjBJIxeHke-icon {
+            padding-left: 0px;
+          }
+        }
+
+        .QjBJIxeHke-items-container {
+          display: none;
+          flex-grow: 1;
+          align-items: center;
+          justify-content: flex-end;
+        }
+        @media (min-width: 640px) {
+          .QjBJIxeHke-items-container {
+            display: flex;
+          }
+          .QjBJIxeHke-items-container-small {
+            margin-right: 1rem;
+          }
+        }
+
+        .QjBJIxeHke-items-small > :not([hidden]) ~ :not([hidden]) {
+          --tw-space-x-reverse: 0;
+          margin-right: calc(0.25rem * var(--tw-space-x-reverse));
+          margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
+        }
+        .QjBJIxeHke-items-large > :not([hidden]) ~ :not([hidden]) {
+          --tw-space-x-reverse: 0;
+          margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+          margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+        }
+
+        .QjBJIxeHke-item {
+          --tw-text-opacity: 1;
+          color: rgb(15 23 42 / var(--tw-text-opacity)) !important;
+          text-decoration: none !important;
+        }
+
+        .QjBJIxeHke-item[data-current="true"] {
+          --tw-bg-opacity: 1;
+          --tw-text-opacity: 1;
+          background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+          color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+        }
+
+        .QjBJIxeHke-item[data-current="false"] {
+          border-radius: 0.375rem;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+          font-weight: 500;
+          transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+          transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+          transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-duration: 150ms;
+          transition-duration: 200ms;
+        }
+        .QjBJIxeHke-item[data-current="false"]:hover {
+          background-color: rgb(243 244 246);
+        }
+
+        .QjBJIxeHke-item[data-active="true"] {
+          color: rgb(14 165 233) !important;
+        }
+        .QjBJIxeHke-item[data-active="true"]:hover {
+          color: rgb(14 165 233) !important;
+        }
+        .QjBJIxeHke-item[data-active="false"]:hover {
+          color: rgb(15 23 42) !important;
+        }
+
+        .QjBJIxeHke-item-icon {
+          height: 1.25rem;
+          width: 1.25rem;
+          color: rgb(15 23 42) !important;
+        }
+
+        @media (min-width: 640px) {
+          .QjBJIxeHke-item-icon {
+            height: 1.5rem;
+            width: 1.5rem;
+          }
+        }
+
+        .qX0j6VmQiR-disclosure-button {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 0.375rem;
+          padding: 0.5rem;
+          color: rgb(156 163 175) !important;
+          transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+          transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+          transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-duration: 150ms;
+          transition-duration: 200ms;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .qX0j6VmQiR-disclosure-button:hover {
+          --tw-bg-opacity: 1;
+          background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+          --tw-text-opacity: 1;
+          color: rgb(55 65 81 / var(--tw-text-opacity)) !important;
+        }
+
+        .qX0j6VmQiR-disclosure-button:focus {
+          outline: 2px solid transparent;
+          outline-offset: 2px;
+          --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+          --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+          box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+          --tw-ring-inset: inset;
+          --tw-ring-opacity: 1;
+          --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
+        }
+
+        .dAHAr5W5U0 {
+          display: block;
+          border-radius: 0.375rem;
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+          font-weight: 500;
+          color: rgb(15 23 42) !important;
+          transition-duration: 200ms;
+        }
+
+        .dAHAr5W5U0:hover {
+          --tw-bg-opacity: 1;
+          background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+        }
+
+        .dAHAr5W5U0:focus {
+          outline: 2px solid transparent;
+          outline-offset: 2px;
+          --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+          --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+          box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+          --tw-ring-opacity: 1;
+          --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
+          --tw-ring-offset-width: 2px;
+          --tw-ring-offset-color: #94a3b8;
+        }
+
+        .dAHAr5W5U0-current {
+          background-color: rgb(243 244 246);
+          color: rgb(55 65 81) !important;
+        }
+
+        .dAHAr5W5U0-not-current:hover {
+          background-color: rgb(243 244 246);
+          color: rgb(15 23 42) !important;
+        }
+
+        .QjBJIxeHke .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border-width: 0;
+        }
+
+        .QjBJIxeHke-space-y-1 > :not([hidden]) ~ :not([hidden]) {
+          --tw-space-y-reverse: 0;
+          margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse))) !important;
+          margin-bottom: calc(0.25rem * var(--tw-space-y-reverse)) !important;
+        }
+
+        .QjBJIxeHke .transition {
+          transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+          transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+          transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-duration: 150ms;
+        }
+
+        @media (min-width: 640px) {
+          .bdWFZhViwZ-sm-hidden {
+            display: none !important;
+          }
+        }
+
+      `}</style>
+      <div
+        style={open ? { backgroundColor: "transparent" } : {}}
+        className="QjBJIxeHke">
+        <div className={cn("EVRx5j9gLT", {
+            "EVRx5j9gLT-small": !large,
+            "EVRx5j9gLT-large": large,
+          })}>
+          <div style={{
+              display:"flex",
+              flex:"1 1 0%",
+              alignItems:"center",
+              justifyContent:"flex-start"
+            }}>
+            { Icon && <div className="QjBJIxeHke-icon">{Icon}</div> }
+            <div className={cn(
+                "QjBJIxeHke-items-container",
+                { "QjBJIxeHke-items-container-small": !large }
+              )}>
+              <div style={{
+                  display: "flex",
+                  flexDirection: "row"
+                }}
+              className={cn({
+                  "QjBJIxeHke-items-small": !large,
+                  "QjBJIxeHke-items-large": large,
+                })}>
+                {items.map((item) => {
+                  const active = path?.startsWith(item.baseHref || item.href)
+                  return (
+                    <a
+                      key={item.title}
+                      href={item.href}
+                      target={item.target}
+                      data-current={item.current ? "true" : "false"}
+                      data-active={active ? "true" : "false"}
+                      className="QjBJIxeHke-item"
+                      style={large ? {
+                          paddingLeft:"0.75rem",
+                          paddingRight:"0.75rem",
+                          fontSize:"1rem",
+                          lineHeight:"1.5rem"
+                        } : {
+                          paddingLeft:"0.5rem",
+                          paddingRight:"0.5rem",
+                          fontSize:"0.875rem",
+                          lineHeight:"1.25rem"
+                        }}
+                      aria-current={item.current ? "page" : undefined}
+                    >
+                      {item?.Icon ?
+                        <item.Icon className="QjBJIxeHke-item-icon"/> :
+                        item.title
+                      }
+                    </a>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+          { buttonTitle &&
+            <Button size="small" Component="a" href={buttonHref} target="_blank">{buttonTitle}</Button>
+          }
+          <div
+            style={{
+              marginLeft:"0.5rem",
+              display:"flex",
+              alignItems:"center"
+            }}
+            className="bdWFZhViwZ-sm-hidden">
+            <Disclosure.Button className="qX0j6VmQiR-disclosure-button">
+              <span className="sr-only">Open main menu</span>
+              {open ? (
+                <XFill
+                  style={{
+                      display:"block",
+                      height:"1.5rem",
+                      width:"1.5rem",
+                      color:"rgb(15 23 42)"
+                    }}
+                  aria-hidden="true"
+                />
+              ) : (
+                <MenuFill
+                  style={{
+                      display:"block",
+                      height:"1.5rem",
+                      width:"1.5rem",
+                      color:"rgb(15 23 42)"
+                    }}
+                  aria-hidden="true"
+                />
+              )}
+            </Disclosure.Button>
+          </div>
+        </div>
+      </div>
+      <Disclosure.Panel
+        style={open && large ? {
+            borderBottomWidth:"1px",
+            borderStyle:"dashed",
+            backgroundColor:"rgb(255 255 255)"
+          } : {}}
+        className="bdWFZhViwZ-sm-hidden"
+      >
+        <div
+          style={{
+              marginBottom:"0.5rem",
+              paddingLeft:"1rem",
+              paddingRight:"1rem",
+              paddingTop:"0.5rem",
+              paddingBottom:"1rem"
+          }}
+          className="QjBJIxeHke-space-y-1"
+        >
+          {items.map((item) => (
+            <a
+              key={item.title}
+              href={item.href}
+              target={item.target}
+              style={{
+                textDecorationLine: "none"
+              }}
+              className={cn(
+                "transition dAHAr5W5U0",
+                {
+                  "dAHAr5W5U0-current": item.current,
+                  "dAHAr5W5U0-not-current": !item.current
+                }
+              )}
+              aria-current={item.current ? "page" : undefined}
+            >
+              {item.title}
+            </a>
+          ))}
+        </div>
+      </Disclosure.Panel>
+    </>
+  )}
+  </Disclosure>
+}

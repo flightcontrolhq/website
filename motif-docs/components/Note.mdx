@@ -1,0 +1,28 @@
+export const getClassName = (type) => {
+  switch (type) {
+    case "info": return "bg-sky-100 border-sky-200"
+    case "warning": return "bg-orange-100 border-orange-200"
+    case "error": return "bg-red-100 border-red-200"
+    default: return "bg-gray-100 border-gray-200"
+  }
+}
+
+export const Note = ({ type, children }) => {
+  return <div className={`p-3 rounded-md border ${getClassName(type)}`}>{children}</div>
+}
+
+<Note>
+  This is a simple note.
+</Note>
+
+<Note type="info">
+  This is a simple note.
+</Note>
+
+<Note type="warning">
+  This is a simple note.
+</Note>
+
+<Note type="error">
+  This is a simple note.
+</Note>

@@ -1,0 +1,116 @@
+import { useState } from "react@17.0.1"
+import cn from "https://cdn.skypack.dev/classnames@2.3.1"
+
+export const cards = [
+  {
+    title: "Markdoc",
+    href: "/guides",
+    cover: "v1652948650/Markdoc_Playground_caiqqe.svg"
+  },
+  {
+    title: "Components",
+    href: "/guides",
+    cover: "v1652948516/Motif_UI_Kit_izcgb8.svg"
+  },
+  {
+    title: "Release notes",
+    href: "/changelog",
+    cover: "v1652948516/Beautiful_Release_Notes_lf9qb0.svg"
+  },
+  {
+    title: "MDX",
+    href: "/guides",
+    cover: "v1652950827/Docs_UI_Kit_q0mlmz.svg"
+  },
+  {
+    title: "Libraries",
+    href: "/guides",
+    cover: "v1652950827/Icons_y6ffug.svg"
+  },
+  {
+    title: "Menus",
+    href: "/changelog",
+    cover: "v1652951184/Menus_ljg4im.svg"
+  },
+  {
+    title: "Authoring",
+    href: "/guides",
+    cover: "v1652951051/Markdoc_z4mgjs.svg"
+  },
+  {
+    title: "Terminals",
+    href: "/guides",
+    cover: "v1652951020/Terminals_bgpao2.svg"
+  },
+  {
+    title: "Widgets",
+    href: "/changelog",
+    cover: "v1652951294/Canvas_Draw_e8hhsm.svg"
+  }
+]
+
+export const GalleryItem = ({ title, subtitle, cover, href }) => {
+  return <div className="flex flex-col gap-1">
+      <a href={href} className="unstyled-link no-underline">
+        <div
+          className="h-32 bg-gray-100 rounded-lg hover:shadow-lg transition cursor-pointer duration-300 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(https://res.cloudinary.com/djp21wtxm/image/upload/${cover})`
+          }}
+        />
+      </a>
+      <a href={href} className="unstyled-link no-underline text-blueGray-900 hover:text-fuchsia-600 transition font-medium text-sm pt-4">{ title }</a>
+      <div className="text-gray-500 text-sm">{ subtitle }</div>
+    </div>
+}
+
+export const tabs = [
+  "Authoring",
+  "Designing",
+  "Publishing"
+]
+
+export const Tab = ({ label, active, onClick }) => {
+  return <div className={cn(
+        "py-2 border-b-2 font-medium text-sm cursor-pointer",
+        {
+          "border-fuchsia-500 text-fuchsia-600": active,
+          "border-transparent hover:text-fuchsia-600": !active,
+        }
+      )}
+      onClick={onClick}
+    >{ label }</div>
+}
+export const TabBar = ({ activeIndex, onSelect }) => {
+  return <div className="flex flex-row gap-6 border-b border-gray-100">
+    { tabs.map((t, i) => (
+        <Tab
+          label={t}
+          active={activeIndex === i}
+          onClick={() => onSelect(i)}
+        />)
+      )
+    }
+    </div>
+}
+
+export const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+
+export const SampleGuidesGallery = () => {
+  const [tab, setTab] = useState(0)
+  return <div>
+    <TabBar activeIndex={tab} onSelect={setTab} />
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+      {cards.slice(tab * 3, tab * 3 + 3).map(card => {
+        return <GalleryItem
+        title={card.title}
+        subtitle={loremIpsum}
+        href="/guides"
+        cover={card.cover}
+      />
+      })}
+    </div>
+  </div>
+}
+
+<SampleGuidesGallery />

@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection,
+::-moz-selection {
+  background: #d2f7f9;
+}
+
+.underline-links a:not(.unstyled-link) {
+  @apply no-underline font-semibold text-gray-900 dark:text-white hover:text-gray-900 dark:hover:text-white/50 hover:border-b-2 border-b border-cyan-500 transition;
+}
+
+.unstyled-link {
+  @apply no-underline !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  scroll-margin-top: 80px !important;
+}
+
+.doc-content h1 {
+  @apply inline-block text-3xl tracking-normal font-bold text-gray-900 !important;
+}
+
+.subheading {
+  @apply max-w-screen-lg text-gray-500 text-lg sm:text-2xl sm:leading-8 font-medium mb-4;
+}
+
+.hiddenScrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hiddenScrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Syntax highlighting */
+
+pre {
+  @apply text-white bg-blueGray-900 overflow-x-auto text-sm p-6 rounded-md !important;
+  line-height: 1.7142857 !important;
+}
+.prose :where(pre):not(:where([class~="not-prose"] *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.prose :where(code):not(:where([class~="not-prose"] *)) {
+  @apply text-sky-500;
+}
+
+.hero-gradient {
+  background: linear-gradient(
+      83.84deg,
+      #0ea5e9 -3.34%,
+      rgba(71, 201, 242, 0.133) 35.77%
+    ),
+    linear-gradient(
+      101.71deg,
+      rgba(227, 167, 228, 0.047) 46.42%,
+      #e879f9 94.51%
+    ),
+    linear-gradient(149.12deg, #6d28d9 13.67%, rgba(51, 8, 173, 0) 86.42%);
+}
+
+.token.tag,
+.token.class-name,
+.token.selector,
+.token.selector .class,
+.token.function {
+  @apply text-fuchsia-400;
+}
+
+.token.attr-name,
+.token.keyword,
+.token.rule,
+.token.operator,
+.token.pseudo-class,
+.token.important {
+  @apply text-cyan-400;
+}
+
+.token.attr-value,
+.token.class,
+.token.string,
+.token.number,
+.token.unit,
+.token.color {
+  @apply text-lime-300;
+}
+
+.token.punctuation,
+.token.module,
+.token.property {
+  @apply text-sky-200;
+}
+
+.token.atapply .token:not(.rule):not(.important) {
+  color: inherit;
+}
+
+.language-shell .token:not(.comment) {
+  color: inherit;
+}
+
+.language-css .token.function {
+  color: inherit;
+}
+
+.token.comment {
+  @apply text-gray-400;
+}
+
+.token.deleted:not(.prefix) {
+  @apply relative block -mx-4 px-4;
+}
+
+.token.deleted:not(.prefix)::after {
+  content: "";
+  @apply pointer-events-none absolute inset-0 block bg-rose-400 bg-opacity-25;
+}
+
+.token.deleted.prefix {
+  @apply text-gray-400 select-none;
+}
+
+.token.inserted:not(.prefix) {
+  @apply block bg-emerald-700 bg-opacity-50 -mx-4 px-4;
+}
+
+.token.inserted.prefix {
+  @apply text-emerald-200 text-opacity-75 select-none;
+}

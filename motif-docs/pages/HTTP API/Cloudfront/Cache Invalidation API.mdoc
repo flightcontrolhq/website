@@ -1,0 +1,176 @@
+---
+index: 1
+heading: API
+title: Cloudfront Cache Invalidation
+subtitle: Invalidate the Cloudfront Cache for certain paths of a service.  
+---
+{% table %}
+
+* **Method**
+* **Path**
+---
+* **POST**
+* `/services/invalidateCloudfront`
+
+{% /table %}
+
+
+{% table %}
+
+* **Headers**
+---
+* Authorization
+* `authorization: [API key]`
+{% /table %}
+
+{% table %}
+
+
+* **Body**
+---
+* **Parameter**
+* **Type**
+* **Description**
+---
+* `version`
+* **number**
+* This is the version ID of the API, currently at version 1.
+---
+* `params`
+* **object**: `{ serviceId: string; paths: string[] }`
+* Type: 
+This contains all the information necessary for your invalidation. See below for more info on this object. 
+{% /table %}
+
+
+
+#### The `params` object
+
+{% table %}
+* Parameter
+* Type
+* Description
+---
+* `serviceId`
+* **string**
+* This the ID of the service you wish to invalidate, available in the projects page by hovering over the information symbol next to the service name. Click the icon to copy the ID to your clipboard.
+---
+* `paths`
+* **string[]**
+* This is an array of the paths you wish to invalidate. Note: The constraints here are consistent with the AWS path constraints. Particularly, a wildcard symbol `*` can only be passed at the end of the path. See [AWS documentation](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html) for more details.
+{% /table %}
+
+**Full Endpoint URL** 
+`https://app.flightcontrol.dev/api/services/invalidateCloudfront`
+
+#### Request Body  Example
+```json
+{
+  "version": 1,
+	"params": {
+	  "serviceId": "ckysuceua334812r51r83asne",
+	  "paths": ["/*"]
+	}
+}
+```
+#### Response Example
+```json
+{
+	"message": "Invalidation Started. Be sure to save your invalidation ID if you would like to check on its status.",
+	"invalidationId": "cl2kx7acm00003f6gobvidq2i"
+}
+```
+
+
+
+### Response
+
+{% collapse title="Success" %}
+```
+HTTP/1.1 200 OK
+{
+	"message": "Invalidation Started. Be sure to save your invalidation ID if you would like to check on its status.",
+	"invalidationId": string
+}
+```
+- The invalidation ID is used to get the temporal workflow initiated by your request. See below for the API to check the status of your request.
+{% /collapse %}
+
+{% collapse title="Errors" %}
+**Method Not Allowed: Requires POST Method**
+
+```
+HTTP/1.1 405 Method Not Allowed
+Content-Type: application/json
+
+{
+  "error": "Invalid method, please use POST"
+}
+```
+
+**Unauthorized: No API Key**
+
+```
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+
+{
+  "error": "Please use an API key for this request"
+}
+```
+
+**Unauthorized: Invalid API Key**
+
+```x
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+
+{
+  "error": "Invalid API key"
+}
+```
+
+**Bad Request: Invalid File Path**
+
+```x
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+{
+	"error": "Invalid File Path on path: [invalid path]",
+	"message": "If using a wildcard (*), it must be placed at the end of the file path."
+}
+```
+
+- Occurs when a file path with an invalid wildcard symbol is detected. See [Wild Card File Paths](https://www.notion.so/Flightcontrol-Public-API-863e1d2307a64e4081030ecadc710856)
+
+**Bad Request: Invalid Service ID**
+
+```x
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+{
+	"error": "There are no services with ID: [invalid ID]"
+}
+```
+
+**Bad Request: Service Is Not Active**
+
+```x
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+{
+	"error": "This service is not active."
+}
+```
+
+**Internal Server Error: Something Happened On Our End**
+
+```x
+HTTP/1.1 500 Bad Request
+Content-Type: application/json
+{
+	"error": "[error]", 
+	"message": "There was an unexpected error."
+}
+```
+{% /collapse %}

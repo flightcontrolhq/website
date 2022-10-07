@@ -1,0 +1,25 @@
+{
+  "templates": {
+    "**/*": "plain",
+    "guides/**/*": "guides",
+    "guides": "guides",
+    "reference": "reference",
+    "reference/**/*": "reference",
+    "http-api": "http-api",
+    "http-api/authorization/api-keys": "http-api",
+    "http-api/cloudfront/cache-invalidation-api": "http-api",
+    "http-api/cloudfront/cache-invalidation-status-api": "http-api",
+    "documentation": "documentation",
+    "documentation/**/*": "documentation",
+    "": "documentation"
+  },
+  "head": [
+    "<meta name='viewport' content='width=device-width, initial-scale=1.0' />",
+    "<meta name='og:title' content='Flightcontrol Docs' />",
+    "<meta name='description' content='Heroku is too limiting and expensive. AWS is too complex. Flightcontrol solves both by bringing world-class DX natively to AWS.' />",
+    "<link rel='shortcut icon' href='https://global-uploads.webflow.com/621a5f404501e09984d5370b/621a5f414501e068b8d537a7_favicon-dark-template.svg' />",
+    "<link rel='preconnect' href='https://fonts.googleapis.com' />",
+    "<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />",
+    "<link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap' rel='stylesheet' />"
+  ]
+}

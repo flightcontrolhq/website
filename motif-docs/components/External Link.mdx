@@ -1,0 +1,18 @@
+export const ExternalLink = ({
+  title,
+  href,
+  Icon
+}) => {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="flex flex-row mx-2 py-1.5 transition duration-200 text-sm group text-gray-600 hover:text-gray-900 border-gray-200 font-medium">
+      <div className="mr-2">
+        <Icon className="h-5 w-5 text-gray-400 group-hover:text-gray-900 transition duration-200" />
+      </div>
+      {title}
+    </a>
+  )
+}

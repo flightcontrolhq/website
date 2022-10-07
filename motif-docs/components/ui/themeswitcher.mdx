@@ -1,0 +1,23 @@
+import { useTheme } from 'next-themes'
+import Moon from '@components/icons/moon'
+import Sun from '@components/icons/sun'
+import { useIsMounted } from '@lib/is-mounted'
+import { IconButton } from '@components/ui/iconbutton'
+
+export const ThemeSwitcher = () => {
+  const { resolvedTheme, setTheme } = useTheme()
+  const isMounted = useIsMounted()
+  const toggleColorMode = () => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+
+  return (
+    <>
+      {isMounted && (
+        <IconButton
+          Icon={resolvedTheme === 'dark' ? Sun : Moon}
+          ariaLabel={`Switch to ${resolvedTheme === 'dark' ? "light" : "dark"} mode`}
+          onClick={toggleColorMode}
+        />
+      )}
+    </>
+  )
+}

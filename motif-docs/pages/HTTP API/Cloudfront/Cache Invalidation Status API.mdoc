@@ -1,0 +1,119 @@
+---
+index: 2
+heading: API
+title: Cache Invalidation Status
+subtitle: Check the status of a Cloudfront Cache invalidation that was previously requested
+---
+
+{% table %}
+
+* **Method**
+* **Path**
+---
+* **POST**
+* `services/invalidateCloudfrontStatus`
+
+{% /table %}
+
+
+{% table %}
+
+* **Headers**
+---
+* Authorization
+* `authorization: [API key]`
+{% /table %}
+
+{% table %}
+
+
+* **Body**
+---
+* **Parameter**
+* **Type**
+* **Description**
+---
+* `version`
+* **number**
+* This is the version ID of the API, currently at version 1.
+---
+* `params`
+* **object**: `{ invalidationId: string; }`
+* Type: 
+`invalidationId` is the ID you should receive when you initially call the invalidation API.
+{% /table %}
+
+
+**Full Endpoint URL** `https://app.flightcontrol.dev/api/services/invalidateCloudfrontStatus`
+
+#### Request Body Example
+```json
+{
+  "version": 1,
+	"params" : {
+	  "invalidationId": "cl2kx7acm04003f6gobvidq2i"
+	}
+}
+```
+#### Response Example
+```json
+{
+	"status": "SUCCESS",
+}
+```
+
+
+### Responses
+
+{% collapse title="Success" %}
+
+#### Success
+    
+```
+HTTP/1.1 200 OK
+{
+  "status": "SUCCESS"
+}
+```
+
+### Pending
+    
+```
+HTTP/1.1 200 OK
+{
+  "status": "PENDING"
+}
+```
+{% /collapse %}
+
+{% collapse title="Errors" %}
+
+#### Failure
+
+```
+HTTP/1.1 200 OK
+{
+  "status": "FAILURE"
+}
+```
+
+#### Method Not Allowed: Requires POST Method
+
+```
+HTTP/1.1 405 Method Not Allowed
+Content-Type: application/json
+{
+  "error": "Invalid method, please use POST"
+}
+```
+
+#### Unauthorized: No API Key
+
+```
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+{
+  "error": "Please use an API key for this request"
+}
+```
+{% /collapse %}

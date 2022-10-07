@@ -1,0 +1,45 @@
+import { TOC } from "https://cdn.motif.land/motifmenus@0.0.18"
+import cn from "https://cdn.skypack.dev/classnames@2.3.1"
+import { MiniFooter } from "@components/footer"
+
+export const Container = ({ sectionTitle, title, subtitle, noTitle, wide, includeTOC, hasSidebar, children }) => {
+  return <div className={cn(
+      "mx-auto mt-12 antialiased",
+      {
+        "w-full md:pl-60 xl:pl-72": hasSidebar,
+        "w-full max-w-screen-lg": !hasSidebar
+      }
+    )}>
+    <div className={cn(
+      "antialiased w-full max-w-screen-xl pt-10 pb-12 mt-8 pl-6 md:pl-8 prose", {
+        "pr-20 xl:pr-80": !wide,
+        "pr-20": wide,
+      }
+      )}>
+      { !noTitle && <>
+        <p class="mb-2 text-sm leading-6 font-semibold text-fuchsia-600">{sectionTitle}</p>
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">{title || "Untitled"}</h1>
+        {subtitle &&
+          <p className="text-gray-500 text-lg mb-20 mt-0">{subtitle}</p>
+        }
+      </>}
+      <div className="relative w-full max-w-full underline-links">
+        {children}
+      </div>
+      <MiniFooter />
+      { includeTOC &&
+        <div className="fixed z-20 top-28 bottom-0 right-8 w-72 py-10 px-8 overflow-y-auto hidden xl:block">
+          <TOC />
+        </div>
+      }
+    </div>
+  </div>
+}
+
+<Container
+  sectionTitle="Section title"
+  title="Title"
+  subtitle="Subtitle"
+>
+  Sample content
+</Container>

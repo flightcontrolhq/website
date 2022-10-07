@@ -1,0 +1,46 @@
+export const meta = {
+  name: "Tutorials",
+}
+
+import { useMemo } from "react"
+import { TabbedNavbar } from "@components/tabbednavbar"
+import { Container } from "@components/container"
+import { Sidebar } from "@components/sidebar"
+import { filesToSearchData } from "@components/ui/search"
+import { getSectionTitle } from "@lib/utils"
+
+export const sections = [
+  "Config",
+  "Misc",
+]
+
+export const Template = ({ filename, path, files, meta, children }) => {
+  const searchData = useMemo(() => {
+    return (files && filesToSearchData(files, undefined, "Home")) || []
+  }, [files])
+
+    return (
+      <div>
+        <div className="sticky top-0 z-50 w-full antialiased">
+          <TabbedNavbar path={path} searchData={searchData} />
+        </div>
+        <div className="hidden sm:block fixed top-28 w-0 md:w-60 xl:w-72 bottom-0 left-0 overflow-y-auto md:p-4">
+          <Sidebar files={files} path={path} baseFolder="Tutorials" baseLink="/tutorials" sections={sections} />
+        </div>
+        <Container
+          sectionTitle={meta?.heading || getSectionTitle(path, files)}
+          title={meta?.title || filename?.replace(/\.md$/, '').replace(/\.mdoc$/, '')}
+          subtitle={meta?.subtitle}
+          hasSidebar
+        >
+          {children}
+        </Container>
+    </div>
+  )
+}
+
+export default (props) => <Template {...props} />
+
+{/* Sample data */}
+
+Some sample text.

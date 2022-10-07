@@ -1,0 +1,42 @@
+export const Heading = () => {
+  return <div className="grid grid-cols-12 gap-6 font-medium mb-6">
+      <div className="col-span-2" />
+      <div className="col-span-5 text-sm">Shipped</div>
+      <div className="col-span-5 text-sm">Planned</div>
+    </div>
+}
+
+export const Card = ({ date, children }) => {
+  return <div className="grid grid-cols-12 gap-6 not-prose">
+      <div className="col-span-2 text-sm text-gray-500 border-r py-8 relative">
+        { date }
+        <div className="absolute rounded-full bg-fuchsia-400 border-4 border-fuchsia-100 top-[34px] right-[-8.5px] w-4 h-4"/>
+      </div>
+      <div className="col-span-5 py-8 text-sm">{ children[0] }</div>
+      <div className="col-span-5 py-8 text-sm">{ children[1] }</div>
+    </div>
+}
+
+<Heading />
+<Card date="Jan 17">
+  <div>
+    - 1Manually onboarded early access insiders
+    - Lots of bug fixes
+    - Significant time helping users onboard
+  </div>
+  <div>
+    - 🔥 Preview environments for PRs (in progress)
+    - Cross-project environments
+  </div>
+</Card>
+<Card date="Jan 17">
+  <div>
+    - Manually onboarded early access insiders
+    - Lots of bug fixes
+    - Significant time helping users onboard
+  </div>
+  <div>
+    - 🔥 Preview environments for PRs (in progress)
+    - Cross-project environments
+  </div>
+</Card>
