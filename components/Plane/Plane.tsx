@@ -6,7 +6,10 @@ type Props = {
   isAboveTheFold?: boolean
 }
 
-export const Plane = forwardRef(function Plane(props: Props, forwardedRef: Ref<HTMLDivElement>) {
+export const Plane = forwardRef(function Plane(
+  { isAboveTheFold, ...props }: Props,
+  forwardedRef: Ref<HTMLDivElement>,
+) {
   const ref = useRef<HTMLDivElement>(null)
   useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(forwardedRef, () => ref.current)
 
@@ -51,15 +54,15 @@ export const Plane = forwardRef(function Plane(props: Props, forwardedRef: Ref<H
       <motion.div style={{ x: smoothX }}>
         <div className="transform -translate-x-1/2 w-[400px] tablet:w-[500px] desktop:w-[600px]">
           <Image
-            onLoad={() => {
+            onLoadingComplete={() => {
               return setIsLoaded(true)
             }}
-            layout="responsive"
+            layout="intrinsic"
             width={1200}
             height={1040}
             src={'/plane.png'}
             alt="Plane animating across the screen"
-            priority={props.isAboveTheFold}
+            priority={isAboveTheFold}
           />
         </div>
       </motion.div>
