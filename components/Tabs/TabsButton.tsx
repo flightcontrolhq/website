@@ -41,7 +41,7 @@ export function TabButton({ children, className, isCurrentTab, ...props }: Props
       }}
       className={classNames(
         className,
-        'text-base font-bold py-3 relative z-0 flex flex-shrink select-none items-center justify-center whitespace-nowrap outline-none',
+        'py-3 px-[32px] relative z-0 flex flex-shrink select-none items-center justify-center outline-none',
       )}
       {...props}
     >

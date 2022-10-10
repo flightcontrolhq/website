@@ -24,7 +24,14 @@ export const Tabs = forwardRef(function Tabs(
     setCurrentTab(parseInt(initialTab ?? '1'))
   }, [initialTab])
   return (
-    <div className={classNames(className, 'flex flex-col space-y-3')} ref={ref} {...props}>
+    <div
+      className={classNames(
+        className,
+        'text-sm tablet:text-base font-bold flex flex-col space-y-5',
+      )}
+      ref={ref}
+      {...props}
+    >
       <div className="flex justify-center items-center w-full space-x-3">
         <TabButton
           className="max-w-[200px] w-1/2"
@@ -38,7 +45,7 @@ export const Tabs = forwardRef(function Tabs(
           isCurrentTab={currentTab === 2}
           onClick={() => setCurrentTab(2)}
         >
-          <div className="transform translate-y-[2px]">{tab1Text}</div>
+          <div className="transform translate-y-[2px]">{tab2Text}</div>
         </TabButton>
       </div>
       <AnimatePresence mode="wait" initial={false}>
