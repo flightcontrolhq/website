@@ -213,3 +213,26 @@ ReactRuntime.registerComponent(Code, {
     }),
   },
 })
+
+ReactRuntime.registerComponent(Tabs, {
+  type: 'tabs',
+  label: 'Tabs',
+  props: {
+    className: Style({
+      properties: Style.All,
+    }),
+    initialTab: Select({
+      label: 'Initial Tab',
+      labelOrientation: 'horizontal',
+      options: [
+        { value: '1', label: 'Tab 1' },
+        { value: '2', label: 'Tab 2' },
+      ],
+      defaultValue: '1',
+    }),
+    tab1Content: Slot(),
+    tab1Text: TextInput({ defaultValue: 'Tab 1 text', label: 'Tab 1 text' }),
+    tab2Content: Slot(),
+    tab2Text: TextInput({ defaultValue: 'Tab 2 text', label: 'Tab 2 text' }),
+  },
+})
