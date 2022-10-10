@@ -105,17 +105,24 @@ export const Button = forwardRef(function Button(
         style={
           {
             solid: {
-              background: 'linear-gradient(272.74deg, #327DF9 0%, #22D834 100%)',
+              background: 'linear-gradient(272.74deg, #1BC92C 0%, #327DF9 100%)',
             },
             outlined: {
-              borderImage: 'linear-gradient(272.74deg, #327DF9 0%, #22D834 100%) 25%',
+              borderImage: 'linear-gradient(272.74deg, #1BC92C 0%, #327DF9 100%) 25%',
               borderStyle: 'inset',
               borderWidth: '2px',
             },
           }[variant]
         }
       >
-        <div>{props.text ?? props.children}</div>
+        <div
+          className={classNames(
+            'transform',
+            { small: 'translate-y-[1px]', large: 'translate-y-[1.5px]' }[size],
+          )}
+        >
+          {props.text ?? props.children}
+        </div>
         <AnimatePresence>
           {isHovered && (
             <motion.div
