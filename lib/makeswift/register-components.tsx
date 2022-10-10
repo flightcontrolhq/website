@@ -13,7 +13,7 @@ import {
   TextArea,
 } from '@makeswift/runtime/controls'
 import { ReactRuntime } from '@makeswift/runtime/react'
-import { Box, Button, Code, Lights, Navigation, Plane, PopupVideo } from 'components'
+import { Box, Button, Code, Lights, Navigation, Plane, PopupVideo, Tabs } from 'components'
 
 ReactRuntime.registerComponent(Button, {
   type: 'button',
@@ -22,7 +22,7 @@ ReactRuntime.registerComponent(Button, {
     className: Style({
       properties: [Style.TextStyle, Style.Width, Style.Margin],
     }),
-    text: TextInput({ defaultValue: 'Button text', label: 'Button Text' }),
+    text: TextInput({ defaultValue: 'Button text', label: 'Button text' }),
     link: Link({ label: 'Link' }),
     size: Select({
       label: 'Size',
@@ -173,7 +173,7 @@ ReactRuntime.registerComponent(PopupVideo, {
           defaultValue: ASPECT_RATIO,
         }),
         autoPlay: Checkbox({ label: 'Autoplay' }),
-        controls: Checkbox({ label: 'Show Controls' }),
+        controls: Checkbox({ label: 'Show controls' }),
         loop: Checkbox({ label: 'Loop' }),
         muted: Checkbox({ label: 'Muted' }),
       },
@@ -211,5 +211,28 @@ ReactRuntime.registerComponent(Code, {
     maxHeight: Number({
       label: 'Max height',
     }),
+  },
+})
+
+ReactRuntime.registerComponent(Tabs, {
+  type: 'tabs',
+  label: 'Tabs',
+  props: {
+    className: Style({
+      properties: Style.All,
+    }),
+    initialTab: Select({
+      label: 'Initial Tab',
+      labelOrientation: 'horizontal',
+      options: [
+        { value: '1', label: 'Tab 1' },
+        { value: '2', label: 'Tab 2' },
+      ],
+      defaultValue: '1',
+    }),
+    tab1Content: Slot(),
+    tab1Text: TextInput({ defaultValue: 'Tab 1 text', label: 'Tab 1 text' }),
+    tab2Content: Slot(),
+    tab2Text: TextInput({ defaultValue: 'Tab 2 text', label: 'Tab 2 text' }),
   },
 })
