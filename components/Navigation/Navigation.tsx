@@ -105,7 +105,7 @@ export const Navigation = forwardRef(function Navigation(
           )}
         >
           <IconButton onClick={() => setIsOpen(prev => !prev)}>
-            <AnimatePresence mode="wait">
+            <AnimatePresence initial={false} mode="wait">
               {isOpen ? (
                 <Close
                   key="close"

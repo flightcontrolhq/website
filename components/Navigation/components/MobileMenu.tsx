@@ -60,22 +60,22 @@ export function MobileMenu({
           <div className="relative flex h-full w-full flex-col items-center space-y-5 pt-28">
             {center.map((link, i) =>
               link.variant === 'solid' ? (
-                <Button key={i} size="small" variant="solid" href={link?.link?.href ?? ''}>
+                <Button key={i} size="small" variant="solid" link={link?.link}>
                   {link.text}
                 </Button>
               ) : (
-                <TextButton key={i} href={link?.link?.href ?? ''}>
+                <TextButton key={i} link={link?.link}>
                   {link.text}
                 </TextButton>
               ),
             )}
             {right.map((link, i) =>
               link.variant === 'solid' ? (
-                <Button key={i} size="small" variant="solid" href={link?.link?.href ?? ''}>
+                <Button key={i} size="small" variant="solid" link={link?.link}>
                   {link.text}
                 </Button>
               ) : (
-                <TextButton key={i} href={link?.link?.href ?? ''}>
+                <TextButton key={i} link={link?.link}>
                   {link.text}
                 </TextButton>
               ),
