@@ -7,7 +7,7 @@ export default {
     tabs: [
       { title: 'Documentation', href: '/docs/guides/get-started' },
       {
-        title: 'HTTP API',
+        title: 'API',
         href: '/docs/http-api',
       },
       { title: 'Troubleshooting', href: '/docs/troubleshooting' },
@@ -17,7 +17,7 @@ export default {
     ],
   },
   sidebars: {
-    documentation: [
+    guides: [
       {
         title: 'Get started',
         href: '/docs/guides/get-started',
@@ -29,6 +29,10 @@ export default {
           {
             title: 'Supported services',
             href: '/docs/guides/get-started/services',
+          },
+          {
+            title: 'How to get AWS credits',
+            href: '/docs/guides/get-started/aws-credits',
           },
         ],
       },
@@ -43,6 +47,14 @@ export default {
           {
             title: 'Using the GUI',
             href: '/docs/guides/config/using-the-gui',
+          },
+          {
+            title: 'Preview Environments',
+            href: '/docs/guides/config/preview-environment',
+          },
+          {
+            title: 'Monorepos',
+            href: '/docs/guides/config/monorepos',
           },
         ],
       },
@@ -77,15 +89,6 @@ export default {
           {
             title: 'Support for fargate',
             href: '/docs/guides/datadog/support-for-fargate',
-          },
-        ],
-      },
-      {
-        title: 'Miscellaneous',
-        pages: [
-          {
-            title: 'How to get free AWS credits',
-            href: '/docs/guides/miscellaneous/aws-credits',
           },
         ],
       },

@@ -12,12 +12,13 @@ export const ChangelogEntry = ({ date, title, cover, children }) => {
       <span className="text-xs px-2 py-1 rounded-full bg-cyan-50 text-cyan-600 font-medium">{DateTime.fromISO(date).toLocaleString(DateTime.DATE_FULL)}</span></div>
     <div className="col-span-3 mb-12">
       <div
-        className="h-24 p-3 hero-gradient rounded-lg bg-cover bg-center"
+        className="p-[15px] hero-gradient rounded-lg bg-cover bg-center flex"
       >
-      <h2 className="font-bold text-white text-xl mt-6">{ title }</h2>
+      <h2 className="font-bold text-white text-xl m-0">{ title }</h2>
       </div>
       <div className="prose mt-4">{ children }</div>
     </div>
+    
   </>
 }
 
@@ -27,7 +28,7 @@ export const SampleChangelog = () => {
   return <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
     <ChangelogEntry
       date="2022-09-19"
-      title="Introducing Markdoc"
+      title="VPC Enhancement &  Stale-while-revalidate Feature v2"
       cover={covers[0]}
       >
       "{loremIpsum}"

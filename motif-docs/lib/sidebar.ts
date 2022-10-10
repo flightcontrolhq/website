@@ -6,9 +6,10 @@ interface PageLink {
 }
 
 export const getSidebarId = (activePath: string) => {
-  const slugComponents = activePath?.split("/")
-  return slugComponents?.length > 1 ? slugComponents[1] : "documentation"
-}
+  const slugComponents = activePath?.replace("/docs", "").split("/");
+  console.log('activePath', activePath, 'slugComponents', slugComponents)
+  return slugComponents?.length > 1 ? slugComponents[1] : "guides";
+};
 
 const normalizePath = (path: string) => {
   return path.toLowerCase().replace(/\s+/g, "-");

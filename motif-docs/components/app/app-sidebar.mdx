@@ -7,7 +7,6 @@ import { ThemeSwitcher } from "@components/ui/themeswitcher"
 
 export const AppSidebarList = ({ activeSlug, onClick }) => {
   let sidebarId = getSidebarId(activeSlug)
-
   return <div className="flex flex-col flex-grow gap-8">
       {config.sidebars[sidebarId]?.map((section) => {
         const parentActive = section.href === activeSlug
