@@ -1,17 +1,17 @@
 export default {
   navbar: {
     topLinks: [
-      { title: "Dashboard", href: "https://app.flightcontrol.dev" },
-      { title: "Create Account", href: "https://app.flightcontrol.dev/signup" },
+      { title: 'Dashboard', href: 'https://app.flightcontrol.dev' },
+      { title: 'Create Account', href: 'https://app.flightcontrol.dev/signup' },
     ],
     tabs: [
-      { title: "Documentation", href: "/documentation/get-started" },
+      { title: 'Documentation', href: '/docs/guides/get-started' },
       {
-        title: "HTTP API",
-        href: "/http-api",
+        title: 'HTTP API',
+        href: '/docs/http-api',
       },
-      { title: "Troubleshooting", href: "/troubleshooting" },
-      { title: "Changelog", href: "/changelog" },
+      { title: 'Troubleshooting', href: '/docs/troubleshooting' },
+      { title: 'Changelog', href: '/docs/changelog' },
       // Add roadmap
       // { title: "Roadmap", href: "/roadmap" },
     ],
@@ -19,134 +19,134 @@ export default {
   sidebars: {
     documentation: [
       {
-        title: "Get started",
-        href: "/documentation/get-started",
+        title: 'Get started',
+        href: '/docs/guides/get-started',
         pages: [
           {
-            title: "Setting up your first project",
-            href: "/documentation/get-started/first-project",
+            title: 'Setting up your first project',
+            href: '/docs/guides/get-started/first-project',
           },
           {
-            title: "Supported services",
-            href: "/documentation/get-started/services",
+            title: 'Supported services',
+            href: '/docs/guides/get-started/services',
           },
         ],
       },
       {
-        title: "Configuration",
-        href: "/documentation/config",
+        title: 'Configuration',
+        href: '/docs/guides/config',
         pages: [
           {
-            title: "Using a file",
-            href: "/documentation/config/using-a-file",
+            title: 'Using a file',
+            href: '/docs/guides/config/using-a-file',
           },
           {
-            title: "Using the GUI",
-            href: "/documentation/config/using-the-gui",
+            title: 'Using the GUI',
+            href: '/docs/guides/config/using-the-gui',
           },
         ],
       },
       {
-        title: "Advanced",
+        title: 'Advanced',
         pages: [
           {
-            title: "Custom Domains",
-            href: "/documentation/advanced/custom-domains",
+            title: 'Custom Domains',
+            href: '/docs/guides/advanced/custom-domains',
           },
           {
-            title: "Fargate Port Change",
-            href: "/documentation/advanced/fargate-port-change",
+            title: 'Fargate Port Change',
+            href: '/docs/guides/advanced/fargate-port-change',
           },
           {
-            title: "Service Dependency",
-            href: "/documentation/advanced/service-dependency",
+            title: 'Service Dependency',
+            href: '/docs/guides/advanced/service-dependency',
           },
           {
-            title: "Stale While Revalidate",
-            href: "/documentation/advanced/swr",
+            title: 'Stale While Revalidate',
+            href: '/docs/guides/advanced/swr',
           },
         ],
       },
       {
-        title: "Datadog Integration",
+        title: 'Datadog Integration',
         pages: [
           {
-            title: "Datadog/AWS Setup",
-            href: "/documentation/datadog/setup",
+            title: 'Datadog/AWS Setup',
+            href: '/docs/guides/datadog/setup',
           },
           {
-            title: "Support for fargate",
-            href: "/documentation/datadog/support-for-fargate",
+            title: 'Support for fargate',
+            href: '/docs/guides/datadog/support-for-fargate',
           },
         ],
       },
       {
-        title: "Miscellaneous",
+        title: 'Miscellaneous',
         pages: [
           {
-            title: "How to get free AWS credits",
-            href: "/documentation/miscellaneous/aws-credits",
+            title: 'How to get free AWS credits',
+            href: '/docs/guides/miscellaneous/aws-credits',
           },
         ],
       },
       {
-        title: "Examples",
-        href: "/documentation/examples",
+        title: 'Examples',
+        href: '/docs/guides/examples',
         pages: [
           {
-            title: "Blitz app",
-            href: "/documentation/examples/blitz",
+            title: 'Blitz app',
+            href: '/docs/guides/examples/blitz',
           },
           {
-            title: "Docker",
-            href: "/documentation/examples/docker",
+            title: 'Docker',
+            href: '/docs/guides/examples/docker',
           },
           {
-            title: "Next.js",
-            href: "/documentation/examples/nextjs",
+            title: 'Next.js',
+            href: '/docs/guides/examples/nextjs',
           },
           {
-            title: "Node",
-            href: "/documentation/examples/node",
+            title: 'Node',
+            href: '/docs/guides/examples/node',
           },
           {
-            title: "Redwood",
-            href: "/documentation/examples/redwood",
+            title: 'Redwood',
+            href: '/docs/guides/examples/redwood',
           },
           {
-            title: "Remix",
-            href: "/documentation/examples/remix",
+            title: 'Remix',
+            href: '/docs/guides/examples/remix',
           },
           {
-            title: "Prisma Studio",
-            href: "/documentation/examples/prisma-studio",
+            title: 'Prisma Studio',
+            href: '/docs/guides/examples/prisma-studio',
           },
         ],
       },
     ],
-    "http-api": [
+    'http-api': [
       {
-        title: "Authorization",
+        title: 'Authorization',
         pages: [
           {
-            title: "Get your API Keys",
-            href: "/http-api/authorization/api-keys",
+            title: 'Get your API Keys',
+            href: '/docs/http-api/authorization/api-keys',
           },
         ],
       },
       {
-        title: "Cloudfront Cache",
+        title: 'Cloudfront Cache',
         pages: [
           {
-            title: "Invalidation",
-            href: "/http-api/cloudfront/cache-invalidation-api",
+            title: 'Invalidation',
+            href: '/docs/http-api/cloudfront/cache-invalidation-api',
           },
           {
-            title: "Invalidation Status",
-            href: "/http-api/cloudfront/cache-invalidation-status-api",
+            title: 'Invalidation Status',
+            href: '/docs/http-api/cloudfront/cache-invalidation-status-api',
           },
         ],
       },
     ],
   },
-};
+}
