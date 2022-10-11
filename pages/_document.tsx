@@ -1,4 +1,4 @@
-import { Document } from '@makeswift/runtime/next'
+import { Document, PreviewModeScript } from '@makeswift/runtime/next'
 import { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
@@ -11,6 +11,7 @@ class MyDocument extends Document {
             data-site="MJTFLQYZ"
             defer
           ></script>
+          <PreviewModeScript isPreview={this.props.__NEXT_DATA__.isPreview} />
         </Head>
         <body>
           <Main />
