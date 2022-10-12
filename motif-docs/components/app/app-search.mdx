@@ -1,9 +1,9 @@
 import { forwardRef, useCallback, useEffect, useReducer, useRef } from 'react'
 import Fuse from 'fuse.js'
 import cn from 'classnames'
-import SearchIcon from '@components/icons/search'
-import { Keys } from '@components/ui/keys'
-import { removeFileExtension } from '@lib/files'
+import SearchIcon from '@components/icons/search.mdx'
+import { Keys } from '@components/ui/keys.tsx'
+import { removeFileExtension } from '@lib/files.ts'
 
 export const getFolderName = (rawName) => {
   return rawName.charAt(0).toUpperCase() + rawName.slice(1);

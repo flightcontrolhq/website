@@ -3,7 +3,7 @@ title: What's New
 heading: 'Changelog'
 ---
 
-import { SampleChangelog, ChangelogEntry } from '@components/changelog'
+import { SampleChangelog, ChangelogEntry } from '@components/changelog.mdx
 
 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-[-32px]">
 <ChangelogEntry date="2022-10-04" title="Preview environments, Worker & Nixpacks">
@@ -16,7 +16,7 @@ import { SampleChangelog, ChangelogEntry } from '@components/changelog'
 - Supported service types: Fargate, Fargate-Worker (RDS & static coming soon)
 - Docs: https://flightcontrol.notion.site/Preview-Environments-23fbd3a261fc4d8f8f2ee3535444e072
 
-🚀  Announcing new Fargate-Worker service type for running background jobs
+🚀 Announcing new Fargate-Worker service type for running background jobs
 
 - Deploy any server that doesn't expose an HTTP endpoint, like BullJS or Sidekiq
 - Configure via GUI or flightcontrol.json with new type: "fargate-worker" option
@@ -28,16 +28,14 @@ import { SampleChangelog, ChangelogEntry } from '@components/changelog'
 - Autodetects languages and package manager versions
 - Slightly better build performance currently, but we're working on implementing full caching which will give a massive build boost
 - Configure in GUI or in flightcontrol.json with new buildType: "nixpacks" field in your service config
-- We recommend switching your current Nodejs builds to Nixpacks 
-</ChangelogEntry>
-
-
-
+- We recommend switching your current Nodejs builds to Nixpacks
+  </ChangelogEntry>
 
 <ChangelogEntry date="2022-08-01" title="VPC Enhancement &  Stale-while-revalidate Feature v2">
 🚀 Ability to connect environments to an existing VPC instead of creating a new one! (docs: https://flightcontrol.notion.site/Flightcontrol-Docs-8d9ca4edb5564165a9557df32818af0c#c0a138ebca8a45dcbbc26a2878cf038c)
 
 🚀 Shipped v2 of our stale-while-revalidate feature, allowing it to work well for many edge cases, including very large responses and when your response etag changes on every request. You'll want to enable this if you are using Next.js ISR
+
   </ChangelogEntry>
 
 </div>

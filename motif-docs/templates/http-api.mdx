@@ -1,4 +1,4 @@
-import { Template as BaseTemplate } from "@templates/base"
+import { Template as BaseTemplate } from '@templates/base.mdx'
 
 export const Template = ({ filename, path, files, meta, children }) => {
   return (
@@ -9,12 +9,13 @@ export const Template = ({ filename, path, files, meta, children }) => {
       meta={meta}
       includeSidebar={true}
       includeFooterNav={true}
-      >
+    >
       {children}
-    </BaseTemplate>)
+    </BaseTemplate>
+  )
 }
 
-export default (props) => <Template {...props} />
+export default props => <Template {...props} />
 
 {/* Sample data */}
 

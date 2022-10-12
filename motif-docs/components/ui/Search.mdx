@@ -1,9 +1,9 @@
 import { forwardRef, useCallback, useEffect, useReducer, useRef, useState } from "react"
 import Fuse from "fuse.js"
 import cn from "classnames"
-import { Search as SearchIcon } from "@components/icons"
-import { Keys } from "@components/keys"
-import { removeFileExtension } from "@lib/files"
+import { Search as SearchIcon } from "@components/icons.mdx"
+import { Keys } from "@components/Keys.mdx"
+import { removeFileExtension } from "@lib/files.ts"
 
 export const SearchResult = ({ result, selected, onMouseOver, onClick }) => {
   return <div

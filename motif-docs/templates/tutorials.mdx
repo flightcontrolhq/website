@@ -3,11 +3,11 @@ export const meta = {
 }
 
 import { useMemo } from "react"
-import { TabbedNavbar } from "@components/tabbednavbar"
-import { Container } from "@components/container"
-import { Sidebar } from "@components/sidebar"
-import { filesToSearchData } from "@components/ui/search"
-import { getSectionTitle } from "@lib/utils"
+import { TabbedNavbar } from "@components/tabbednavbar.mdx"
+import { Container } from "@components/container.mdx"
+import { Sidebar } from "@components/sidebar.mdx"
+import { filesToSearchData } from "@components/ui/search.mdx"
+import { getSectionTitle } from "@lib/utils.ts"
 
 export const sections = [
   "Config",
@@ -36,10 +36,11 @@ export const Template = ({ filename, path, files, meta, children }) => {
           {children}
         </Container>
     </div>
-  )
+
+)
 }
 
-export default (props) => <Template {...props} />
+export default props => <Template {...props} />
 
 {/* Sample data */}
 

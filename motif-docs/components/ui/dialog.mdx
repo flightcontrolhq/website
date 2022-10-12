@@ -1,10 +1,11 @@
-import { Fragment, useState } from "react"
+import { Fragment, useState } from 'react'
+import cn from 'classnames'
 // Using canary build of headlessui because of
 // https://github.com/tailwindlabs/headlessui/issues/1831#issuecomment-1239212238
-import { Dialog as HUIDialog, Transition } from "@headlessui/react@insiders"
-import cn from "classnames"
-import { IconButton } from "@components/ui/iconbutton"
-import Close from "@components/icons/close"
+import { Dialog as HUIDialog, Transition } from "@headlessui/react"
+
+import { IconButton } from "@components/ui/iconbutton.mdx"
+import Close from "@components/icons/close.mdx"
 
 export const getAnimations = (position) => {
   switch (position) {

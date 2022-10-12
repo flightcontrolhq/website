@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
-import cn from 'classnames'
-import { useHeadingsData } from '@lib/dom'
-import { useIntersectionObserver } from '@lib/intersection-observer'
+import { useHeadingsData } from '@lib/dom.mdx'
+import { removeFileExtension } from '@lib/files.ts'
+import { useIntersectionObserver } from '@lib/intersection-observer.mdx'
 import { getClassNameOrStyle } from '@lib/toc-ui'
 import { TOCProvider, useTOC } from '@lib/use-toc'
 import { TOCThemeProvider, useTheme } from '@lib/use-toc-theme'
-import { removeFileExtension } from '@lib/files'
+import cn from 'classnames'
+import { useEffect, useState } from 'react'
 
 export const WithIndentation = ({
   id = undefined,
