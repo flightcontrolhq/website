@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react'
 
-export const TOCContext = createContext()
+export const TOCContext = createContext({})
 
 export const getParents = (entries, id, saveIds) => {
   if (!entries) {

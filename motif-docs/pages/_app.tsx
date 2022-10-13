@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import motifConfig from '/motif.json'
+import motifConfig from '../motif.json'
 import '/styles/main.css'
 
 export const getBestGlobMatch = (globs: string[], path: string): string | undefined => {
@@ -93,7 +93,7 @@ const components = {
 }
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-  const Template = getTemplate(router.pathname)
+  const Template = getTemplate(router.pathname) as any
 
   const meta = (Component as any).meta || {}
   const filename = (Component as any).filename || {}

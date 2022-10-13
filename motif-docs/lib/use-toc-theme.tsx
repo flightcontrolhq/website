@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export const TOCThemeContext = createContext();
+export const TOCThemeContext = createContext({});
 
 export const TOCThemeProvider = ({
   theme,
