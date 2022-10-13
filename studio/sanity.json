@@ -1,11 +1,11 @@
 {
   "root": true,
-  "project": {
-    "name": "coral-squirrel"
-  },
   "api": {
-    "projectId": "a6sv6y70",
+    "projectId": "zg35kxbb",
     "dataset": "production"
+  },
+  "project": {
+    "name": "FlightControl Website"
   },
   "plugins": [
     "@sanity/base",
@@ -16,9 +16,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [
