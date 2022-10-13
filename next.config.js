@@ -7,7 +7,7 @@ console.log('DOCS_URL', DOCS_URL)
 module.exports = withMakeswift({
   reactStrictMode: true,
   images: {
-    domains: ['s.mkswft.com', '*.motif.land', 'res.cloudinary.com'],
+    domains: ['s.mkswft.com', 'cdn.sanity.io','*.motif.land', 'res.cloudinary.com'],
   },
   async rewrites() {
     return {

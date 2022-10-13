@@ -1,0 +1,1 @@
+These files were largely pulled form https://github.com/sanity-io/next-sanity
