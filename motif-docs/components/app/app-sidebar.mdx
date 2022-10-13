@@ -1,16 +1,15 @@
 import cn from "classnames"
 import Logo from "@components/icons/logo.mdx"
-import { getSidebarId } from "@lib/sidebar.ts"
+import { getSidebarId } from "@lib/sidebar"
+import config from "/project-config"
 import AppSearch from "@components/app/app-search.mdx"
 import { ThemeSwitcher } from "@components/ui/themeswitcher.mdx"
-import config from "/project-config"
 
 export const AppSidebarList = ({ activeSlug, onClick }) => {
   let sidebarId = getSidebarId(activeSlug)
   return <div className="flex flex-col flex-grow gap-8">
       {config.sidebars[sidebarId]?.map((section) => {
         const parentActive = section.href === activeSlug
-        console.log('parentActive', parentActive)
         return <div className="flex flex-col" key={sidebarId}>
             {section.title && !section.href &&
               <p className="text-base sm:text-sm font-semibold px-4 mb-2">
@@ -59,14 +58,13 @@ export const AppSidebarList = ({ activeSlug, onClick }) => {
           </div>
       })}
     </div>
-
 }
 
 export const AppSidebar = ({ activeSlug, searchData, noHeader, noSearch }) => {
   return (
     <div className="z-10 hidden md:block fixed inset-0 w-0 md:w-64 pt-24">
       <div className="absolute w-full">
-        <div className="h-6 bg-gradient-to-b from-white to-white/0 dark:from-neutral-900 dark:to-neutral-900/0" />
+        <div className="h-6 bg-gradient-to-b from-white to-white/0 dark:from-neutral-900 dark:to-neutral-900/0"/>
       </div>
       <div className="overflow-y-auto h-full pb-10 pt-[49px] hiddenScrollbar pl-4">
         <AppSidebarList activeSlug={activeSlug} />

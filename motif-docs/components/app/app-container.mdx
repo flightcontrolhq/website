@@ -1,5 +1,5 @@
 import cn from "classnames"
-import { TOC } from "@components/ui/toc.jsx"
+import { TOC } from "@components/ui/toc"
 import Footer from "@components/app/app-footer.mdx"
 
 export const AppContainer = ({ path, basePath, heading, title, description, noTitle, noHeading, noFooterNav, includeTOC, keepTOCSpace, children }) => {
@@ -20,7 +20,7 @@ export const AppContainer = ({ path, basePath, heading, title, description, noTi
             })}>
             <main>
               {
-                showHeading && <p class="not-prose text-sm font-semibold text-primary-500 mb-0">{heading}</p>
+                showHeading && <p className="not-prose text-sm font-semibold text-primary-500 mb-0">{heading}</p>
               }
               { !noTitle &&
                 <h1 className={cn("text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight dark:text-neutral-200 mb-4",

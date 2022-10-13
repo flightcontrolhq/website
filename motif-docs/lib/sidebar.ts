@@ -7,8 +7,7 @@ interface PageLink {
 
 export const getSidebarId = (activePath: string) => {
   const slugComponents = activePath?.replace("/docs", "").split("/");
-  console.log('activePath', activePath, 'slugComponents', slugComponents)
-  return slugComponents?.length > 1 ? slugComponents[1] : "guides";
+  return slugComponents?.length > 1 ? slugComponents[1] : "guides" + activePath;
 };
 
 const normalizePath = (path: string) => {

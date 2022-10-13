@@ -1,9 +1,8 @@
-import { Fragment, useState } from 'react'
-import cn from 'classnames'
+import { Fragment, useState } from "react"
 // Using canary build of headlessui because of
 // https://github.com/tailwindlabs/headlessui/issues/1831#issuecomment-1239212238
 import { Dialog as HUIDialog, Transition } from "@headlessui/react"
-
+import cn from "classnames"
 import { IconButton } from "@components/ui/iconbutton.mdx"
 import Close from "@components/icons/close.mdx"
 
@@ -25,7 +24,7 @@ export const getAnimations = (position) => {
         leaveFrom: "opacity-100 translate-x-0",
         leaveTo: "opacity-0 translate-x-[-400px]",
     }
-  }  
+  }
 }
 
 export const Dialog = ({ isOpen, onClose, position, size = "sm", children }) => {

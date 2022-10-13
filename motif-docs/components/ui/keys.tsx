@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { getOS } from '@lib/os.ts'
+import { getOS } from '@lib/os'
 
 export const Keys = ({
   chars = [],

@@ -1,10 +1,7 @@
-const sampleBadge = { render: 'SampleBadge' }
-const sampleGuidesGallery = { render: 'SampleGuidesGallery' }
-const sampleCodeGallery = { render: 'SampleCodeGallery' }
-const sampleChangelog = { render: 'SampleChangelog' }
+import Components from '/markdoc.components.js'
 
 const button = {
-  render: 'Button',
+  render: Components.Button,
   description: 'Display a standard button',
   children: ['paragraph', 'tag', 'list'],
   attributes: {
@@ -28,7 +25,7 @@ const button = {
 }
 
 const note = {
-  render: 'Note',
+  render: Components.Note,
   description: 'Display the enclosed content in a callout box',
   children: ['paragraph', 'tag', 'list'],
   attributes: {
@@ -40,7 +37,7 @@ const note = {
 }
 
 const image = {
-  render: 'Image',
+  render: Components.Image,
   description: 'Display an image',
   attributes: {
     src: { type: String },
@@ -53,7 +50,7 @@ const image = {
 }
 
 const collapse = {
-  render: 'Collapse',
+  render: Components.Collapse,
   description: 'A box with hidden content',
   attributes: {
     title: { type: String },
@@ -63,7 +60,7 @@ const collapse = {
 }
 
 const spacer = {
-  render: 'Spacer',
+  render: Components.Spacer,
   description: 'An element to vertically space elements',
   attributes: {
     size: { type: String },
@@ -71,7 +68,7 @@ const spacer = {
 }
 
 const roadmapcard = {
-  render: 'RoadmapCard',
+  render: Components.RoadmapCard,
   description: 'An roadmap card element',
   attributes: {
     date: { type: String },
@@ -80,37 +77,37 @@ const roadmapcard = {
 }
 
 const roadmapheading = {
-  render: 'RoadmapHeading',
+  render: Components.RoadmapHeading,
   description: 'An roadmap heading element',
 }
 
 const discordIcon = {
-  render: 'DiscordIcon',
+  render: Components.DiscordIcon,
   description: 'A discord icon',
 }
 
 const changelogEntry = {
-  render: 'ChangelogEntry',
+  render: Components.ChangelogEntry,
   description: 'A changelog entry element',
 }
 
 const hero = {
-  render: 'Hero',
+  render: Components.Hero,
   description: 'A hero component',
 }
 
 const heroextralinks = {
-  render: 'HeroExtraLinks',
+  render: Components.HeroExtraLinks,
   description: 'Hero extra links',
 }
 
 const herolinkcards = {
-  render: 'HeroLinkCards',
+  render: Components.HeroLinkCards,
   description: 'Hero links',
 }
 
 const div = {
-  render: 'Div',
+  render: Components.Div,
   description: 'A plain div to hold content',
   children: ['paragraph', 'tag', 'list'],
 }
@@ -133,10 +130,6 @@ const config = {
     roadmapcard,
     roadmapheading,
     spacer,
-    sampleBadge,
-    sampleGuidesGallery,
-    sampleCodeGallery,
-    sampleChangelog,
     changelogEntry,
     discordIcon,
   },

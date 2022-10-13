@@ -1,11 +1,11 @@
+import { useEffect, useState } from 'react'
+import cn from 'classnames'
 import { useHeadingsData } from '@lib/dom.mdx'
-import { removeFileExtension } from '@lib/files.ts'
 import { useIntersectionObserver } from '@lib/intersection-observer.mdx'
 import { getClassNameOrStyle } from '@lib/toc-ui'
 import { TOCProvider, useTOC } from '@lib/use-toc'
 import { TOCThemeProvider, useTheme } from '@lib/use-toc-theme'
-import cn from 'classnames'
-import { useEffect, useState } from 'react'
+import { removeFileExtension } from '@lib/files'
 
 export const WithIndentation = ({
   id = undefined,
@@ -86,7 +86,7 @@ export const Item = ({
 }
 
 export const TreeItem = ({
-  key = undefined,
+  id = undefined,
   item = undefined,
   depth = undefined,
 }) => {
@@ -97,7 +97,7 @@ export const TreeItem = ({
         {item.items.map((childItem) => {
           return (
             <TreeItem
-              key={`${key}-${childItem.id}`}
+              key={`${id}-${childItem.id}`}
               item={childItem}
               depth={(depth || 0) + 1}
             />
@@ -123,8 +123,9 @@ export const Tree = ({
       <TOCThemeProvider theme={theme} isAllExpanded={expandAll}>
         <TOCProvider entries={entries} activeId={activeId}>
           <div className="flex flex-col gap-1">
-            {entries?.map((entry) => {
-              return <TreeItem key={entry.id} item={entry} />
+            {entries?.map((entry, i) => {
+              const key = `tree-${entry.id}-${i}`
+              return <TreeItem key={key} id={key} item={entry} />
             })}
           </div>
         </TOCProvider>

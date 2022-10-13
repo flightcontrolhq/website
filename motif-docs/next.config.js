@@ -2,6 +2,8 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 import remarkFrontmatter from 'remark-frontmatter'
+import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import { createLoader } from 'simple-functional-loader'
 
@@ -37,6 +39,13 @@ const buildTree = (dir, parentName = 'pages') => {
 }
 
 const config = {
+  basePath: '/docs',
+  images: {
+    domains: ['*.motif.land', 'res.cloudinary.com'],
+  },
+  experimental: {
+    urlImports: ['https://cdn.skypack.dev/', 'https://cdn.motif.land/'],
+  },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   resolve: {
     extensions: ['.mdx', '.md', '...'],
@@ -61,8 +70,10 @@ const config = {
                 'export $1 meta = {\n  ...__motif_frontmatter__,',
               )
           }
+
           const pathSegments = this.resourcePath.split(path.sep)
           const filename = pathSegments.slice(-1)[0]
+
           return `${source}
 MDXContent.meta=meta
 MDXContent.filename="${filename}"
@@ -72,12 +83,76 @@ MDXContent.files=${JSON.stringify(files)}`
           loader: '@mdx-js/loader',
           options: {
             providerImportSource: '@mdx-js/react',
-            remarkPlugins: [remarkFrontmatter, [remarkMdxFrontmatter, { name: 'meta' }]],
+            remarkPlugins: [
+              remarkMath,
+              remarkGfm,
+              remarkFrontmatter,
+              [remarkMdxFrontmatter, { name: 'meta' }],
+            ],
             rehypePlugins: [],
           },
         },
         createLoader(function (source) {
           return source.replace(/export\s+(const|let|var)\s+meta\s*=/, 'export $1 __motif_meta__ =')
+        }),
+      ],
+    })
+
+    config.module.rules.push({
+      test: { and: [/\.mdoc$/] },
+      use: [
+        // Adding the babel loader enables fast refresh
+        options.defaultLoaders.babel,
+        createLoader(function (source) {
+          const mode = 'static'
+          const dataFetchingFunction = mode === 'server' ? 'getServerSideProps' : 'getStaticProps'
+
+          return `import React from 'react';
+import yaml from 'js-yaml';
+import Markdoc, { renderers } from '@markdoc/markdoc'
+import markdocConfig from "/markdoc.config"
+import markdocComponents from "/markdoc.components"
+
+const source = ${JSON.stringify(source)};
+const ast = Markdoc.parse(source);
+const frontmatter = ast.attributes.frontmatter
+  ? yaml.load(ast.attributes.frontmatter)
+  : {};
+
+export async function ${dataFetchingFunction}(context) {
+  const cfg = {
+    ...markdocConfig,
+    variables: {
+      ...(markdocComponents ? markdocComponents.variables : {}),
+      frontmatter,
+      markdoc: { frontmatter },
+    },
+    source,
+  };
+
+  const content = await Markdoc.transform(ast, cfg);
+
+  return {
+    props: JSON.parse(
+      JSON.stringify({
+        markdoc: {
+          content,
+          frontmatter,
+        },
+      })
+    ),
+  };
+}
+
+export default function MarkdocComponent(props) {
+  return renderers.react(props.markdoc.content, React, {
+    components: {
+      ...markdocComponents,
+      ...props.components,
+    },
+  });
+}
+`
         }),
       ],
     })

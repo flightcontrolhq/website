@@ -10,13 +10,20 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 module.exports = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./templates/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   important: true,
   darkMode: 'class',
   theme: {
     screens: Object.assign(defaultTheme.screens, { xs: '475px' }),
     extend: {
       colors: {
-        blueGray: colors.blueGray,
+        primary: colors.sky,
+        blueGray: colors.slate,
         fuchsia: {
           25: '#FEFAFF',
         },

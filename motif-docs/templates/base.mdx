@@ -13,9 +13,9 @@ export const Template = ({ filename, path, files, meta, includeSidebar, includeF
     return (files && filesToSearchData(files, undefined, "Home")) || []
   }, [files])
 
-  const isGuide = path?.startsWith("/guides")
-  const basePath = isGuide ? "/guides" : ""
-  
+  const isGuide = path?.startsWith("/docs/guides")
+  const basePath = isGuide ? "/docs/guides" : ""
+
   return (
     <ThemeProvider attribute="class">
       <div className="fixed top-0 left-0 w-full z-50">
@@ -30,8 +30,8 @@ export const Template = ({ filename, path, files, meta, includeSidebar, includeF
           <AppContainer
             path={path}
             basePath={basePath}
-            heading={meta?.heading || (isGuide ? getGuideSection(config.guides.sidebar, path)?.title : "")}
-            title={meta?.title || (filename && removeFileExtension(filename))}
+            heading={meta?.heading}
+            title={meta?.title || (filename && typeof filename === 'string' && removeFileExtension(filename))}
             description={meta?.description || meta?.subtitle}
             noTitle={meta?.noTitle}
             noHeading={meta?.noHeading}

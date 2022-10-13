@@ -1,6 +1,7 @@
 import { Template as BaseTemplate } from '@templates/base.mdx'
 
 export const Template = ({ filename, path, files, meta, children }) => {
+  console.log("filename", filename)
   return (
     <BaseTemplate
       filename={filename}

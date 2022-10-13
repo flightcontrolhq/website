@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 4000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -9,16 +9,23 @@
   "dependencies": {
     "@headlessui/react": "0.0.0-insiders.ab78fbd",
     "@iconscout/react-unicons": "^1.1.6",
+    "@markdoc/markdoc": "^0.1.12",
+    "@markdoc/next.js": "^0.1.10",
     "@mdx-js/loader": "^2.1.5",
     "@mdx-js/mdx": "^2.1.5",
     "@mdx-js/react": "^2.1.5",
     "@next/mdx": "^12.3.1",
+    "classnames": "^2.3.2",
     "fuse.js": "^6.6.2",
+    "lodash-es": "^4.17.21",
+    "luxon": "^3.0.4",
     "next": "^12.3.1",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "remark-frontmatter": "^4.0.1",
+    "remark-gfm": "^3.0.1",
+    "remark-math": "^5.1.1",
     "remark-mdx-frontmatter": "^2.0.3"
   },
   "devDependencies": {

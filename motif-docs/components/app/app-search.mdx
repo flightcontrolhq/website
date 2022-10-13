@@ -2,8 +2,8 @@ import { forwardRef, useCallback, useEffect, useReducer, useRef } from 'react'
 import Fuse from 'fuse.js'
 import cn from 'classnames'
 import SearchIcon from '@components/icons/search.mdx'
-import { Keys } from '@components/ui/keys.tsx'
-import { removeFileExtension } from '@lib/files.ts'
+import { Keys } from '@components/ui/keys'
+import { removeFileExtension } from '@lib/files'
 
 export const getFolderName = (rawName) => {
   return rawName.charAt(0).toUpperCase() + rawName.slice(1);
@@ -63,6 +63,7 @@ export const SearchResults = ({
       {results.slice(0, limit || 5).map((result, i) => {
         return (
           <SearchResult
+            key={`search-result-${i}`}
             selected={i === selectedIndex}
             result={result}
             onMouseOver={() => {
@@ -317,6 +318,9 @@ export const filesToSearchData = (
     description: getDescription(f),
     folders: folders,
   }))
+  if (!data) {
+    return []
+  }
   for (const f of folder.folders || []) {
     data = data.concat(filesToSearchData(f, folders, rootName))
   }

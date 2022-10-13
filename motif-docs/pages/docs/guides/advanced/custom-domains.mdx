@@ -1,0 +1,14 @@
+---
+title: Adding a Custom Domain
+---
+
+import { Image } from "@components/ui/image.mdx"
+
+You can add a custom domain to your service without touching AWS.
+
+1. In your `flightcontrol.json` file, add the `domain` config to your fargate service
+    - See the [domain config docs](/guides/config)
+2. Commit and push your `flightcontrol.json` changes
+3. Once deployed, the required DNS records will be visible in the Flightcontrol dashboard.
+
+<Image rounded={true} src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655164184/i1600x349-qw19T0IsE3zZ_h9ma57.png" />

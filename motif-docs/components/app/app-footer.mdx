@@ -1,6 +1,5 @@
-import { getPrevNext, getSidebarId } from '@lib/sidebar.ts'
-
-import config from '/project-config'
+import { getPrevNext, getSidebarId } from "@lib/sidebar"
+import config from "/project-config"
 
 export const NextPrevLink = ({ slug, title, isPrev }) => {
   return <div className={!isPrev ? "text-right" : ""}>
