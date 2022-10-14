@@ -42,7 +42,7 @@
           "buildCommand": "cd motif-docs && npm run build",
           "startCommand": "cd motif-docs && npm run start",
           "envVariables": {},
-          "healthCheckPath": "/docs/docs"
+          "healthCheckPath": "/docs"
         }
       ]
     },
@@ -94,7 +94,7 @@
           "startCommand": "cd motif-docs && npm run start",
           "installCommand": "cd motif-docs && yarn",
           "envVariables": {},
-          "healthCheckPath": "/docs/docs"
+          "healthCheckPath": "/docs"
         }
       ]
     }
