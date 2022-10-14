@@ -92,6 +92,7 @@
           "maxInstances": 1,
           "buildCommand": "cd motif-docs && npm run build",
           "startCommand": "cd motif-docs && npm run start",
+          "installCommand": "cd motif-docs && yarn",
           "envVariables": {},
           "healthCheckPath": "/health"
         }
