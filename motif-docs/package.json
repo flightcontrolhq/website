@@ -26,7 +26,8 @@
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
-    "remark-mdx-frontmatter": "^2.0.3"
+    "remark-mdx-frontmatter": "^2.0.3",
+    "gray-matter": "^4.0.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.7",
@@ -37,7 +38,6 @@
     "autoprefixer": "^10.4.12",
     "fast-levenshtein": "^3.0.0",
     "glob": "^8.0.3",
-    "gray-matter": "^4.0.3",
     "minimatch": "^5.1.0",
     "postcss": "^8.4.17",
     "simple-functional-loader": "^1.2.1",
