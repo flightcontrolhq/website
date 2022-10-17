@@ -1,0 +1,7 @@
+export const Image = ({ src, alt, className, rounded, center, border }) => {
+  return <img src={src} alt={alt} className={`${className} ${rounded ? "rounded-md" : ""} ${center ? "mx-auto" : ""} ${border ? "border border-gray-200" : ""}`} />
+}
+
+# Example
+
+<Image rounded src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655155361/i736x678-RXsIOIEFcQbN_pcnuar.png" className="w-48 mt-6"/>

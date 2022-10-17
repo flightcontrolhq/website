@@ -10,6 +10,7 @@
 
 # next.js
 /.next/
+motif-docs/.next/
 /out/
 
 # production

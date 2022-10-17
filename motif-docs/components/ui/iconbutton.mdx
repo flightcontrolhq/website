@@ -1,0 +1,10 @@
+export const IconButton = ({
+  Icon,
+  Component = "button",
+  ariaLabel,
+  ...props
+}) => {
+  return <Component className="block cursor-pointer p-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/5 transition" aria-label={ariaLabel} {...props}>
+      <Icon className="w-5 h-5 text-neutral-900 dark:text-white/50" />
+    </Component>
+}

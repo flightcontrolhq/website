@@ -1,0 +1,101 @@
+import { useState } from "react"
+import cn from "classnames"
+import Logo from "@components/icons/logo.mdx"
+import { IconButton } from "@components/ui/iconbutton.mdx"
+import { Dialog } from "@components/ui/dialog.mdx"
+import Menu from "@components/icons/menu.mdx"
+import { AppSidebarList } from "@components/app/app-sidebar.mdx"
+import { ThemeSwitcher } from "@components/ui/themeswitcher.mdx"
+import AppSearch from "@components/app/app-search.mdx"
+import config from "/project-config"
+
+export const isActiveTab = (tab, activeSlug) => {
+  let active = false
+  let referenceHref = tab.referenceHref || tab.href
+  if (referenceHref === "/") {
+    return activeSlug === "" || activeSlug === "/"
+  } else {
+    return activeSlug?.startsWith(referenceHref)
+  }
+}
+
+export const LogoWithText = ({ onClick }) => {
+  return <a
+    onClick={onClick}
+    aria-label="Navigate to home"
+    href="/"
+    className="select-none flex flex-row gap-4 items-center outline-none">
+      <Logo className="text-black dark:text-white w-8 h-8"/>
+      <p className="text-base font-medium flex-grow whitespace-nowrap pr-2">Flightcontrol <span className="uppercase text-xs ml-2 text-fuchsia-500">docs</span></p>
+    </a>
+}
+
+export const AppNavbar = ({ activeSlug, searchData }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return <header className="bg-neutral-50/80 dark:bg-neutral-900/80 flex flex-col backdrop-blur border-b border-neutral-100 dark:border-white/10 h-24 sm:h-28 md:h-28">
+      <div className="flex flex-row px-8 py-4 items-center gap-4">
+        <LogoWithText />
+        <div className="ml-4 hidden sm:block w-full max-w-[300px]">
+          <AppSearch data={searchData} />
+        </div>
+        <div className="flex-grow" />
+        <div className="flex flex-row gap-3 items-center">
+          <div className="hidden sm:flex flex-row items-center gap-5 font-medium text-sm transition">
+            {config.navbar.topLinks.map((n, i) => {
+              return <a key={`top-link-${i}`} className="whitespace-nowrap hover:text-primary-500 text-neutral-900 dark:text-white/90" href={n.href}>{n.title}</a>
+            })}
+          </div>
+          <div className="hidden sm:block h-6 w-[1px] bg-neutral-200 dark:bg-white/10 ml-2"/>
+          <ThemeSwitcher />
+        </div>
+        <div className="flex sm:hidden h-full items-center flex-none">
+          <IconButton
+            Icon={Menu}
+            ariaLabel="Open menu"
+            onClick={() => setIsOpen(true)}
+          />
+        </div>
+      </div>
+      <div className="flex-grow" />
+      <div className="flex flex-row w-full px-8 overflow-x-auto hiddenScrollbar gap-6">
+        {config.navbar.tabs.map((tab, i) => {
+          const isActive = isActiveTab(tab, activeSlug)
+          return <a
+              key={`config-tab-${i}`}
+              href={tab.href}
+              className={cn("whitespace-nowrap pb-1 border-b-2 text-sm font-medium transition", {
+                "border-primary-500 text-primary-500 dark:text-primary-400": isActive,
+                "text-neutral-800 dark:text-white/60 border-transparent hover:text-primary-500 dark:hover:text-primary-400": !isActive,
+              })}
+            >{tab.title}</a>
+        })}
+      </div>
+      <Dialog isOpen={isOpen} position="slideleft" size="xs" onClose={() => setIsOpen(false)}>
+        <div className="flex flex-col pt-3 pb-32 sm:pb-6 h-screen overflow-y-auto hiddenScrollbar">
+          <div className="flex flex-row gap-4 px-4 pt-2 pb-12 items-center">
+            <LogoWithText onClick={() => setIsOpen(false)} />
+          </div>
+          <div className="flex flex-col gap-3 mb-12">
+            {config.navbar.tabs.map((tab, i) => {
+              const isActive = isActiveTab(tab, activeSlug)
+              return <a
+                  key={`config-open-tab-${i}`}
+                  href={tab.href}
+                  onClick={() => setIsOpen(false)}
+                  className={cn("whitespace-nowrap transition hover:text-neutral-900 dark:text-white/70 hover:dark:text-white/90 border-neutral-200 dark:border-white/20 hover:border-neutral-500 dark:hover:border-white/50 pl-4", {
+                    "text-primary-500 font-medium": isActive,
+                    "text-neutral-700": !isActive,
+                  })}
+                >{tab.title}</a>
+            })}
+          </div>
+          <AppSidebarList
+            activeSlug={activeSlug}
+            onClick={() => setIsOpen(false)} />
+        </div>
+      </Dialog>
+    </header>
+}
+
+<AppNavbar />

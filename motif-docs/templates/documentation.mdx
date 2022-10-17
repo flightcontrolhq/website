@@ -1,0 +1,23 @@
+import { Template as BaseTemplate } from '@templates/base.mdx'
+
+export const Template = ({ filename, path, files, meta, children }) => {
+  console.log("filename", filename)
+  return (
+    <BaseTemplate
+      filename={filename}
+      path={path}
+      files={files}
+      meta={meta}
+      includeSidebar={true}
+      includeFooterNav={true}
+    >
+      {children}
+    </BaseTemplate>
+  )
+}
+
+export default props => <Template {...props} />
+
+{/* Sample data */}
+
+Some sample text.

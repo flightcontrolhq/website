@@ -1,0 +1,53 @@
+---
+heading: Beyond the basics
+title: Service Dependency
+---
+
+If you have services that require other services to be up and running before starting to deploy, you can configure Service Dependency.
+
+A famous example is having a `Next.js` frontend that uses `getStaticProps` and it is reading the static content from another backend service like `Wordpress`.
+
+In order to add Service Dependency, you will need to configure your `flightcontrol.json` as the example below.
+
+Please note the following:
+
+1. You cannot add circular dependencies, where two service each depend on the other, your deployment will fail.
+2. You `dependsOn` array has to contain the `id` of other services in the same environment, otherwise the deployment will fail.
+
+```json
+{
+  "environments": [
+    {
+      "id": "webapp",
+      "name": "webapp",
+      "region": "us-east-1",
+      "source": {
+        "branch": "main"
+      },
+      "services": [
+        {
+          "id": "frontend",
+          "name": "nextjs",
+          "type": "fargate",
+          "cpu": 0.5,
+          "memory": 1,
+          "minInstances": 1,
+          "maxInstances": 1,
+          "dependsOn": ["backend"] //You can add one or multiple services to this array
+        },
+        {
+          "id": "backend",
+          "name": "wordpress",
+          "type": "fargate",
+          "cpu": 0.5,
+          "memory": 1,
+          "minInstances": 1,
+          "maxInstances": 1,
+					"dockerfilePath": "./Dockerfile",
+					"dockerfileContext": "."
+        }
+      ]
+    }
+  ]
+}
+```

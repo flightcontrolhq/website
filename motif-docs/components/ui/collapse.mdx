@@ -1,0 +1,22 @@
+import { useState } from "react"
+import ChevronRight from "@components/icons/chevron-right.mdx"
+
+export const Collapse = ({ open, title, children }) => {
+  const [isOpen, setOpen] = useState(open)
+  return <div className="flex flex-col">
+      {/* Hidden div to hold conditional classes */}
+      <div className="hidden rotate-90 pl-7" />
+      <div className="flex flex-row items-center gap-2 mb-4  hover:opacity-80 not-prose">
+      <ChevronRight className={`w-5 transform transition ${isOpen && "rotate-90"}`} />
+        <p
+          className="font-semibold cursor-pointer"
+          onClick={() => setOpen(o => !o)}
+          >{title}</p>
+      </div>
+      { isOpen && <div className="pl-7">{children}</div> }
+    </div>
+}
+
+<Collapse title="Click me">
+  I am hidden 🤗
+</Collapse>

@@ -1,0 +1,49 @@
+---
+heading: Getting started
+title: Setting up your first AWS project with Flightcontrol
+---
+
+import { Collapse } from "@components/ui/collapse.mdx"
+
+On a high-level, the steps you'll need to follow in order to deploy a project for the first time are:
+1. Create an account at Flightcontrol
+2. Create an account at AWS (if you don't already have one)
+3. Link your AWS account to Flightcontrol
+4. Optional: Authorize the Flightcontrol Github App to access your chosen repositories, public or private.  *This is needed if you want to deploy your own code from your Github repository.*
+5. Create a Flightcontrol project from our Dashboard
+
+## Concepts
+
+It might be useful to understand the different terms and the architecture we use:
+
+<Collapse title="Flightcontrol concepts">
+`Project`: It's the top level element of our architecture. It contains the configuration for the different `Environments` and it is associated with a **Github repository**. It can only be created in the Flightcontrol Dashboard.
+
+`Environment`: The model that contains 1 or more `Service`. It can be configured as a regular (long-lived) environment or as a preview environment (short-lived, spinned off when a pull request is opened).
+
+`Services`: The AWS service that you want to be contained within a given `Environment`.
+
+`Deployment`: Each deploy of an `Environment` will generate a `Deployment` that attempts to deploy all child `Services`. In the very first deployment, Flightcontrol will also configure the required AWS environment resources, depending on what is required by each service.
+</Collapse>
+
+## Configuring a Project
+When you create the project in the **Flightcontrol Dashboard**, you can choose to configure it using (a) our UI *or* (b) by providing a `flightcontrol.json` file, which needs to exist in the codebase you want to deploy.
+
+During the project creation in the Dashboard, you'll select **which repository to use** as well as which type of configuration you prefer.
+
+In the configuration, among other things, you'll configure an `Environment` and which `Services` you want to deploy. This configuration also includes how you want your changes to sync with Flightcontrol, either **manually** or on **changes pushed**.
+
+
+See the [config page](/guides/config) for more info.
+
+
+## Supported services
+
+At the moment, we support the following services:
+
+- **Web server** using Fargate
+- **Workers** using Fargate
+- **Database** using RDS
+- **Static websites** using S3 and Cloudfront
+
+Read more about each type [here](/services).
