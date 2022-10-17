@@ -13,8 +13,8 @@ export const Template = ({ filename, path, files, meta, includeSidebar, includeF
     return (files && filesToSearchData(files, undefined, "Home")) || []
   }, [files])
 
-  const isGuide = path?.startsWith("/docs/guides")
-  const basePath = isGuide ? "/docs/guides" : ""
+  const isGuide = path?.startsWith("/guides")
+  const basePath = isGuide ? "/guides" : ""
 
   return (
     <ThemeProvider attribute="class">

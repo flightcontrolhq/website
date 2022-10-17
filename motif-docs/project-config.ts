@@ -5,13 +5,13 @@ export default {
       { title: 'Create Account', href: 'https://app.flightcontrol.dev/signup' },
     ],
     tabs: [
-      { title: 'Documentation', href: '/docs/guides/get-started' },
+      { title: 'Documentation', href: '/guides/get-started' },
       {
         title: 'API',
-        href: '/docs/http-api',
+        href: '/http-api',
       },
-      { title: 'Troubleshooting', href: '/docs/troubleshooting' },
-      { title: 'Changelog', href: '/docs/changelog' },
+      { title: 'Troubleshooting', href: '/troubleshooting' },
+      { title: 'Changelog', href: '/changelog' },
       // Add roadmap
       // { title: "Roadmap", href: "/roadmap" },
     ],
@@ -20,41 +20,41 @@ export default {
     guides: [
       {
         title: 'Get started',
-        href: '/docs/guides/get-started',
+        href: '/guides/get-started',
         pages: [
           {
             title: 'Setting up your first project',
-            href: '/docs/guides/get-started/first-project',
+            href: '/guides/get-started/first-project',
           },
           {
             title: 'Supported services',
-            href: '/docs/guides/get-started/services',
+            href: '/guides/get-started/services',
           },
           {
             title: 'How to get AWS credits',
-            href: '/docs/guides/get-started/aws-credits',
+            href: '/guides/get-started/aws-credits',
           },
         ],
       },
       {
         title: 'Configuration',
-        href: '/docs/guides/config',
+        href: '/guides/config',
         pages: [
           {
             title: 'Using a file',
-            href: '/docs/guides/config/using-a-file',
+            href: '/guides/config/using-a-file',
           },
           {
             title: 'Using the GUI',
-            href: '/docs/guides/config/using-the-gui',
+            href: '/guides/config/using-the-gui',
           },
           {
             title: 'Preview Environments',
-            href: '/docs/guides/config/preview-environment',
+            href: '/guides/config/preview-environment',
           },
           {
             title: 'Monorepos',
-            href: '/docs/guides/config/monorepos',
+            href: '/guides/config/monorepos',
           },
         ],
       },
@@ -63,19 +63,19 @@ export default {
         pages: [
           {
             title: 'Custom Domains',
-            href: '/docs/guides/advanced/custom-domains',
+            href: '/guides/advanced/custom-domains',
           },
           {
             title: 'Fargate Port Change',
-            href: '/docs/guides/advanced/fargate-port-change',
+            href: '/guides/advanced/fargate-port-change',
           },
           {
             title: 'Service Dependency',
-            href: '/docs/guides/advanced/service-dependency',
+            href: '/guides/advanced/service-dependency',
           },
           {
             title: 'Stale While Revalidate',
-            href: '/docs/guides/advanced/swr',
+            href: '/guides/advanced/swr',
           },
         ],
       },
@@ -84,45 +84,45 @@ export default {
         pages: [
           {
             title: 'Datadog/AWS Setup',
-            href: '/docs/guides/datadog/setup',
+            href: '/guides/datadog/setup',
           },
           {
             title: 'Support for fargate',
-            href: '/docs/guides/datadog/support-for-fargate',
+            href: '/guides/datadog/support-for-fargate',
           },
         ],
       },
       {
         title: 'Examples',
-        href: '/docs/guides/examples',
+        href: '/guides/examples',
         pages: [
           {
             title: 'Blitz app',
-            href: '/docs/guides/examples/blitz',
+            href: '/guides/examples/blitz',
           },
           {
             title: 'Docker',
-            href: '/docs/guides/examples/docker',
+            href: '/guides/examples/docker',
           },
           {
             title: 'Next.js',
-            href: '/docs/guides/examples/nextjs',
+            href: '/guides/examples/nextjs',
           },
           {
             title: 'Node',
-            href: '/docs/guides/examples/node',
+            href: '/guides/examples/node',
           },
           {
             title: 'Redwood',
-            href: '/docs/guides/examples/redwood',
+            href: '/guides/examples/redwood',
           },
           {
             title: 'Remix',
-            href: '/docs/guides/examples/remix',
+            href: '/guides/examples/remix',
           },
           {
             title: 'Prisma Studio',
-            href: '/docs/guides/examples/prisma-studio',
+            href: '/guides/examples/prisma-studio',
           },
         ],
       },
@@ -133,7 +133,7 @@ export default {
         pages: [
           {
             title: 'Get your API Keys',
-            href: '/docs/http-api/authorization/api-keys',
+            href: '/http-api/authorization/api-keys',
           },
         ],
       },
@@ -142,11 +142,11 @@ export default {
         pages: [
           {
             title: 'Invalidation',
-            href: '/docs/http-api/cloudfront/cache-invalidation-api',
+            href: '/http-api/cloudfront/cache-invalidation-api',
           },
           {
             title: 'Invalidation Status',
-            href: '/docs/http-api/cloudfront/cache-invalidation-status-api',
+            href: '/http-api/cloudfront/cache-invalidation-status-api',
           },
         ],
       },

@@ -11,7 +11,7 @@ export const Hero = () => {
     <h1 className="text-4xl text-white font-bold">Flightcontrol Documentation</h1>
 
     <h2 className="text-xl text-white mt-4 mb-12">Deploy, preview & scale your apps with AWS easily</h2>
-    <Button large title="Get started →" href="/docs/guides/get-started" />
+    <Button large title="Get started →" href="/guides/get-started" />
   </div>
 }
 
@@ -32,26 +32,26 @@ export const HeroLinkCard = ({ title, subtitle, Icon, href }) => {
 export const HeroLinkCards = () => {
   return <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 prose max-w-full w-full">
     <HeroLinkCard
-      href="/docs/guides/get-started/"
+      href="/guides/get-started/"
       title="Getting Started"
       subtitle="Learn the basics to get up and running."
       Icon={BookIcon}
     />
     <HeroLinkCard
-      href="/docs/http-api"
+      href="/http-api"
       title="API Reference"
       subtitle="Check the available methods"
       Icon={PaperIcon}
     />
 
     <HeroLinkCard
-      href="/docs/troubleshooting"
+      href="/troubleshooting"
       title="Troubleshooting"
       subtitle="Get help fixing common problems."
       Icon={SupportIcon}
     />
     <HeroLinkCard
-      href="/docs/changelog"
+      href="/changelog"
       title="Changelog"
       subtitle="See what we've shipped"
       Icon={DoneIcon}
