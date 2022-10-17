@@ -1,0 +1,11 @@
+---
+heading: Configuration
+title: Monorepos Setup
+---
+
+If your flightcontrol.json file is at the repo root, then you can set up the buildCommand and startCommand like this:
+
+```json
+"buildCommand": "cd apps/frontend && npm run build",
+"startCommand": "cd apps/frontend && npm run start",
+```

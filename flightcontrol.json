@@ -16,13 +16,83 @@
           "buildType": "nixpacks",
           "cpu": 0.25,
           "memory": 0.5,
-          "domain": "www.flightcontrol.dev",
           "minInstances": 1,
           "maxInstances": 1,
           "buildCommand": "npm run build",
           "startCommand": "npm run start",
-          "envVariables": {},
+          "envVariables": {
+            "DOCS_URL": {
+              "fromService": {
+                "id": "docs", "value": "origin"
+              }
+            }
+          },
           "healthCheckPath": "/health"
+        },
+        {
+          "id": "docs",
+          "name": "docs",
+          "type": "fargate",
+          "buildType": "nixpacks",
+          "cpu": 0.25,
+          "memory": 0.5,
+          "minInstances": 1,
+          "maxInstances": 1,
+          "buildCommand": "cd motif-docs && npm run build",
+          "startCommand": "cd motif-docs && npm run start",
+          "envVariables": {},
+          "healthCheckPath": "/docs"
+        }
+      ]
+    },
+    {
+      "id": "preview",
+      "name": "preview",
+      "region": "us-west-2",
+      "source": {
+        "pr": true,
+        "filter": {
+          "toBranches": ["main"]
+        }
+      },
+      "services": [
+        {
+          "id": "website",
+          "name": "Website",
+          "type": "fargate",
+          "buildType": "nixpacks",
+          "cpu": 0.25,
+          "memory": 0.5,
+          "minInstances": 1,
+          "maxInstances": 1,
+          "buildCommand": "npm run build",
+          "startCommand": "npm run start",
+          "healthCheckPath": "/health",
+          "dependsOn": [
+            "docs"
+          ],
+          "envVariables": {
+            "DOCS_URL": {
+              "fromService": {
+                "id": "docs", "value": "origin"
+              }
+            }
+          }
+        },
+        {
+          "id": "docs",
+          "name": "docs",
+          "type": "fargate",
+          "buildType": "nixpacks",
+          "cpu": 0.25,
+          "memory": 0.5,
+          "minInstances": 1,
+          "maxInstances": 1,
+          "buildCommand": "cd motif-docs && yarn build",
+          "startCommand": "cd motif-docs && yarn start",
+          "installCommand": "cd motif-docs && yarn",
+          "envVariables": {},
+          "healthCheckPath": "/"
         }
       ]
     }

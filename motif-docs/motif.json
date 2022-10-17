@@ -1,0 +1,26 @@
+{
+  "templates": {
+    "**/*": "plain",
+    "http-api": "http-api",
+    "http-api/authorization/api-keys": "http-api",
+    "http-api/cloudfront/cache-invalidation-api": "http-api",
+    "http-api/cloudfront/cache-invalidation-status-api": "http-api",
+
+    "guides": "documentation",
+    "guides/**/*": "documentation",
+    "docs/http-api/authorization/api-keys": "http-api",
+    "docs/http-api/cloudfront/cache-invalidation-api": "http-api",
+    "docs/http-api/cloudfront/cache-invalidation-status-api": "http-api",
+    "docs/http-api": "http-api"
+  },
+  "head": [
+    "<meta name='viewport' content='width=device-width, initial-scale=1.0' />",
+    "<meta name='og:title' content='Flightcontrol Docs' />",
+    "<meta name='description' content='AWS Without Pain. Deploy, preview, & scale. DevOps not required. By the team behind Blitz.js' />",
+    "<link rel='shortcut icon' href='https://app.flightcontrol.dev/favicon.png' />",
+    "<link rel='preconnect' href='https://fonts.googleapis.com' />",
+    "<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />",
+    "<link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap' rel='stylesheet' />",
+    "<script src='https://impressive-ziggy-stardust.flightcontrol.dev/script.js' data-site='MJTFLQYZ' defer></script>"
+  ]
+}
