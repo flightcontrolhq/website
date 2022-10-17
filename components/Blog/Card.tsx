@@ -45,7 +45,7 @@ export function Card({ blogSummary, className, ...props }: Props) {
         <Author author={blogSummary.author} />
         <motion.div
           className="absolute z-[-1]"
-          initial={{ opacity: 0, top: 0, right: 0, bottom: 0, left: 0 }}
+          initial={false}
           animate={{
             opacity: 1,
             top: cornerPosition,

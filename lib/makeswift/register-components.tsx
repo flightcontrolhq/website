@@ -259,6 +259,13 @@ ReactRuntime.registerComponent(Feed, {
     className: Style({
       properties: Style.All,
     }),
+    count: Number({
+      label: 'Count',
+      min: 1,
+      step: 1,
+      defaultValue: 3,
+      labelOrientation: 'horizontal',
+    }),
   },
 })
 

@@ -1,36 +1,37 @@
 import classNames from 'classnames'
-import dayjs from 'dayjs'
-import { forwardRef, Ref } from 'react'
+import { forwardRef, Ref, useState } from 'react'
 
+import { Button } from 'components/Button'
 import { useBlogSummaries } from 'lib/blog-context'
 
 import { Card } from './Card'
 
-type Props = { className?: string }
+type Props = { className?: string; count?: number }
 
 export const Feed = forwardRef(function BlogFeed(
-  { className, ...props }: Props,
+  { className, count, ...props }: Props,
   ref: Ref<HTMLDivElement>,
 ) {
   const blogSummaries = useBlogSummaries()
 
+  const [isShowingMore, setShowMore] = useState(false)
+
   return (
-    <div className={classNames(className, 'space-y-7.5')} ref={ref} {...props}>
+    <div
+      className={classNames(className, 'space-y-7.5 flex flex-col justify-center items-center')}
+      ref={ref}
+      {...props}
+    >
       {blogSummaries
-        .sort((firstBlogSummary, secondBlogSummary) => {
-          const firstDate = dayjs(firstBlogSummary.publishedAt)
-          const secondDate = dayjs(secondBlogSummary.publishedAt)
-          if (firstDate.isAfter(secondDate)) {
-            return -1
-          } else if (firstDate.isBefore(secondDate)) {
-            return 1
-          } else {
-            return 0
-          }
-        })
+        .slice(0, isShowingMore ? blogSummaries.length : count ?? 0)
         .map(blogSummary => (
           <Card blogSummary={blogSummary} key={blogSummary._id} />
         ))}
+      {!isShowingMore && blogSummaries.length > (count ?? 0) && (
+        <Button variant="outlined" showArrows={false} onClick={() => setShowMore(true)}>
+          Show more
+        </Button>
+      )}
     </div>
   )
 })

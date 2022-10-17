@@ -76,7 +76,7 @@ export default function Page({ snapshot, preview, blogPostSummaries, blogPost }:
   const { data: previewBlogPost } = usePreviewSubscription<BlogPost>(BLOG_BY_SLUG_QUERY, {
     params: { slug: blogPost?.slug },
     initialData: blogPost,
-    enabled: preview && blogPost?.slug != null,
+    enabled: preview,
   })
 
   return (

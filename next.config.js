@@ -8,7 +8,7 @@ const { DOCS_URL } = process.env
 module.exports = withMakeswift({
   reactStrictMode: true,
   images: {
-    domains: ['s.mkswft.com', '*.motif.land', 'res.cloudinary.com', 'cdn.sanity.io'],
+    domains: ['*.motif.land', 'res.cloudinary.com', 'cdn.sanity.io'],
   },
   async rewrites() {
     invariant(DOCS_URL, 'DOCS_URL env var is not defined.')
