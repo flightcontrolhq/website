@@ -1,7 +1,5 @@
 import { groq } from 'next-sanity'
 
-export const BLOG_SLUGS_QUERY = groq`*[_type == "blog-post" && defined(slug.current)][].slug.current`
-
 export const BLOG_SUMMARIES_QUERY = groq`
 *[_type == "blog-post" && defined(slug.current)]{
   _id,

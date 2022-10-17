@@ -3,11 +3,12 @@ import {
   Page as MakeswiftPage,
   PageProps as MakeswiftPageProps,
 } from '@makeswift/runtime/next'
+import dayjs from 'dayjs'
 import { GetStaticPropsContext } from 'next'
 
 import { BlogContext, BlogSummaryContext } from 'lib/blog-context'
 import { getConfig } from 'lib/config'
-import { BLOG_BY_SLUG_QUERY, BLOG_SLUGS_QUERY, BLOG_SUMMARIES_QUERY } from 'lib/sanity'
+import { BLOG_BY_SLUG_QUERY, BLOG_SUMMARIES_QUERY } from 'lib/sanity'
 import { usePreviewSubscription } from 'lib/sanity/sanity'
 import { getClient } from 'lib/sanity/sanity.server'
 import { BlogPost, BlogPostSummaries } from 'lib/sanity/types'
@@ -15,10 +16,14 @@ import { BlogPost, BlogPostSummaries } from 'lib/sanity/types'
 import '../../lib/makeswift/register-components'
 
 export async function getStaticPaths() {
-  const slugs = await getClient().fetch<string[]>(BLOG_SLUGS_QUERY)
+  const blogPostSummaries = await getClient().fetch<BlogPostSummaries>(BLOG_SUMMARIES_QUERY)
 
   return {
-    paths: slugs.map(slug => ({ params: { slug } })),
+    paths: blogPostSummaries
+      .filter(blogSummary => {
+        dayjs(blogSummary.publishedAt).isBefore(dayjs())
+      })
+      .map(blogSummary => ({ params: { slug: blogSummary.slug } })),
     fallback: 'blocking',
   }
 }
@@ -71,7 +76,7 @@ export default function Page({ snapshot, preview, blogPostSummaries, blogPost }:
   const { data: previewBlogPost } = usePreviewSubscription<BlogPost>(BLOG_BY_SLUG_QUERY, {
     params: { slug: blogPost?.slug },
     initialData: blogPost,
-    enabled: preview && blogPost?.slug != null,
+    enabled: preview,
   })
 
   return (
