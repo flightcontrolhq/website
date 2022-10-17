@@ -17,6 +17,7 @@
     "@next/mdx": "^12.3.1",
     "classnames": "^2.3.2",
     "fuse.js": "^6.6.2",
+    "gray-matter": "^4.0.3",
     "lodash-es": "^4.17.21",
     "luxon": "^3.0.4",
     "next": "^12.3.1",
@@ -27,7 +28,7 @@
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
     "remark-mdx-frontmatter": "^2.0.3",
-    "gray-matter": "^4.0.3"
+    "sharp": "^0.31.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.7",

@@ -35,7 +35,7 @@
     "**/*.mdx",
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
   ],
   "ts-node": {
     "require": ["tsconfig-paths/register"]
