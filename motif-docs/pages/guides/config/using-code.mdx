@@ -1,26 +1,19 @@
 ---
 heading: Configuration
-title: Using a self-maintained file (or files)
+title: Using Infrastructure as Code
 ---
 
-import { Collapse } from "@components/ui/collapse.mdx"
-import { Spacer } from "@components/ui/spacer.mdx"
-import { Image } from "@components/ui/image.mdx"
-import { Note } from "@components/ui/note.mdx"
+import { Collapse } from '@components/ui/collapse.mdx'
+import { Image } from '@components/ui/image.mdx'
+import { Note } from '@components/ui/note.mdx'
+import { Spacer } from '@components/ui/spacer.mdx'
 
-To use your own file, you'll need to create a compatiple JSON file and add it to the path you indicated in the configuration.
+To use your own file, you'll need to create a compatible JSON, YAML, or CUE file and add it to the path you indicated in the configuration.
 
-<Spacer />
-
-<Note type="info">If you prefer Cue or Yaml, you can instead use flightcontrol.cue or flightcontrol.yaml.</Note>
-
-Each git repo can have multiple `flightcontrol.json` files
-
-Each `flightcontrol.json` corresponds to a single `Project` (as shown in the Flightcontrol dashboard)
-
-Each `Project` can have multiple `Environment`'s
-
-Each `Environment` can have multiple `Service`'s
+- Each git repo can have multiple `flightcontrol.json` files
+- Each `flightcontrol.json` corresponds to a single `Project` (as shown in the Flightcontrol dashboard)
+- Each `Project` can have multiple `Environment`'s
+- Each `Environment` can have multiple `Service`'s
 
 ## Top level `Project` Options
 
@@ -40,42 +33,50 @@ Environment variables can be configured two ways
 
 1. In the Flightcontrol dashboard under an environment’s settings
 2. Via flightcontrol.json (values defined here will override ones set in the dashboard)
-    - object, with one or more of the following types
-        - **Static**
-            - Format:  `"NAME": "<value>"`
-            - Example: `"APP_ENV": "production"`
-            - Static, hard coded value in flightcontrol.json
-        - **From another service:**
-            - Format:  ****`"NAME": {"fromService": {"id": "<serviceId>", value: "<value>"}}`
-            - Example:  ****`"NAME": {"fromService": {"id": "db", value: "dbConnectionString"}}`
-            - Supported values for `type: "rds"` services:
-            `dbConnectionString, username, password, host, port`
-            - Supported values for `type: "fargate"` and `type: "static"` services:
 
-                `host` will include the service URL without protocol: `www.example.com`
+   - object, with one or more of the following types
 
-                `origin` will include the service URL with protocol: `https://www.example.com`
+     - **Static**
+       - Format: `"NAME": "<value>"`
+       - Example: `"APP_ENV": "production"`
+       - Static, hard coded value in flightcontrol.json
+     - **From another service:**
 
-        - **From Parameter Store:**
-            - Format:  `"NAME": {"fromParameterStore": "<parameterStoreItemName>"}`
-            - Example: `"STRIPE_API_KEY": {"fromParameterStore": "ACME_STRIPE_API_KEY"}`
-            - Securely retrieve the value from [AWS Parameter Store](https://console.aws.amazon.com/systems-manager/parameters). Parameter Store is a free AWS service for securely storing secrets.
-            - **Important: Your parameter store item must be in the same region as your service**
-            - Screenshot of parameter store
-                <Image rounded={true} border={true} src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655164946/i1600x1708-omdv9rVjfGZZ_muha6h.png" />
-        - **From Secrets Manager:**
-            - Format: `"NAME": {"fromSecretsManager": "<arn:your-secret-arn>"}`
-            - Example: `"STRIPE_API_KEY": {"fromSecretsManager": "arn:aws:secretsmanager:us-west-1:832786265645:secret:/stripe-y6uINZ"}`
-            - Securely retrieve the value from [AWS Secrets Manager](https://console.aws.amazon.com/secretsmanager/home). Secrets Manager is a paid AWS service for securely storing secrets. It costs $0.40/secret/month
+       - Format: \*\*\*\*`"NAME": {"fromService": {"id": "<serviceId>", value: "<value>"}}`
+       - Example: \*\*\*\*`"NAME": {"fromService": {"id": "db", value: "dbConnectionString"}}`
+       - Supported values for `type: "rds"` services:
+         `dbConnectionString, username, password, host, port`
+       - Supported values for `type: "fargate"` and `type: "static"` services:
+
+         `host` will include the service URL without protocol: `www.example.com`
+
+         `origin` will include the service URL with protocol: `https://www.example.com`
+
+     - **From Parameter Store:**
+       - Format: `"NAME": {"fromParameterStore": "<parameterStoreItemName>"}`
+       - Example: `"STRIPE_API_KEY": {"fromParameterStore": "ACME_STRIPE_API_KEY"}`
+       - Securely retrieve the value from [AWS Parameter Store](https://console.aws.amazon.com/systems-manager/parameters). Parameter Store is a free AWS service for securely storing secrets.
+       - **Important: Your parameter store item must be in the same region as your service**
+       - Screenshot of parameter store
+         {' '}
+         <Image
+           rounded={true}
+           border={true}
+           src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655164946/i1600x1708-omdv9rVjfGZZ_muha6h.png"
+         />
+     - **From Secrets Manager:**
+       - Format: `"NAME": {"fromSecretsManager": "<arn:your-secret-arn>"}`
+       - Example: `"STRIPE_API_KEY": {"fromSecretsManager": "arn:aws:secretsmanager:us-west-1:832786265645:secret:/stripe-y6uINZ"}`
+       - Securely retrieve the value from [AWS Secrets Manager](https://console.aws.amazon.com/secretsmanager/home). Secrets Manager is a paid AWS service for securely storing secrets. It costs $0.40/secret/month
+
 - We automatically provide you with the following environment variables:
-    - `CI=true`
-    - `PORT=<your service.port value>`
-    - `NODE_ENV=production`
-    - `RAILS_ENV=production`
-    - `FORCE_COLOR=0`
-    - `FC_GIT_COMMIT_SHA=<git commit sha of the deployment>`
-    - `FC_GIT_BRANCH=<git branch of the deployment>`
-
+  - `CI=true`
+  - `PORT=<your service.port value>`
+  - `NODE_ENV=production`
+  - `RAILS_ENV=production`
+  - `FORCE_COLOR=0`
+  - `FC_GIT_COMMIT_SHA=<git commit sha of the deployment>`
+  - `FC_GIT_BRANCH=<git branch of the deployment>`
 
 ## `Environment`
 
@@ -100,15 +101,21 @@ Environment variables can be configured two ways
 `source: object`
 
 - `branch: string`
-    - Example: `"source": {"branch": "main"}`
-    - The github branch you want deployed to this environment.
-    - Every git push to this branch will be automatically deployed
+  - Example: `"source": {"branch": "main"}`
+  - The github branch you want deployed to this environment.
+  - Every git push to this branch will be automatically deployed
 - `trigger: string`
-    - Example: `"trigger": "manual"`
-    - Supported values: `"manual", "push"`
-    - Optional with default to  `"push"`
-    - Leaving the trigger as `”push”` will result in an automatic deployment of any git push to the branch. Changing the trigger to `"manual"` will prevent automatic deployments and require manually deploying the environment in the hamburger menu in the environment show page:
-        <Image rounded={true} border={true} className="w-full max-w-[260px]" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165043/i686x716-7i2z1btLjnel_ysjwps.png" />
+  - Example: `"trigger": "manual"`
+  - Supported values: `"manual", "push"`
+  - Optional with default to `"push"`
+  - Leaving the trigger as `”push”` will result in an automatic deployment of any git push to the branch. Changing the trigger to `"manual"` will prevent automatic deployments and require manually deploying the environment in the hamburger menu in the environment show page:
+    {' '}
+    <Image
+      rounded={true}
+      border={true}
+      className="w-full max-w-[260px]"
+      src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165043/i686x716-7i2z1btLjnel_ysjwps.png"
+    />
 
 `envVariables: EnvVariables`
 
@@ -123,10 +130,20 @@ Environment variables can be configured two ways
 ### Deployment Hooks
 
 - Deployment hooks are a way for you to trigger a deployment on an environment remotely with an HTTP request:
-    - You must first create a deploy hook in the environment edit page accessed by clicking “Edit Environment” button on the project show page, and then locate the Deploy Hooks form in the UI.
-    <Image rounded={true} border={true} className="w-full max-w-[260px]" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165074/i448x132-1xpvO1Oe_clb_dfdluu.png" />
-    <Image rounded={true} border={true} className="w-full" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165094/i1600x518-RjDe674AMVxY_lh4txx.png" />
-    - To trigger a deployment with this hook, make a HTTP GET request at this url (no payload is necessary).
+  - You must first create a deploy hook in the environment edit page accessed by clicking “Edit Environment” button on the project show page, and then locate the Deploy Hooks form in the UI.
+    <Image
+      rounded={true}
+      border={true}
+      className="w-full max-w-[260px]"
+      src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165074/i448x132-1xpvO1Oe_clb_dfdluu.png"
+    />
+    <Image
+      rounded={true}
+      border={true}
+      className="w-full"
+      src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165094/i1600x518-RjDe674AMVxY_lh4txx.png"
+    />
+  - To trigger a deployment with this hook, make a HTTP GET request at this url (no payload is necessary).
 
 ## `Service`
 
@@ -260,6 +277,7 @@ Environment variables can be configured two ways
         - Relative path to the docker context from the repo root
         - It’s recommended to use `ENTRYPOINT` instead of `CMD` for your start command
     </Collapse>
+
 </Collapse>
 
 `type: 'static'` (static website)
@@ -271,9 +289,16 @@ Environment variables can be configured two ways
 - Optional, defaults to a random url like `123456789.cloudfront.net`
 - Wildcard domains are supported: `"domain": "*.example.com"` The http `host` header will contain the specific domain that’s being used.
 - If configured, during the setup phase in the Flightcontrol dashboard we’ll show you the required DNS changes to actually point your custom domain to this service. If you configure the domain here but don’t change your DNS, you can still access the service using the random generated `[x.cloudfront.net](http://x.cloudfront.net)` domain.
-    - *Example screenshot*
 
-        <Image rounded={true} border={true} src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165922/i1600x349-0NhJiulDrUvt_aymzp2.png" />
+  - _Example screenshot_
+
+    {' '}
+
+    <Image
+      rounded={true}
+      border={true}
+      src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165922/i1600x349-0NhJiulDrUvt_aymzp2.png"
+    />
 
 `singlePageApp: boolean`
 
@@ -286,18 +311,18 @@ Environment variables can be configured two ways
 
 - Example: `"installCommand": "./install.sh"`
 - Optional with default:
-    - If you have `yarn.lock` ,  `yarn install --frozen-lockfile --production=false`
-    - If you have `pnpm-lock.yaml` ,  `pnpm install --frozen-lockfile --prod=false`
-    - Else  `npm ci --production=false`
+  - If you have `yarn.lock` , `yarn install --frozen-lockfile --production=false`
+  - If you have `pnpm-lock.yaml` , `pnpm install --frozen-lockfile --prod=false`
+  - Else `npm ci --production=false`
 - What we use to install dependencies for your build
 
 `buildCommand: string`
 
 - Example: `"buildCommand": "blitz build"`
 - Optional with default:
-    - If you have `yarn.lock` ,  `yarn build`
-    - If you have `pnpm-lock.yaml` ,  `pnpm build`
-    - Else  `npm run build`
+  - If you have `yarn.lock` , `yarn build`
+  - If you have `pnpm-lock.yaml` , `pnpm build`
+  - Else `npm run build`
 - What we use to build your app
 
 `outputDirectory: string`
@@ -305,6 +330,7 @@ Environment variables can be configured two ways
 - Example: `"outputDirectory": "web/dist"`
 - Optional with default: `"public"`
 - All the files in this directory will be served statically via the Cloudfront CDN
+
 </Collapse>
 
 `type: 'rds'` (database)
@@ -438,4 +464,6 @@ Environment variables can be configured two ways
     - Relative path to the docker context from the repo root
     - It’s recommended to use `ENTRYPOINT` instead of `CMD` for your start command
     </Collapse>
+
 </Collapse>
+

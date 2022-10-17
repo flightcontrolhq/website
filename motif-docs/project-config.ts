@@ -1,3 +1,4 @@
+//eslint-disable-next-line import/no-anonymous-default-export
 export default {
   navbar: {
     topLinks: [
@@ -23,11 +24,11 @@ export default {
         href: '/guides/get-started',
         pages: [
           {
-            title: 'Setting up your first project',
+            title: 'Setting Up Your First Project',
             href: '/guides/get-started/first-project',
           },
           {
-            title: 'Supported services',
+            title: 'Supported Services',
             href: '/guides/get-started/services',
           },
           {
@@ -41,12 +42,12 @@ export default {
         href: '/guides/config',
         pages: [
           {
-            title: 'Using a file',
-            href: '/guides/config/using-a-file',
+            title: 'Using Code',
+            href: '/guides/config/using-code',
           },
           {
-            title: 'Using the GUI',
-            href: '/guides/config/using-the-gui',
+            title: 'Using UI',
+            href: '/guides/config/using-ui',
           },
           {
             title: 'Preview Environments',

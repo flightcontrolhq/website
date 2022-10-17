@@ -3,6 +3,7 @@ import fastLevenshtein from 'fast-levenshtein'
 import minimatch from 'minimatch'
 import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -65,7 +66,7 @@ export const imageUrlToDimensions = (src: string): Size | undefined => {
   if (sizeInfo?.startsWith('i')) {
     sizeInfo = sizeInfo.slice(1)
     sizeInfo = sizeInfo.split('x')
-    if (sizeInfo.every((n) => !isNaN(Number(n)))) {
+    if (sizeInfo.every(n => !isNaN(Number(n)))) {
       size = {
         width: Number(sizeInfo[0]),
         height: Number(sizeInfo[1]),
@@ -84,12 +85,8 @@ const components = {
   ),
   img: ({ src, alt, ...props }: { src: string; alt: string }) => {
     const sizeInfo = imageUrlToDimensions(src)
-    return (<Image
-      alt={alt}
-      src={src}
-      width={sizeInfo.width}
-      height={sizeInfo.height}
-      {...props} />)},
+    return <Image alt={alt} src={src} width={sizeInfo.width} height={sizeInfo.height} {...props} />
+  },
 }
 
 function MyApp({ Component, pageProps, router }: AppProps) {
@@ -102,6 +99,14 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <MDXProvider components={components}>
       <Template meta={meta} path={router.pathname} filename={filename} files={files}>
+        <Head>
+          <script
+            // fathom analytics
+            src="https://impressive-ziggy-stardust.flightcontrol.dev/script.js"
+            data-site="MJTFLQYZ"
+            defer
+          ></script>
+        </Head>
         <Component {...pageProps} />
       </Template>
     </MDXProvider>
