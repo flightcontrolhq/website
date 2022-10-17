@@ -7,6 +7,7 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <script
+            // fathom analytics
             src="https://impressive-ziggy-stardust.flightcontrol.dev/script.js"
             data-site="MJTFLQYZ"
             defer
