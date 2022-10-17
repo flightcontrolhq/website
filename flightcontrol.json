@@ -90,11 +90,11 @@
           "memory": 0.5,
           "minInstances": 1,
           "maxInstances": 1,
-          "buildCommand": "cd motif-docs && npm run build",
-          "startCommand": "cd motif-docs && npm run start",
+          "buildCommand": "cd motif-docs && yarn build",
+          "startCommand": "cd motif-docs && yarn start",
           "installCommand": "cd motif-docs && yarn",
           "envVariables": {},
-          "healthCheckPath": "/docs"
+          "healthCheckPath": "/"
         }
       ]
     }
