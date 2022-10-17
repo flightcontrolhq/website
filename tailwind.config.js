@@ -39,7 +39,7 @@ module.exports = {
         '7xl': ['4.5rem', { lineHeight: '1' }],
         '8xl': ['6rem', { lineHeight: '1' }],
         '9xl': ['8rem', { lineHeight: '1' }],
-        // straight from MakeswiftTypographies
+        // straight from typographies defined in Makeswift
         heading1: ['3.75rem', { lineHeight: '1.2' }],
         heading2: ['1.6rem', { lineHeight: '1.3' }],
         small: ['1rem', { lineHeight: '1.5' }],
