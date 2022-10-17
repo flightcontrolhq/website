@@ -1,7 +1,7 @@
 const withMakeswiftInitializer = require('@makeswift/runtime/next/plugin')
 
 const withMakeswift = withMakeswiftInitializer()
-const { APP_ORIGIN } = process.env
+const { DOCS_URL } = process.env
 
 module.exports = withMakeswift({
   reactStrictMode: true,
@@ -13,11 +13,11 @@ module.exports = withMakeswift({
       beforeFiles: [
         {
           source: '/docs',
-          destination: `${APP_ORIGIN}:4000/docs`,
+          destination: `${DOCS_URL}/docs`,
         },
         {
           source: '/docs/:path*',
-          destination: `${APP_ORIGIN}:4000/docs/:path*`,
+          destination: `${DOCS_URL}/docs/:path*`,
         },
       ],
     }

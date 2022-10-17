@@ -1,45 +1,46 @@
 ---
 index: 2
 heading: API
-title: Cache Invalidation Status
+title: Cloudfront Cache Invalidation Status
 subtitle: Check the status of a Cloudfront Cache invalidation that was previously requested
 ---
 
 import { Collapse } from '@components/ui/collapse.mdx'
 
-| **Method** | **Path** |
-| :------------ | :----------- |
-| **POST** | `services/invalidateCloudfrontStatus` |
+| **Method** | **Path**                               |
+| :--------- | :------------------------------------- |
+| **POST**   | `/services/invalidateCloudfrontStatus` |
 
-| **Headers** | |
-| :------------ | :----------- |
+| **Headers**   |                            |
+| :------------ | :------------------------- |
 | Authorization | `authorization: [API key]` |
 
-| **Body** | | |
-| :------------ | :----------- | :----------- |
-| **Parameter** | **Type** | **Description** |
-| `version` | **number** | This is the version ID of the API, currently at version 1. |
-| `params` | **object**: `{ invalidationId: string; }` | Type:
-`invalidationId` is the ID you should receive when you initially call the invalidation API. |
+| **Body**      |                                           |                                                                                             |
+| :------------ | :---------------------------------------- | :------------------------------------------------------------------------------------------ |
+| **Parameter** | **Type**                                  | **Description**                                                                             |
+| `version`     | **number**                                | This is the version ID of the API, currently at version 1.                                  |
+| `params`      | **object**: `{ invalidationId: string; }` | `invalidationId` is the ID you should receive when you initially call the invalidation API. |
 
 **Full Endpoint URL** `https://app.flightcontrol.dev/api/services/invalidateCloudfrontStatus`
 
 #### Request Body Example
+
 ```json
 {
   "version": 1,
-	"params" : {
-	  "invalidationId": "cl2kx7acm04003f6gobvidq2i"
-	}
-}
-```
-#### Response Example
-```json
-{
-	"status": "SUCCESS",
+  "params": {
+    "invalidationId": "cl2kx7acm04003f6gobvidq2i"
+  }
 }
 ```
 
+#### Response Example
+
+```json
+{
+  "status": "SUCCESS"
+}
+```
 
 ### Responses
 
@@ -62,6 +63,7 @@ HTTP/1.1 200 OK
   "status": "PENDING"
 }
 ```
+
 </Collapse>
 
 <Collapse title="Errors">
@@ -94,4 +96,5 @@ Content-Type: application/json
   "error": "Please use an API key for this request"
 }
 ```
+
 </Collapse>

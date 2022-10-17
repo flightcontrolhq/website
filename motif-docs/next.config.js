@@ -40,6 +40,16 @@ const buildTree = (dir, parentName = 'pages') => {
 
 const config = {
   basePath: '/docs',
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/docs',
+        basePath: false,
+        permanent: false,
+      },
+    ]
+  },
   images: {
     domains: ['*.motif.land', 'res.cloudinary.com'],
   },

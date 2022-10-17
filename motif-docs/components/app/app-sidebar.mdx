@@ -10,7 +10,7 @@ export const AppSidebarList = ({ activeSlug, onClick }) => {
   return <div className="flex flex-col flex-grow gap-8">
       {config.sidebars[sidebarId]?.map((section) => {
         const parentActive = section.href === activeSlug
-        return <div className="flex flex-col" key={sidebarId}>
+        return <div className="flex flex-col" key={`${sidebarId}${section.title.replace(' ')}`}>
             {section.title && !section.href &&
               <p className="text-base sm:text-sm font-semibold px-4 mb-2">
                 {section.title}
