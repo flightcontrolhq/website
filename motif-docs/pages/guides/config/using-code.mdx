@@ -72,9 +72,8 @@ Environment variables can be configured two ways
 - We automatically provide you with the following environment variables:
   - `CI=true`
   - `PORT=<your service.port value>`
-  - `NODE_ENV=production`
-  - `RAILS_ENV=production`
   - `FORCE_COLOR=0`
+  - `FC_URL=<current full url of the service>`
   - `FC_GIT_COMMIT_SHA=<git commit sha of the deployment>`
   - `FC_GIT_BRANCH=<git branch of the deployment>`
 
@@ -110,12 +109,29 @@ Environment variables can be configured two ways
   - Optional with default to `"push"`
   - Leaving the trigger as `”push”` will result in an automatic deployment of any git push to the branch. Changing the trigger to `"manual"` will prevent automatic deployments and require manually deploying the environment in the hamburger menu in the environment show page:
     {' '}
-    <Image
-      rounded={true}
-      border={true}
-      className="w-full max-w-[260px]"
-      src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165043/i686x716-7i2z1btLjnel_ysjwps.png"
-    />
+    <div className="max-w-xs">
+      <Image
+        rounded={true}
+        border={true}
+        src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165043/i686x716-7i2z1btLjnel_ysjwps.png"
+      />
+    </div>
+- `pr: true | undefined`
+  - _Optional_, for configuring [Preview Environments](/guides/config/preview-environment)
+- `filter.toBranches: string[] | undefined`
+  - _Optional_, for configuring [Preview Environments](/guides/config/preview-environment)
+  - Example: `"toBranches": ["main"]`
+  - If set, only pull or merge requests to the specified branch(es) will be deployed as preview environments. If omitted, all pull requests will be deployed.
+- `filter.labels: string[] | undefined`
+  - _Optional_, for configuring [Preview Environments](/guides/config/preview-environment)
+  - Example: `"labels": ["deploy-preview"]`
+  - If set, only pull or merge requests with at least one of the specified labels will be deployed. It will be deployed when the label is added, whether that’s during PR creation or some time after the PR is opened.
+
+<Note type="info">
+  💡 Note: The optional filters work with an `AND` logic. If both filters are enabled, it will only
+  deploy a PR that matches both the target branch(es) (`toBranches`) and one of the labels
+  configured (`labels`).
+</Note>
 
 `envVariables: EnvVariables`
 
@@ -158,6 +174,20 @@ Environment variables can be configured two ways
 - Example: `"name": "Production Web"`
 - This is the name we use to display your service in the Flightcontrol web dashboard
 
+`buildType: 'nixpacks' | 'nodejs' | 'docker'`
+
+- Example: `"buildType": "nixpacks"`
+- Default: `'nodejs'`
+- Nixpacks:
+  - Deploy almost any language without writing a Dockerfile!
+  - Docs: [https://nixpacks.com/](https://nixpacks.com/)
+  - You can customize native packages and such with [nixpacks.toml](https://nixpacks.com/docs/configuration/file)
+- Node.js:
+  - Behind the scenes, this uses a Flightcontrol provided Dockerfile.
+  - This will be deprecated in favor of Nixpacks
+- Docker:
+  - Bring your own Dockerfile for full control
+
 `envVariables: EnvVariables`
 
 `type: 'fargate'` (web server)
@@ -175,12 +205,11 @@ Environment variables can be configured two ways
     - Example: `"memory": 1`
     - Supported values:
         - With `cpu: 0.25` - `0.5, 1, 2`
-        - With `cpu: 0.5` - `1...4` (*int)*
-        - With `cpu: 1` - `2...8` (*int)*
-        - With `cpu: 2` - `4...16` (*int)*
-        - With `cpu: 4` - `8...30` (*int)*
+        - With `cpu: 0.5` - `1...4` (int)
+        - With `cpu: 1` - `2...8` (int)
+        - With `cpu: 2` - `4...16` (int)
+        - With `cpu: 4` - `8...30` (int)
     - Memory can be in GB or MB for each service instance
-        -
     - For more details, see [AWS’s fargate pricing page](https://aws.amazon.com/fargate/pricing/)
 
     `minInstances: int`
@@ -206,6 +235,13 @@ Environment variables can be configured two ways
         - *Example screenshot*
             <Image rounded={true} border={true} src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165403/i1600x349-REQhW6PMBk1__xncshv.png" />
 
+    `port: number`
+
+    - Example: `"port": 8080`
+    - The http port we’ll direct incoming traffic to
+    - We automatically set the `PORT` environment variable to whatever you configure here
+
+
     `healthCheckPath: string`
 
     - Example: `"healthCheckPath": "/health"`
@@ -213,13 +249,7 @@ Environment variables can be configured two ways
     - HTTP status codes that signal healthy: `200-399`
     - This is used during deployment to ensure the server is healthy before traffic is routed to it. And during runtime, to automatically replace unhealthy servers. If you notice that your app is in a cycle of working and not working, it could be your health check path is returning an error causing the to keep restarting your server.
 
-    <Collapse title="Extra options for Node.js only">
-        `port: number`
-
-        - Example: `"port": 8080`
-        - Optional with default: `3000`
-        - The http port we’ll direct incoming traffic to
-
+    <Collapse title="Extra options for Nixpacks & Legacy Node.js">
         `installCommand: string`
 
         - Example: `"installCommand": "./install.sh"`
@@ -239,7 +269,7 @@ Environment variables can be configured two ways
         - What we use to build your app
 
         `postBuildCommand: string`
-
+        - **Not supported for nixpacks**
         - Example: `"postBuildCommand": "npm run cleanup"`
         - Optional with default:
             - If you have `yarn.lock` ,  `yarn install --production --frozen-lockfile --force`
@@ -257,12 +287,97 @@ Environment variables can be configured two ways
         - What we use to start your app
     </Collapse>
     <Collapse title="Extra options for custom Dockerfile only">
-        `port: number`
+        `dockerfilePath: string`
 
-        - Example: `"port": 8080`
-        - The http port we’ll direct incoming traffic to
-        - We automatically set the `PORT` environment variable to whatever you configure here
+        - Example: `"dockerfilePath": "packages/web/Dockerfile"`
+        - Relative path to the Dockerfile from your repo root
+        - It’s recommended to use `ENTRYPOINT` instead of `CMD` for your start command
+        - You can authenticate with Docker Hub by adding your Docker Hub credentials as `DOCKER_USERNAME` and `DOCKER_PASSWORD` environment variables. If these env variables are present, we’ll run `docker login` with them. *This will prevent Docker Hub rate limit issues.*
 
+        `dockerContext: string`
+
+        - Example: `"dockerContext": "packages/web"`
+        - Optional with default: `"."` (repo root)
+        - Relative path to the docker context from the repo root
+        - It’s recommended to use `ENTRYPOINT` instead of `CMD` for your start command
+    </Collapse>
+
+</Collapse>
+
+`type: 'fargate-worker'` (private server)
+
+<Collapse title="Fargate worker service options">
+    `cpu: number`
+
+    - Example: `"cpu": 0.25`
+    - Supported values: `0.25, 0.5, 1, 2, 4`
+    - This is the AWS `vCPU` unit for each service instance. It does not correspond to number of cores. It’s an abstract unit of CPU power defined by amazon
+    - For more details, see [AWS’s fargate pricing page](https://aws.amazon.com/fargate/pricing/)
+
+    `memory: int`
+
+    - Example: `"memory": 1`
+    - Supported values:
+        - With `cpu: 0.25` - `0.5, 1, 2`
+        - With `cpu: 0.5` - `1...4` (int)
+        - With `cpu: 1` - `2...8` (int)
+        - With `cpu: 2` - `4...16` (int)
+        - With `cpu: 4` - `8...30` (int)
+    - Memory can be in GB or MB for each service instance
+    - For more details, see [AWS’s fargate pricing page](https://aws.amazon.com/fargate/pricing/)
+
+    `minInstances: int`
+
+    - Example: `"minInstances": 1`
+    - Support values: `1+`
+    - Optional with default: `1`
+    - The minimum number of instances you want to be running. A min of 2 means there will be two containers running the same copy of code.
+
+    `maxInstances: int`
+
+    - Example: `"maxInstances": 2`
+    - Support values: `1+`
+    - Optional with default: `1`
+    - The maximum number of instances you want to be running. Fargate will autoscale the number of instances based on your traffic up to this maximum. This number effectively sets a limit on AWS cost you may incur.
+
+    <Collapse title="Extra options for Nixpacks & Legacy Node.js">
+        `installCommand: string`
+
+        - Example: `"installCommand": "./install.sh"`
+        - Optional with default:
+            - If you have `yarn.lock` ,  `yarn install --frozen-lockfile --production=false`
+            - If you have `pnpm-lock.yaml` ,  `pnpm install --frozen-lockfile --prod=false`
+            - Else  `npm ci --production=false`
+        - What we use to install dependencies for your build
+
+        `buildCommand: string`
+
+        - Example: `"buildCommand": "blitz build"`
+        - Optional with default:
+            - If you have `yarn.lock` ,  `yarn build`
+            - If you have `pnpm-lock.yaml` ,  `pnpm build`
+            - Else  `npm run build`
+        - What we use to build your app
+
+        `postBuildCommand: string`
+        - **Not supported for nixpacks**
+        - Example: `"postBuildCommand": "npm run cleanup"`
+        - Optional with default:
+            - If you have `yarn.lock` ,  `yarn install --production --frozen-lockfile --force`
+            - If you have `pnpm-lock.yaml` ,  `pnpm prune --production --frozen-lockfile`
+            - Else  `npm prune --production`
+        - What we use to clean to remove all development dependencies before starting your app. This reduces the build image size and improves security by minimizing the attack surface area.
+
+        `startCommand: string`
+
+        - Example: `"startCommand": "blitz start"`
+        - Optional with default:
+            - If you have `yarn.lock` ,  `yarn start`
+            - If you have `pnpm-lock.yaml` ,  `pnpm start`
+            - Else  `npm run start`
+        - What we use to start your app
+    </Collapse>
+    <Collapse title="Extra options for custom Dockerfile only">
         `dockerfilePath: string`
 
         - Example: `"dockerfilePath": "packages/web/Dockerfile"`
@@ -466,4 +581,3 @@ Environment variables can be configured two ways
     </Collapse>
 
 </Collapse>
-
