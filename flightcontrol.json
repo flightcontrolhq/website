@@ -14,16 +14,17 @@
           "name": "Website",
           "type": "fargate",
           "buildType": "nixpacks",
-          "cpu": 0.25,
-          "memory": 0.5,
-          "minInstances": 1,
-          "maxInstances": 1,
+          "cpu": 0.5,
+          "memory": 1,
+          "minInstances": 2,
+          "maxInstances": 2,
           "buildCommand": "npm run build",
           "startCommand": "npm run start",
           "envVariables": {
             "DOCS_URL": {
               "fromService": {
-                "id": "docs", "value": "origin"
+                "id": "docs",
+                "value": "origin"
               }
             }
           },
@@ -36,8 +37,8 @@
           "buildType": "nixpacks",
           "cpu": 0.25,
           "memory": 0.5,
-          "minInstances": 1,
-          "maxInstances": 1,
+          "minInstances": 2,
+          "maxInstances": 2,
           "installCommand": "cd motif-docs && yarn",
           "buildCommand": "cd motif-docs && npm run build",
           "startCommand": "cd motif-docs && npm run start",
@@ -69,13 +70,12 @@
           "buildCommand": "npm run build",
           "startCommand": "npm run start",
           "healthCheckPath": "/health",
-          "dependsOn": [
-            "docs"
-          ],
+          "dependsOn": ["docs"],
           "envVariables": {
             "DOCS_URL": {
               "fromService": {
-                "id": "docs", "value": "origin"
+                "id": "docs",
+                "value": "origin"
               }
             }
           }
@@ -89,7 +89,7 @@
           "memory": 0.5,
           "minInstances": 1,
           "maxInstances": 1,
-          "installCommand": "cd motif-docs && yarn",          
+          "installCommand": "cd motif-docs && yarn",
           "buildCommand": "cd motif-docs && yarn build",
           "startCommand": "cd motif-docs && yarn start",
           "envVariables": {},
