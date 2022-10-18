@@ -13,7 +13,22 @@ import {
   TextArea,
 } from '@makeswift/runtime/controls'
 import { ReactRuntime } from '@makeswift/runtime/react'
-import { Box, Button, Code, Lights, Navigation, Plane, PopupVideo, Tabs } from 'components'
+import {
+  Feed,
+  Box,
+  Button,
+  Code,
+  Lights,
+  Navigation,
+  Plane,
+  PopupVideo,
+  Tabs,
+  BlogTitle,
+  BlogAuthor,
+  BlogPublishedAt,
+  BlogTags,
+  BlogContent,
+} from 'components'
 
 ReactRuntime.registerComponent(Button, {
   type: 'button',
@@ -234,5 +249,72 @@ ReactRuntime.registerComponent(Tabs, {
     tab1Text: TextInput({ defaultValue: 'Tab 1 text', label: 'Tab 1 text' }),
     tab2Content: Slot(),
     tab2Text: TextInput({ defaultValue: 'Tab 2 text', label: 'Tab 2 text' }),
+  },
+})
+
+ReactRuntime.registerComponent(Feed, {
+  type: 'blogFeed',
+  label: 'Blog Feed',
+  props: {
+    className: Style({
+      properties: Style.All,
+    }),
+    count: Number({
+      label: 'Count',
+      min: 1,
+      step: 1,
+      defaultValue: 3,
+      labelOrientation: 'horizontal',
+    }),
+  },
+})
+
+ReactRuntime.registerComponent(BlogTitle, {
+  type: 'title',
+  label: 'Title',
+  props: {
+    className: Style({
+      properties: Style.All,
+    }),
+  },
+})
+
+ReactRuntime.registerComponent(BlogAuthor, {
+  type: 'author',
+  label: 'Author',
+  props: {
+    className: Style({
+      properties: Style.All,
+    }),
+  },
+})
+
+ReactRuntime.registerComponent(BlogPublishedAt, {
+  type: 'publishedAt',
+  label: 'Published At',
+  props: {
+    className: Style({
+      properties: Style.All,
+    }),
+  },
+})
+
+ReactRuntime.registerComponent(BlogTags, {
+  type: 'tags',
+  label: 'Tags',
+  props: {
+    className: Style({
+      properties: Style.All,
+    }),
+  },
+})
+
+ReactRuntime.registerComponent(BlogContent, {
+  type: 'content',
+  label: 'Content',
+  props: {
+    className: Style({
+      properties: Style.All,
+    }),
   },
 })

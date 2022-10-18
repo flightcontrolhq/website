@@ -1,3 +1,5 @@
+const invariant = require('tiny-invariant')
+
 const withMakeswiftInitializer = require('@makeswift/runtime/next/plugin')
 
 const withMakeswift = withMakeswiftInitializer()
@@ -7,9 +9,10 @@ console.log('DOCS_URL', DOCS_URL)
 module.exports = withMakeswift({
   reactStrictMode: true,
   images: {
-    domains: ['s.mkswft.com', '*.motif.land', 'res.cloudinary.com'],
+    domains: ['s.mkswft.com', 'cdn.sanity.io','*.motif.land', 'res.cloudinary.com'],
   },
   async rewrites() {
+    invariant(DOCS_URL, 'DOCS_URL env var is not defined.')
     return {
       beforeFiles: [
         {

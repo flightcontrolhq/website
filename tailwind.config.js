@@ -39,6 +39,11 @@ module.exports = {
         '7xl': ['4.5rem', { lineHeight: '1' }],
         '8xl': ['6rem', { lineHeight: '1' }],
         '9xl': ['8rem', { lineHeight: '1' }],
+        // straight from typographies defined in Makeswift
+        heading1: ['3.75rem', { lineHeight: '1.2' }],
+        heading2: ['1.6rem', { lineHeight: '1.3' }],
+        small: ['1rem', { lineHeight: '1.5' }],
+        medium: ['1.125rem', { lineHeight: '1.7' }],
       },
       colors: {
         white: '#ffffff',
@@ -50,5 +55,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }
