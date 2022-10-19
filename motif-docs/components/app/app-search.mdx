@@ -13,7 +13,7 @@ export const SearchResult = ({ result, selected, onMouseOver, onClick }) => {
   return (
     <div
       className={cn('rounded cursor-pointer', {
-        'bg-primary-500 dark:bg-primary-900': selected,
+        'bg-primary-600 dark:bg-primary-900': selected,
       })}
       onMouseOver={onMouseOver}
     >
@@ -30,7 +30,7 @@ export const SearchResult = ({ result, selected, onMouseOver, onClick }) => {
           <div
             className={cn('text-sm truncate', {
               'text-white': selected,
-              'text-neutral-800': !selected,
+              'text-gray-800': !selected,
             })}
           >
             {result.description}
@@ -39,7 +39,7 @@ export const SearchResult = ({ result, selected, onMouseOver, onClick }) => {
             <div
               className={cn('text-xs mt-0.5 truncate', {
                 'text-white': selected,
-                'text-neutral-500': !selected,
+                'text-gray-500': !selected,
               })}
             >
               {result.folders.slice(1).map(getFolderName).join(' › ')}
@@ -59,7 +59,7 @@ export const SearchResults = ({
   onSubmit,
 }) => {
   return (
-    <div className="flex flex-col p-3 bg-white dark:bg-neutral-800 rounded-md border border-neutral-200 dark:border-white/10 antialiased">
+    <div className="flex flex-col p-3 bg-white dark:bg-gray-800 rounded-primary border border-gray-200 dark:border-white/10 antialiased">
       {results.slice(0, limit || 5).map((result, i) => {
         return (
           <SearchResult
@@ -82,7 +82,7 @@ export const SearchInput = forwardRef(
     return (
       <div className="relative antialiased">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-          <SearchIcon className="w-4 h-4 text-neutral-500 dark:text-white/50" />
+          <SearchIcon className="w-4 h-4 text-gray-500 dark:text-white/50" />
         </div>
         <input
           ref={inputRef}
@@ -105,7 +105,7 @@ export const SearchInput = forwardRef(
           onFocus={() => {
             onFocus()
           }}
-          className="block bg-white/30 dark:bg-white/10  w-full border border-neutral-200 dark:border-white/10 rounded-md py-1.5 pl-9 pr-3 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 focus:outline-none focus:border-primary-500 focus:ring-primary-500 focus:ring-1 sm:text-sm transition"
+          className="block bg-white/30 dark:bg-white/10  w-full border border-gray-200 dark:border-white/10 rounded-primary py-1.5 pl-9 pr-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:border-primary-500 focus:ring-primary-500 focus:ring-1 sm:text-sm transition"
         />
         {!showKey && (
           <div className="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -176,143 +176,131 @@ export default ({
   const searchInputRef = useRef()
   const searchResultsRef = useRef()
 
-  useEffect(() => {
-    dispatch({ type: 'SET_LIMIT', limit })
-    fuseRef.current = new Fuse(data, {
-      includeScore: true,
-      keys: indexKeys,
-    })
-  }, [data, limit])
+useEffect(() => {
+dispatch({ type: 'SET_LIMIT', limit })
+fuseRef.current = new Fuse(data, {
+includeScore: true,
+keys: indexKeys,
+})
+}, [data, limit])
 
-  useEffect(() => {
-    const onKeyDown = (event) => {
-      if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault()
-        searchInputRef.current?.focus()
-      }
-    }
+useEffect(() => {
+const onKeyDown = (event) => {
+if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
+event.preventDefault()
+searchInputRef.current?.focus()
+}
+}
 
     window.addEventListener('keydown', onKeyDown)
     return () => {
       window.removeEventListener('keydown', onKeyDown)
     }
-  }, [])
 
-  const onDocumentClick = useCallback((e) => {
-    if (
-      !searchInputRef.current.contains(e.target) &&
-      !searchResultsRef.current.contains(e.target)
-    ) {
-      dispatch({ type: 'SET_RESULTS', results: [] })
-    }
-  }, [])
+}, [])
 
-  useEffect(() => {
-    document.addEventListener('click', onDocumentClick, true)
-    return () => {
-      document.removeEventListener('click', onDocumentClick, true)
-    }
-  }, [])
+const onDocumentClick = useCallback((e) => {
+if (
+!searchInputRef.current.contains(e.target) &&
+!searchResultsRef.current.contains(e.target)
+) {
+dispatch({ type: 'SET_RESULTS', results: [] })
+}
+}, [])
 
-  const onKeyDown = useCallback(
-    (event) => {
-      switch (event.key) {
-        case 'ArrowDown':
-          dispatch({ type: 'SELECT_NEXT' })
-          break
-        case 'ArrowUp':
-          dispatch({ type: 'SELECT_PREVIOUS' })
-          break
-        case 'Escape':
-          dispatch({ type: 'SET_RESULTS', results: [] })
-          break
-        case 'Enter': {
-          dispatch({ type: 'SET_RESULTS', results: [] })
-          window.open(state.results[state.selectedIndex]?.path, '_self')
-          break
-        }
-        default:
-          break
-      }
-    },
-    [state]
-  )
+useEffect(() => {
+document.addEventListener('click', onDocumentClick, true)
+return () => {
+document.removeEventListener('click', onDocumentClick, true)
+}
+}, [])
 
-  const search = useCallback((value) => {
-    const fuseResult = fuseRef.current.search(value)
-    dispatch({ type: 'SET_RESULTS', results: fuseResult.map((r) => r.item) })
-  }, [])
+const onKeyDown = useCallback(
+(event) => {
+switch (event.key) {
+case 'ArrowDown':
+dispatch({ type: 'SELECT_NEXT' })
+break
+case 'ArrowUp':
+dispatch({ type: 'SELECT_PREVIOUS' })
+break
+case 'Escape':
+dispatch({ type: 'SET_RESULTS', results: [] })
+break
+case 'Enter': {
+dispatch({ type: 'SET_RESULTS', results: [] })
+window.open(state.results[state.selectedIndex]?.path, '\_self')
+break
+}
+default:
+break
+}
+},
+[state]
+)
 
-  const onFocus = useCallback(() => {
-    if (searchInputRef.current.value) {
-      search(searchInputRef.current.value)
-    }
-  }, [search])
+const search = useCallback((value) => {
+const fuseResult = fuseRef.current.search(value)
+dispatch({ type: 'SET_RESULTS', results: fuseResult.map((r) => r.item) })
+}, [])
 
-  const onBlur = useCallback(() => {
-    dispatch({ type: 'SET_RESULTS', results: [] })
-  }, [])
+const onFocus = useCallback(() => {
+if (searchInputRef.current.value) {
+search(searchInputRef.current.value)
+}
+}, [search])
 
+const onBlur = useCallback(() => {
+dispatch({ type: 'SET_RESULTS', results: [] })
+}, [])
+
+return (
+
+<div className="flex flex-col">
+<SearchInput
+ref={searchInputRef}
+onKeyDown={onKeyDown}
+onChange={(e) => search(e.target.value)}
+onFocus={onFocus}
+placeholder={placeholder}
+/>
+<div
+ref={searchResultsRef}
+className={cn('relative z-50', {
+'opacity-0 pointer-events-none': state.results.length === 0,
+})} >
+<div className="z-50 absolute left-0 right-[-320px] top-2">
+<SearchResults
+results={state.results}
+selectedIndex={state.selectedIndex}
+setSelectedIndex={(i) =>
+dispatch({ type: 'SELECT_INDEX', index: i })
+}
+onSubmit={() => {
+dispatch({ type: 'SET_RESULTS', results: [] })
+}}
+limit={state.limit}
+/>
+</div>
+</div>
+</div>
+)
+}
+
+export const getDescription = file => {
   return (
-    <div className="flex flex-col">
-      <SearchInput
-        ref={searchInputRef}
-        onKeyDown={onKeyDown}
-        onChange={(e) => search(e.target.value)}
-        onFocus={onFocus}
-        placeholder={placeholder}
-      />
-      <div
-        ref={searchResultsRef}
-        className={cn('relative z-50', {
-          'opacity-0 pointer-events-none': state.results.length === 0,
-        })}
-      >
-        <div className="z-50 absolute left-0 right-[-320px] top-2">
-          <SearchResults
-            results={state.results}
-            selectedIndex={state.selectedIndex}
-            setSelectedIndex={(i) =>
-              dispatch({ type: 'SELECT_INDEX', index: i })
-            }
-            onSubmit={() => {
-              dispatch({ type: 'SET_RESULTS', results: [] })
-            }}
-            limit={state.limit}
-          />
-        </div>
-      </div>
-    </div>
+    file.meta?.description || file.meta?.meta?.description || file.meta?.meta?.['og:description']
   )
 }
 
-export const getDescription = (file) => {
-  return (
-    file.meta?.description ||
-    file.meta?.meta?.description ||
-    file.meta?.meta?.['og:description']
-  )
+export const getTitle = file => {
+  return file.meta?.title || file.meta?.meta?.title || (file.name && removeFileExtension(file.name))
 }
 
-export const getTitle = (file) => {
-  return (
-    file.meta?.title ||
-    file.meta?.meta?.title ||
-    (file.name && removeFileExtension(file.name))
-  )
-}
-
-export const filesToSearchData = (
-  folder,
-  parentFolderNames,
-  rootName = 'Home'
-) => {
+export const filesToSearchData = (folder, parentFolderNames, rootName = 'Home') => {
   const isRoot = !parentFolderNames
-  const folders = [
-    ...(parentFolderNames || []),
-    isRoot ? rootName : folder.name,
-  ]
-  let data = folder.files?.map((f) => ({
+  const folders = [...(parentFolderNames || []), isRoot ? rootName : folder.name]
+  let data = folder.files?.map(f => ({
     path: f.path,
     title: getTitle(f),
     description: getDescription(f),

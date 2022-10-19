@@ -22,12 +22,12 @@ export const AppSidebarList = ({ activeSlug, onClick }) => {
               href={section.href}
               onClick={onClick}
               className={cn(
-                  "text-base sm:text-sm px-4 mb-2 font-semibold transition hover:text-[#090a8a]",
+                  "text-base sm:text-sm px-4 mb-2 font-semibold transition hover:text-primary-600",
                 )}>
                   <div className={cn(
                   "transition",
                   {
-                    "text-primary-500 dark:text-primary-400 text-[#090a8a]": parentActive,
+                    "text-primary-600 dark:text-primary-400 text-primary-600": parentActive,
                     "text-base sm:text-sm font-semibold": !parentActive
                   }
                 )}>
@@ -47,8 +47,8 @@ export const AppSidebarList = ({ activeSlug, onClick }) => {
                     <div className={cn(
                     "border-l px-3 py-1.5 transition ",
                     {
-                      "dark:text-primary-400 border-primary-500 text-[#090a8a]": active,
-                      "text-neutral-700 hover:text-[#090a8a] dark:text-white/70 hover:dark:text-white/90 border-neutral-200 dark:border-white/20 hover:border-[#090a8a] dark:hover:border-white/50": !active
+                      "dark:text-primary-400 border-primary-600 text-primary-600": active,
+                      "text-gray-700 hover:text-primary-600 dark:text-white/70 hover:dark:text-white/90 border-gray-200 dark:border-white/20 hover:border-primary-600 dark:hover:border-white/50": !active
                     }
                   )}>
                       {page.title}
@@ -58,13 +58,14 @@ export const AppSidebarList = ({ activeSlug, onClick }) => {
           </div>
       })}
     </div>
+
 }
 
 export const AppSidebar = ({ activeSlug, searchData, noHeader, noSearch }) => {
   return (
     <div className="z-10 hidden md:block fixed inset-0 w-0 md:w-64 pt-24">
       <div className="absolute w-full">
-        <div className="h-6 bg-gradient-to-b from-white to-white/0 dark:from-neutral-900 dark:to-neutral-900/0"/>
+        <div className="h-6 bg-gradient-to-b from-white to-white/0 dark:from-gray-900 dark:to-gray-900/0" />
       </div>
       <div className="overflow-y-auto h-full pb-10 pt-[49px] hiddenScrollbar pl-4">
         <AppSidebarList activeSlug={activeSlug} />
