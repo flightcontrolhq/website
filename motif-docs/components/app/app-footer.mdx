@@ -1,34 +1,33 @@
-import { getPrevNext, getSidebarId } from "@lib/sidebar"
-import config from "/project-config"
+import { getPrevNext, getSidebarId } from '@lib/sidebar'
+
+import config from '/project-config'
 
 export const NextPrevLink = ({ slug, title, isPrev }) => {
-  return <div className={!isPrev ? "text-right" : ""}>
-    <p className="text-neutral-500 dark:text-white/50 text-sm mb-1">{isPrev ? "Prev" : "Next"}</p>
-    <a className="text-lg font-semibold hover:text-primary-500 transition" href={slug}>{title}</a>
-  </div>
+  return (
+    <div className={!isPrev ? 'text-right' : ''}>
+      <p className="text-gray-500 dark:text-white/50 text-sm mb-1">{isPrev ? 'Prev' : 'Next'}</p>
+      <a className="text-lg font-semibold hover:text-primary-600 transition" href={slug}>
+        {title}
+      </a>
+    </div>
+  )
 }
 
-export default ({ path = "", basePath = "", includeNav = true }) => {
+export default ({ path = '', basePath = '', includeNav = true }) => {
   let sidebarId = getSidebarId(path)
   const sidebarConfig = config.sidebars[sidebarId]
   const { prev, next } = getPrevNext(sidebarConfig || [], path, basePath)
   return (
-    <footer className="flex flex-col gap-12 z-20 antialiased mx-auto plain w-full pt-16 pb-16 mt-16 border-t border-neutral-200 dark:border-white/10">
-        {includeNav &&
-          <div className="grid grid-cols-2">
-            <div>
-              {prev &&
-                <NextPrevLink title={prev.title} slug={prev.slug} isPrev />
-              }
-            </div>
-            <div className="flex justify-end">
-              {next &&
-                <NextPrevLink title={next.title} slug={next.slug} />
-              }
-            </div>
+    <footer className="flex flex-col gap-12 z-20 antialiased mx-auto plain w-full pt-16 pb-16 mt-16 border-t border-gray-200 dark:border-white/10">
+      {includeNav && (
+        <div className="grid grid-cols-2">
+          <div>{prev && <NextPrevLink title={prev.title} slug={prev.slug} isPrev />}</div>
+          <div className="flex justify-end">
+            {next && <NextPrevLink title={next.title} slug={next.slug} />}
           </div>
-        }
-      <p className="text-sm text-neutral-500 dark:text-white/50">
+        </div>
+      )}
+      <p className="text-sm text-gray-500 dark:text-white/50">
         © {new Date().getFullYear()} Flightcontrol
       </p>
     </footer>

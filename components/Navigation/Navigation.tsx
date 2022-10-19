@@ -54,7 +54,7 @@ export const Navigation = forwardRef(function Navigation(
           {logo.image ? (
             <Link
               passHref
-              className="cursor-pointer outline-thick flex-shrink-0 rounded-md"
+              className="cursor-pointer outline-thick flex-shrink-0 rounded-primary"
               href={logo.link ?? ''}
             >
               <a className="flex justify-center items-center">

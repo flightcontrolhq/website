@@ -7,8 +7,12 @@
   background: #d2f7f9;
 }
 
+html, body {
+@apply dark:bg-gray-900;
+}
+
 .underline-links a:not(.unstyled-link) {
-  @apply no-underline font-semibold text-gray-900 dark:text-white hover:text-gray-900 dark:hover:text-white/50 hover:border-b-2 border-b border-cyan-500 transition;
+  @apply no-underline font-semibold text-gray-900 dark:text-white hover:text-gray-900 dark:hover:text-white/50 hover:border-b-2 border-b border-primary-600 transition;
 }
 
 .unstyled-link {
@@ -44,7 +48,7 @@ h6 {
 /* Syntax highlighting */
 
 pre {
-  @apply text-white bg-blueGray-900 overflow-x-auto text-sm p-6 rounded-md !important;
+  @apply text-white bg-gray-800 overflow-x-auto text-sm p-6 rounded-primary !important;
   line-height: 1.7142857 !important;
 }
 .prose :where(pre):not(:where([class~="not-prose"] *)) {
@@ -52,8 +56,18 @@ pre {
   margin-bottom: 0;
 }
 
-.prose :where(code):not(:where([class~="not-prose"] *)) {
-  @apply text-sky-500;
+/* Inline code snippets */
+.prose *:not(pre) > :where(code):not(:where([class~="not-prose"] *)) {
+  @apply text-primary-800 bg-primary-50/50 dark:text-primary-500 dark:bg-primary-900/20 py-px px-1 rounded-[0.125rm];
+}
+/* Large code blocks */
+.prose pre :where(code):not(:where([class~="not-prose"] *)) {
+  @apply text-primary-400 dark:text-primary-400;
+}
+
+
+code::before, code::after {
+  display: none;
 }
 
 .hero-gradient {
@@ -75,7 +89,7 @@ pre {
 .token.selector,
 .token.selector .class,
 .token.function {
-  @apply text-fuchsia-400;
+  @apply text-primary-400;
 }
 
 .token.attr-name,

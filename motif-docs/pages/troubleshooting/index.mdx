@@ -12,9 +12,10 @@ Sometimes if you have multiple services and AWS is limiting the number of concur
 
 You can check the build status by clicking on “Build Logs” in the Flightcontrol dashboard, then click on the “Phase Details” tab. There you can see which step of the build it’s currently stuck at.
 
-<Image className="rounded-md mx-auto w-full max-w-[600px] border" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655158737/i1338x856-jthu6oejgKyd_ie4brq.png" />
+<Image className="rounded-primary mx-auto w-full max-w-[600px] border" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655158737/i1338x856-jthu6oejgKyd_ie4brq.png" />
 
 If you suspect a concurrent build quote issue, [you can submit a quota increase request here](https://console.aws.amazon.com/servicequotas/home/services/codebuild/quotas/L-75822022).
+
 </Collapse>
 
 <Collapse title="Deployment Errors">
@@ -49,7 +50,7 @@ If the user noticed this error in Fargate Service Events tab:
 - In the same Region, go to the Services search box, and search for EC2
 - In EC2, start a new instance
 
-<Image className="rounded-md mx-auto w-full max-w-[420px] border" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655158948/i682x546-1vpX25Xb22Ou_krbs3d.png" />
+<Image className="rounded-primary mx-auto w-full max-w-[420px] border" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655158948/i682x546-1vpX25Xb22Ou_krbs3d.png" />
 
 - Choose the smallest instance size
 - Once the instance is created, tear it down
@@ -60,3 +61,4 @@ This AWS official response:
 > You must activate the Region in which you want to run Fargate by launching an EC2 instance in that Region. Otherwise, you will experience a Fargate concurrent task limit issue. Launching an instance will enable you to run multiple concurrent Fargate tasks.
 
 </Collapse>
+

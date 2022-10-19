@@ -42,8 +42,8 @@ Environment variables can be configured two ways
        - Static, hard coded value in flightcontrol.json
      - **From another service:**
 
-       - Format: \*\*\*\*`"NAME": {"fromService": {"id": "<serviceId>", value: "<value>"}}`
-       - Example: \*\*\*\*`"NAME": {"fromService": {"id": "db", value: "dbConnectionString"}}`
+       - Format: `"NAME": {"fromService": {"id": "<serviceId>", value: "<value>"}}`
+       - Example: `"NAME": {"fromService": {"id": "db", value: "dbConnectionString"}}`
        - Supported values for `type: "rds"` services:
          `dbConnectionString, username, password, host, port`
        - Supported values for `type: "fargate"` and `type: "static"` services:
@@ -59,11 +59,7 @@ Environment variables can be configured two ways
        - **Important: Your parameter store item must be in the same region as your service**
        - Screenshot of parameter store
          {' '}
-         <Image
-           rounded={true}
-           border={true}
-           src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655164946/i1600x1708-omdv9rVjfGZZ_muha6h.png"
-         />
+         <Image rounded={true} border={true} src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655164946/i1600x1708-omdv9rVjfGZZ_muha6h.png" />
      - **From Secrets Manager:**
        - Format: `"NAME": {"fromSecretsManager": "<arn:your-secret-arn>"}`
        - Example: `"STRIPE_API_KEY": {"fromSecretsManager": "arn:aws:secretsmanager:us-west-1:832786265645:secret:/stripe-y6uINZ"}`
@@ -109,13 +105,7 @@ Environment variables can be configured two ways
   - Optional with default to `"push"`
   - Leaving the trigger as `”push”` will result in an automatic deployment of any git push to the branch. Changing the trigger to `"manual"` will prevent automatic deployments and require manually deploying the environment in the hamburger menu in the environment show page:
     {' '}
-    <div className="max-w-xs">
-      <Image
-        rounded={true}
-        border={true}
-        src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165043/i686x716-7i2z1btLjnel_ysjwps.png"
-      />
-    </div>
+    <div className="max-w-xs"><Image rounded={true} border={true} src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165043/i686x716-7i2z1btLjnel_ysjwps.png" /></div>
 - `pr: true | undefined`
   - _Optional_, for configuring [Preview Environments](/guides/config/preview-environment)
 - `filter.toBranches: string[] | undefined`
@@ -127,11 +117,7 @@ Environment variables can be configured two ways
   - Example: `"labels": ["deploy-preview"]`
   - If set, only pull or merge requests with at least one of the specified labels will be deployed. It will be deployed when the label is added, whether that’s during PR creation or some time after the PR is opened.
 
-<Note type="info">
-  💡 Note: The optional filters work with an `AND` logic. If both filters are enabled, it will only
-  deploy a PR that matches both the target branch(es) (`toBranches`) and one of the labels
-  configured (`labels`).
-</Note>
+<Note type="info">💡 Note: The optional filters work with an `AND` logic. If both filters are enabled, it will only deploy a PR that matches both the target branch(es) (`toBranches`) and one of the labels configured (`labels`).</Note>
 
 `envVariables: EnvVariables`
 
@@ -147,18 +133,8 @@ Environment variables can be configured two ways
 
 - Deployment hooks are a way for you to trigger a deployment on an environment remotely with an HTTP request:
   - You must first create a deploy hook in the environment edit page accessed by clicking “Edit Environment” button on the project show page, and then locate the Deploy Hooks form in the UI.
-    <Image
-      rounded={true}
-      border={true}
-      className="w-full max-w-[260px]"
-      src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165074/i448x132-1xpvO1Oe_clb_dfdluu.png"
-    />
-    <Image
-      rounded={true}
-      border={true}
-      className="w-full"
-      src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165094/i1600x518-RjDe674AMVxY_lh4txx.png"
-    />
+    <Image rounded={true} border={true} className="w-full max-w-[260px]" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165074/i448x132-1xpvO1Oe_clb_dfdluu.png" />
+    <Image rounded={true} border={true} className="w-full" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165094/i1600x518-RjDe674AMVxY_lh4txx.png" />
   - To trigger a deployment with this hook, make a HTTP GET request at this url (no payload is necessary).
 
 ## `Service`
@@ -407,12 +383,13 @@ Environment variables can be configured two ways
 
   - _Example screenshot_
 
-    {' '}
+        {' '}
 
-    <Image
-      rounded={true}
-      border={true}
-      src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165922/i1600x349-0NhJiulDrUvt_aymzp2.png"
+        <Image
+
+    rounded={true}
+    border={true}
+    src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165922/i1600x349-0NhJiulDrUvt_aymzp2.png"
     />
 
 `singlePageApp: boolean`

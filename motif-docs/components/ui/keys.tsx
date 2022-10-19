@@ -1,5 +1,5 @@
-import cn from 'classnames'
 import { getOS } from '@lib/os'
+import cn from 'classnames'
 
 export const Keys = ({
   chars = [],
@@ -27,21 +27,17 @@ export const Keys = ({
   const macLike = os === 'mac'
   return (
     <span
-      className={cn(
-        'inline-block font-medium antialiased text-sm mx-0.5 mt-0 mb-0 select-none',
-        {
-          'text-xs': small,
-          'text-neutral-400 opacity-70': plain && !onDark,
-          'text-white/80': onDark,
-          'border-white/30': !plain && onDark,
-          'px-1 py-[1px] border rounded': !plain,
-          'border-neutral-200 text-neutral-500 text-opacity-80':
-            !plain && !onDark,
-          'bg-neutral-100': dark && !plain && !onDark,
-          'bg-neutral-50': !dark && !plain && !onDark,
-          'bg-white/20': onDark,
-        }
-      )}
+      className={cn('inline-block font-medium antialiased text-sm mx-0.5 mt-0 mb-0 select-none', {
+        'text-xs': small,
+        'text-gray-400 opacity-70': plain && !onDark,
+        'text-white/80': onDark,
+        'border-white/30': !plain && onDark,
+        'px-1 py-[1px] border rounded': !plain,
+        'border-gray-200 text-gray-500 text-opacity-80': !plain && !onDark,
+        'bg-gray-100': dark && !plain && !onDark,
+        'bg-gray-50': !dark && !plain && !onDark,
+        'bg-white/20': onDark,
+      })}
     >
       {cmd && <span className="px-[2px]">{macLike ? '⌘' : 'Ctrl'}</span>}
       {hatCtrl && <span className="px-[2px]">{macLike ? '^' : 'Ctrl'}</span>}
@@ -62,7 +58,7 @@ export const Keys = ({
 export const MiniKey = ({ symbol, variable }) => {
   return (
     <div
-      className={`inline-block items-center text-center justify-center h-5 bg-neutral-100 border border-neutral-300 rounded text-neutral-500 text-xs font-medium select-none transform translate-y-[-2px] mt-0 mb-0 ${
+      className={`inline-block items-center text-center justify-center h-5 bg-gray-100 border border-gray-300 rounded text-gray-500 text-xs font-medium select-none transform translate-y-[-2px] mt-0 mb-0 ${
         !variable ? 'w-5' : 'px-1'
       }`}
     >
@@ -102,10 +98,7 @@ export const HatCtrlMac = () => <MiniKey variable={false} symbol="^" />
 
 export const HelpButton = () => (
   <span className="inline-block rounded-full bg-blueGray-900 text-white w-5 h-5 mt-0 mb-0">
-    <span
-      className="flex w-full h-full justify-center align-center"
-      style={{ marginTop: -4 }}
-    >
+    <span className="flex w-full h-full justify-center align-center" style={{ marginTop: -4 }}>
       ?
     </span>
   </span>

@@ -4,20 +4,13 @@ title: Preview Environments
 subtitle: Configure your project to create a short-lived environment on each pull request.
 ---
 
-import { Note } from "@components/ui/note.mdx"
+import { Note } from '@components/ui/note.mdx'
 
 ## About The Feature
 
-Flightcontrol’s Preview Environment feature is an alternative to long-lived staging environments.
-
-When configured, Flightcontrol will automatically create an ephemeral environment for each pull request or merge request.
-
-Here's an example of how it will look like in the Flightcontrol dashboard once it's configured and there are opened pull requests:
-
+Flightcontrol’s Preview Environment feature is an alternative to long-lived staging environments. When configured, Flightcontrol will automatically create an ephemeral environment for each pull request or merge request. Here's an example of how it will look like in the Flightcontrol dashboard once it's configured and there are opened pull requests:
 
 ![](https://res.cloudinary.com/djp21wtxm/image/upload/v1665398938/i1600x513-JIMfKyHDx-DF_jbqctm.png)
-
-
 
 ## Currently Supported Services
 
@@ -25,7 +18,6 @@ Here's an example of how it will look like in the Flightcontrol dashboard once i
 - ✅  Fargate-worker
 
 <Note type="warning">⚠️ **RDS** and **static** service types are not yet supported. Make sure to omit these from the preview environment config in flightcontrol.json (see below). In the meantime for database, you can use a separate staging database and add the connection string to preview environments as an env variable.</Note>
-
 
 ## Configuration
 
@@ -35,26 +27,24 @@ Click the following button at the bottom of any Project’s page in the Flightco
 
 ![](https://res.cloudinary.com/djp21wtxm/image/upload/v1665398974/i1600x541-UOlXpzXm_ED6_e02h4f.png)
 
-
-
 **With flightcontrol.json**
 
 Add a new environment to your environments array, with the following `source` object:
 
-- *Required*:
-    - `pr: true`
-- *Optional*:
-    - `filter.toBranches: string[]`
-        - Example: `"toBranches": ["main"]`
-        - If set, only pull or merge requests to the specified branch(es) will be deployed as preview environments. If omitted, all pull requests will be deployed.
-    - `filter.labels: string[]`
-        - Example: `"labels": ["deploy-preview"]`
-        - If set, only pull or merge requests with at least one of the specified labels will be deployed. It will be deployed when the label is added, whether that’s during PR creation or some time after the PR is opened.
-
+- _Required_:
+  - `pr: true`
+- _Optional_:
+  - `filter.toBranches: string[]`
+    - Example: `"toBranches": ["main"]`
+    - If set, only pull or merge requests to the specified branch(es) will be deployed as preview environments. If omitted, all pull requests will be deployed.
+  - `filter.labels: string[]`
+    - Example: `"labels": ["deploy-preview"]`
+    - If set, only pull or merge requests with at least one of the specified labels will be deployed. It will be deployed when the label is added, whether that’s during PR creation or some time after the PR is opened.
 
 <Note type="info">💡 Note: The optional filters work with an `AND` logic. If both filters are enabled, it will only deploy a PR that matches both the target branch(es) (`toBranches`) and one of the labels configured (`labels`).</Note>
 
 ### Examples
+
 #### Preview environment config
 
 ```json
@@ -161,7 +151,6 @@ Your preview environment will be destroyed when:
 
 <Note type="warning">Pull requests opened in **DRAFT** state will not be deployed until they are marked “ready for review”. If you don’t like this, let us know!</Note>
 
-
 ## Limitations
 
 Preview environments are not intended for production workloads.
@@ -192,11 +181,11 @@ You'll be able to get the preview URL once a preview environment has been fully 
 ## AWS Costs
 
 - Constant
-    - When you have preview environments enabled, there are a number of AWS resources that are configured all the time, even if you are not making pull requests. We do this (1) to speed up provisioning of an environment for each PR and (2) reduce incremental costs for each preview environment.
-    - The main long-running AWS resource is a single load balancer (per service configured under your environment) that manages traffic for all your preview environments. This AWS cost is around $20/month.
+  - When you have preview environments enabled, there are a number of AWS resources that are configured all the time, even if you are not making pull requests. We do this (1) to speed up provisioning of an environment for each PR and (2) reduce incremental costs for each preview environment.
+  - The main long-running AWS resource is a single load balancer (per service configured under your environment) that manages traffic for all your preview environments. This AWS cost is around $20/month.
 - Variable
-    - Each service on each preview environment will have an associated cost, same as normal environments.
-    - AWS only charges you based on the time the services are running. So if the preview environment for a specific PR is only running for 2 days, then you’re only charged for 2 days of usage.
+  - Each service on each preview environment will have an associated cost, same as normal environments.
+  - AWS only charges you based on the time the services are running. So if the preview environment for a specific PR is only running for 2 days, then you’re only charged for 2 days of usage.
 
 ## Advanced Topics
 
@@ -205,3 +194,4 @@ You'll be able to get the preview URL once a preview environment has been fully 
 By default, a new, single VPC is used for all preview environments.
 
 Alternatively, you can deploy preview environments to an existing VPC by setting the `vpc` field in `flightcontrol.json`.
+

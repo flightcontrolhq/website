@@ -7,11 +7,11 @@ import SupportIcon from "@components/icons/support.mdx"
 import TwitterIcon from "@components/icons/twitter.mdx"
 
 export const Hero = () => {
-  return <div className="hero-gradient rounded-lg px-12 py-16 not-prose antialiased">
-    <h1 className="text-4xl text-white font-bold">Flightcontrol Documentation</h1>
+  return <div className="bg-gray-800 rounded-primary px-12 py-16 not-prose antialiased">
+    <h1 className="text-4xl text-white font-bold">Set up your first AWS project with Flightcontrol</h1>
 
     <h2 className="text-xl text-white mt-4 mb-12">Deploy, preview & scale your apps with AWS easily</h2>
-    <Button large title="Get started →" href="/guides/get-started/first-project" />
+    <Button primary large title="Get Started →" href="/guides/get-started/first-project" />
 
   </div>
 }
@@ -19,12 +19,12 @@ export const Hero = () => {
 <Hero />
 
 export const HeroLinkCard = ({ title, subtitle, Icon, href }) => {
-  return <a href={href} className="unstyled-link flex flex-row items-center gap-4 p-4 rounded-md hover:bg-gray-50 cursor-pointer transition not-prose">
-      <div className="w-16 h-16 border border-fuchsia-100 p-3 text-fuchsia-700 rounded-md">
+  return <a href={href} className="unstyled-link flex flex-row items-center gap-4 p-4 rounded-primary hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer transition not-prose">
+      <div className="w-16 h-16 border border-primary-200 dark:border-primary-800 p-3 text-primary-600 rounded-primary">
         <Icon />
       </div>
       <div className="flex flex-col col-span-3 gap-1 flex-grow">
-        <div className="text-lg font-medium not-prose">{ title }</div>
+        <div className="text-lg font-medium not-prose text-gray-900 dark:text-gray-200">{ title }</div>
         <div className="text-gray-500 no-underline">{ subtitle }</div>
       </div>
     </a>

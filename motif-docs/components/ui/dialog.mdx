@@ -60,7 +60,7 @@ export const Dialog = ({ isOpen, onClose, position, size = "sm", children }) => 
             )}>
 
             <HUIDialog.Panel className={cn(
-                "relative w-full bg-white dark:bg-neutral-900",
+                "relative w-full bg-white dark:bg-gray-900",
                 {
                   "rounded-lg": position !== "slideleft",
                   "h-screen": position === "slideleft"
@@ -78,6 +78,7 @@ export const Dialog = ({ isOpen, onClose, position, size = "sm", children }) => 
         </Transition.Child>
       </HUIDialog>
     </Transition>
+
 }
 
 <Dialog isOpen={true} position="slideleft" onClose={() => {}}>
@@ -85,3 +86,4 @@ export const Dialog = ({ isOpen, onClose, position, size = "sm", children }) => 
   Hello<br />
   Hello<br />
 </Dialog>
+
