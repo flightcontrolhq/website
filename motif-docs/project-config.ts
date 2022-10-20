@@ -1,3 +1,114 @@
+const mainSidebar = [
+  {
+    title: 'Get started',
+    href: '/guides/get-started',
+    pages: [
+      {
+        title: 'Setting Up Your First Project',
+        href: '/guides/get-started/first-project',
+      },
+      {
+        title: 'Supported Services',
+        href: '/guides/get-started/services',
+      },
+      {
+        title: 'How to get AWS credits',
+        href: '/guides/get-started/aws-credits',
+      },
+    ],
+  },
+  {
+    title: 'Configuration',
+    href: '/guides/config',
+    pages: [
+      {
+        title: 'Using Code',
+        href: '/guides/config/using-code',
+      },
+      {
+        title: 'Using UI',
+        href: '/guides/config/using-ui',
+      },
+      {
+        title: 'Preview Environments',
+        href: '/guides/config/preview-environment',
+      },
+      {
+        title: 'Monorepos',
+        href: '/guides/config/monorepos',
+      },
+    ],
+  },
+  {
+    title: 'Advanced',
+    pages: [
+      {
+        title: 'Custom Domains',
+        href: '/guides/advanced/custom-domains',
+      },
+      {
+        title: 'Fargate Port Change',
+        href: '/guides/advanced/fargate-port-change',
+      },
+      {
+        title: 'Service Dependency',
+        href: '/guides/advanced/service-dependency',
+      },
+      {
+        title: 'Stale While Revalidate',
+        href: '/guides/advanced/swr',
+      },
+    ],
+  },
+  {
+    title: 'Datadog Integration',
+    pages: [
+      {
+        title: 'Datadog/AWS Setup',
+        href: '/guides/datadog/setup',
+      },
+      {
+        title: 'Support for fargate',
+        href: '/guides/datadog/support-for-fargate',
+      },
+    ],
+  },
+  {
+    title: 'Examples',
+    href: '/guides/examples',
+    pages: [
+      {
+        title: 'Blitz app',
+        href: '/guides/examples/blitz',
+      },
+      {
+        title: 'Docker',
+        href: '/guides/examples/docker',
+      },
+      {
+        title: 'Next.js',
+        href: '/guides/examples/nextjs',
+      },
+      {
+        title: 'Node',
+        href: '/guides/examples/node',
+      },
+      {
+        title: 'Redwood',
+        href: '/guides/examples/redwood',
+      },
+      {
+        title: 'Remix',
+        href: '/guides/examples/remix',
+      },
+      {
+        title: 'Prisma Studio',
+        href: '/guides/examples/prisma-studio',
+      },
+    ],
+  },
+]
+
 //eslint-disable-next-line import/no-anonymous-default-export
 export default {
   navbar: {
@@ -18,116 +129,8 @@ export default {
     ],
   },
   sidebars: {
-    guides: [
-      {
-        title: 'Get started',
-        href: '/guides/get-started',
-        pages: [
-          {
-            title: 'Setting Up Your First Project',
-            href: '/guides/get-started/first-project',
-          },
-          {
-            title: 'Supported Services',
-            href: '/guides/get-started/services',
-          },
-          {
-            title: 'How to get AWS credits',
-            href: '/guides/get-started/aws-credits',
-          },
-        ],
-      },
-      {
-        title: 'Configuration',
-        href: '/guides/config',
-        pages: [
-          {
-            title: 'Using Code',
-            href: '/guides/config/using-code',
-          },
-          {
-            title: 'Using UI',
-            href: '/guides/config/using-ui',
-          },
-          {
-            title: 'Preview Environments',
-            href: '/guides/config/preview-environment',
-          },
-          {
-            title: 'Monorepos',
-            href: '/guides/config/monorepos',
-          },
-        ],
-      },
-      {
-        title: 'Advanced',
-        pages: [
-          {
-            title: 'Custom Domains',
-            href: '/guides/advanced/custom-domains',
-          },
-          {
-            title: 'Fargate Port Change',
-            href: '/guides/advanced/fargate-port-change',
-          },
-          {
-            title: 'Service Dependency',
-            href: '/guides/advanced/service-dependency',
-          },
-          {
-            title: 'Stale While Revalidate',
-            href: '/guides/advanced/swr',
-          },
-        ],
-      },
-      {
-        title: 'Datadog Integration',
-        pages: [
-          {
-            title: 'Datadog/AWS Setup',
-            href: '/guides/datadog/setup',
-          },
-          {
-            title: 'Support for fargate',
-            href: '/guides/datadog/support-for-fargate',
-          },
-        ],
-      },
-      {
-        title: 'Examples',
-        href: '/guides/examples',
-        pages: [
-          {
-            title: 'Blitz app',
-            href: '/guides/examples/blitz',
-          },
-          {
-            title: 'Docker',
-            href: '/guides/examples/docker',
-          },
-          {
-            title: 'Next.js',
-            href: '/guides/examples/nextjs',
-          },
-          {
-            title: 'Node',
-            href: '/guides/examples/node',
-          },
-          {
-            title: 'Redwood',
-            href: '/guides/examples/redwood',
-          },
-          {
-            title: 'Remix',
-            href: '/guides/examples/remix',
-          },
-          {
-            title: 'Prisma Studio',
-            href: '/guides/examples/prisma-studio',
-          },
-        ],
-      },
-    ],
+    '': mainSidebar,
+    guides: mainSidebar,
     'http-api': [
       {
         title: 'Authorization',
