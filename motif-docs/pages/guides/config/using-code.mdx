@@ -134,7 +134,7 @@ Environment variables can be configured two ways
 - Deployment hooks are a way for you to trigger a deployment on an environment remotely with an HTTP request:
   - You must first create a deploy hook in the environment edit page accessed by clicking “Edit Environment” button on the project show page, and then locate the Deploy Hooks form in the UI.
     <Image rounded={true} border={true} className="w-full max-w-[260px]" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165074/i448x132-1xpvO1Oe_clb_dfdluu.png" />
-    <Image rounded={true} border={true} className="w-full" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165094/i1600x518-RjDe674AMVxY_lh4txx.png" />
+<Image rounded={true} border={true} className="w-full" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165094/i1600x518-RjDe674AMVxY_lh4txx.png" />
   - To trigger a deployment with this hook, make a HTTP GET request at this url (no payload is necessary).
 
 ## `Service`
@@ -450,7 +450,7 @@ Environment variables can be configured two ways
 
     `instanceSize: string`
 
-    - Example: `"instanceSize": "db.t2.micro"`
+    - Example: `"instanceSize": "db.t4g.micro"`
     - Support values: [See the AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
     - Changing this will initiate a database upgrade. The database will be updated in the next scheduled maintenance window unless you set `applyChangesImmediately: true`
 

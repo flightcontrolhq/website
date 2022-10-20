@@ -4,19 +4,19 @@ heading: Example Setup
 title: Blitz.js
 ---
 
-import { Spacer } from "@components/ui/spacer.mdx"
+import { Spacer } from '@components/ui/spacer.mdx'
 
 **NOTE:** You must do one of the following:
 
 - move `preview-email` from devDependencies to dependencies
 - OR make the following change in all your “mailers”
 
-    ```
-    - import previewEmail from "preview-email"
-    ...
-    + const previewEmail = (await import("preview-email")).default
-    await previewEmail({
-    ```
+  ```
+  - import previewEmail from "preview-email"
+  ...
+  + const previewEmail = (await import("preview-email")).default
+  await previewEmail({
+  ```
 
 <Spacer size="large" />
 
@@ -58,7 +58,7 @@ import { Spacer } from "@components/ui/spacer.mdx"
           "type": "rds",
           "engine": "postgres",
           "engineVersion": "12",
-          "instanceSize": "db.t2.micro",
+          "instanceSize": "db.t4g.micro",
           "storage": 20,
           "private": false
         }
@@ -67,3 +67,4 @@ import { Spacer } from "@components/ui/spacer.mdx"
   ]
 }
 ```
+

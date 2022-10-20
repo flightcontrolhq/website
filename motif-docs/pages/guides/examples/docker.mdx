@@ -5,7 +5,7 @@ title: Custom Dockerfile Example
 sidebarTitle: Docker
 ---
 
-import { Spacer } from "@components/ui/spacer.mdx"
+import { Spacer } from '@components/ui/spacer.mdx'
 
 Please note, while using custom docker images, you will get build errors related to Docker Hub unauthenticated pull limit `toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: [https://www.docker.com/increase-rate-limit](https://www.docker.com/increase-rate-limit)`, there are couple of workarounds:
 
@@ -44,10 +44,10 @@ Please note, while using custom docker images, you will get build errors related
                 "value": "dbConnectionString"
               }
             },
-						"DOCKER_USERNAME": {
+            "DOCKER_USERNAME": {
               "fromParameterStore": "docker.hub.username"
             },
-						"DOCKER_PASSWORD": {
+            "DOCKER_PASSWORD": {
               "fromParameterStore": "docker.hub.password"
             }
           }
@@ -58,7 +58,7 @@ Please note, while using custom docker images, you will get build errors related
           "type": "rds",
           "engine": "postgres",
           "engineVersion": "12",
-          "instanceSize": "db.t2.micro",
+          "instanceSize": "db.t4g.micro",
           "storage": 20,
           "private": false
         }
@@ -67,3 +67,4 @@ Please note, while using custom docker images, you will get build errors related
   ]
 }
 ```
+

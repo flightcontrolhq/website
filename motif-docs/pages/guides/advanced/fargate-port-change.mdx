@@ -15,14 +15,14 @@ You have three options in order to restore your service deployments:
 
 1. The easiest is to restore the port to the current existing port that was used during the service creation (by default 3000 if you did not specify one).
 2. If your service is not handling production traffic then you can:
-    - Go to Flightcontrol dashboard, and delete the service
-    - Trigger a new deployment which will create another service from scratch now with the new defined port.
+   - Go to Flightcontrol dashboard, and delete the service
+   - Trigger a new deployment which will create another service from scratch now with the new defined port.
 3. If your app is handling production traffic, follow those steps:
-    - Rename your service id to a different id in your `flightcontrol.json`
-        - Make sure to rename the service id if you used in any dependency, or environment variables
-    - Push another deployment, which will create a different service, using the new port
-    - Make any arrangement to your domain to route the traffic to the new service.
-    - Delete the old service from Flightcontrol dashboard once it is no longer needed or required.
+   - Rename your service id to a different id in your `flightcontrol.json`
+     - Make sure to rename the service id if you used in any dependency, or environment variables
+   - Push another deployment, which will create a different service, using the new port
+   - Make any arrangement to your domain to route the traffic to the new service.
+   - Delete the old service from Flightcontrol dashboard once it is no longer needed or required.
 
 ### Existing VPC Mapping
 
@@ -40,7 +40,7 @@ When you configure your project environments, you can map and deploy any environ
       "source": {
         "branch": "main"
       },
-      "vpc":{
+      "vpc": {
         "id": "vpc-1234",
         "cidr": "10.10.1.0/24"
       },
@@ -64,7 +64,7 @@ When you configure your project environments, you can map and deploy any environ
           "type": "rds",
           "engine": "mysql",
           "engineVersion": "8",
-          "instanceSize": "db.t2.micro",
+          "instanceSize": "db.t4g.micro",
           "storage": 20,
           "private": false
         }
@@ -80,5 +80,6 @@ There are few things to take into consideration:
 2. Make sure to use a VPC in the region you defined.
 3. The `id` maps to the VPC ID not the VPC name.
 4. `cidr`
-    - If you have a single CIDR attached to the VPC, you do not need to define a `CIDR`, as Flightcontrol will automatically use the default CIDR.
-    - If the VPC has multiple CIDR attached, you can select the CIDR you want to use to deploy the application, using the `cidr` parameter.
+   - If you have a single CIDR attached to the VPC, you do not need to define a `CIDR`, as Flightcontrol will automatically use the default CIDR.
+   - If the VPC has multiple CIDR attached, you can select the CIDR you want to use to deploy the application, using the `cidr` parameter.
+
