@@ -29,13 +29,14 @@ const getTemplateId = (pathname: string) => {
   const templateMappings = (motifConfig.templates as { [k: string]: string }) || {}
   const path = pathname === '/' ? '' : pathname?.replace(/^\//, '')
   const matchingGlob = getBestGlobMatch(Object.keys(templateMappings), path)
-  if (matchingGlob && matchingGlob in templateMappings) {
+  if (matchingGlob !== undefined && matchingGlob in templateMappings) {
     return templateMappings[matchingGlob]
   }
 }
 
 const getTemplate = (pathname: string) => {
-  switch (getTemplateId(pathname)) {
+  const templateId = getTemplateId(pathname)
+  switch (templateId) {
     case 'documentation':
       return dynamic(() =>
         import('@templates/documentation.mdx').then(mod => (mod as any).Template),

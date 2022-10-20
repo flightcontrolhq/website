@@ -1,6 +1,7 @@
 {
   "templates": {
     "**/*": "plain",
+    "": "documentation",
     "http-api": "http-api",
     "http-api/authorization/api-keys": "http-api",
     "http-api/cloudfront/cache-invalidation-api": "http-api",

@@ -77,24 +77,20 @@ export const HeroExtraLink = ({ title, Icon, iconClassName, href }) => {
 
 export const HeroExtraLinks = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2">
-      <div>
-        <HeroExtraLink
-          Icon={DiscordIcon}
-          title="Join us on Discord"
-          href="https://discord.gg/yY8rSPrD6q"
-          iconClassName="text-[#5A64EA]"
-        />
-        <HeroExtraLink
-          Icon={TwitterIcon}
-          title="Follow us on Twitter"
-          href="https://twitter.com/flightcontrolhq"
-          iconClassName="text-[#1DA1F2]"
-        />
-      </div>
-      <div>
-        <HeroExtraLink title="Flightcontrol Dashboard" href="http://app.flightcontrol.dev/" />
-      </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+      <HeroExtraLink
+        Icon={DiscordIcon}
+        title="Join us on Discord"
+        href="https://discord.gg/yY8rSPrD6q"
+        iconClassName="text-[#5A64EA]"
+      />
+      <HeroExtraLink
+        Icon={TwitterIcon}
+        title="Follow us on Twitter"
+        href="https://twitter.com/flightcontrolhq"
+        iconClassName="text-[#1DA1F2]"
+      />
+      <HeroExtraLink title="Flightcontrol Dashboard" href="http://app.flightcontrol.dev/" />
     </div>
   )
 }
