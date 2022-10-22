@@ -40,6 +40,15 @@ const mainSidebar = [
     ],
   },
   {
+    title: 'Experimental',
+    pages: [
+      {
+        title: 'Maintenance Mode',
+        href: '/guides/experimental/maintenance-mode',
+      },
+    ],
+  },
+  {
     title: 'Advanced',
     pages: [
       {
