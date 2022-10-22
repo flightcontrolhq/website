@@ -1,9 +1,9 @@
 import {
   Page as MakeswiftPage,
   PageProps as MakeswiftPageProps,
-  getStaticProps as makeswiftGetStaticProps,
+  getServerSideProps as makeswiftGetServerSideProps,
 } from '@makeswift/runtime/next'
-import { GetStaticPropsContext, GetStaticPropsResult } from 'next'
+import { GetServerSidePropsContext, GetServerSidePropsResult, GetStaticPropsContext } from 'next'
 
 import { BlogContext, BlogSummaryContext } from 'lib/blog-context'
 import { getConfig } from 'lib/config'
@@ -13,12 +13,12 @@ import { BlogPost, BlogPostSummaries } from 'lib/sanity/types'
 
 import '../lib/makeswift/register-components'
 
-export async function getStaticProps(
-  ctx: GetStaticPropsContext<{ path: string[] }, { makeswift: boolean }>,
-): Promise<GetStaticPropsResult<PageProps>> {
+export async function getServerSideProps(
+  ctx: GetServerSidePropsContext,
+): Promise<GetServerSidePropsResult<PageProps>> {
+  const makeswiftResult = await makeswiftGetServerSideProps(ctx)
+  if (!('props' in makeswiftResult)) return makeswiftResult
   const config = getConfig()
-  const makeswiftResult = await makeswiftGetStaticProps(ctx)
-
   const blogPostSummaries = await getClient().fetch<BlogPostSummaries>(BLOG_SUMMARIES_QUERY)
   const blogPost = await getClient().fetch<BlogPost>(BLOG_BY_SLUG_QUERY, {
     slug: config.sanity.blogTemplateSlug,
@@ -26,8 +26,8 @@ export async function getStaticProps(
 
   return {
     ...makeswiftResult,
-    // @ts-ignore
-    props: { blogPostSummaries, blogPost, ...makeswiftResult.props },
+    // @ts-ignore: `GetServerSidePropsResult['props']` is wrapped in a promise for some reason.
+    props: { ...makeswiftResult.props, blogPost, blogPostSummaries },
   }
 }
 
@@ -42,14 +42,14 @@ export default function Page({ blogPostSummaries, blogPost, ...props }: PageProp
     BLOG_SUMMARIES_QUERY,
     {
       initialData: blogPostSummaries,
-      enabled: false,
+      enabled: true,
     },
   )
 
   const { data: previewBlogPost } = usePreviewSubscription<BlogPost>(BLOG_BY_SLUG_QUERY, {
     params: { slug: blogPost?.slug },
     initialData: blogPost,
-    enabled: false,
+    enabled: true,
   })
 
   return (
@@ -60,4 +60,3 @@ export default function Page({ blogPostSummaries, blogPost, ...props }: PageProp
     </BlogSummaryContext.Provider>
   )
 }
-export { getStaticPaths } from '@makeswift/runtime/next'
