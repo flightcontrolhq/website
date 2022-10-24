@@ -42,6 +42,6 @@ Once the process has finished the services that have been set to Maintenance Mod
 To disable it and go back to the regular setup, you'll see the option in the same place where you enabled it, but this time you will not need to confirm.
 As soon as you click on the button, we'll revert the services back to the original configuration.
 
-## How it works
+## How It Works
 
 This feature leverages the Cloudfront layer that is used by the supported services. We temporarily add an extra cache behavior to the existing Cloudfront Distribution, and we configure it to use a Lambda@Edge that in turn serve the page shown above.
