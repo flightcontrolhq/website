@@ -81,6 +81,11 @@ export const AppNavbar = ({ activeSlug, searchData }) => {
           <div className="flex flex-row gap-4 px-4 pt-2 pb-12 items-center">
             <LogoWithText onClick={() => setIsOpen(false)} />
           </div>
+          <div className="flex flex-row px-4 pb-6 items-center">
+            <div className="sm:block w-full ">
+              <AppSearch data={searchData} />
+            </div>
+          </div>
           <div className="flex flex-col gap-3 mb-12">
             {config.navbar.tabs.map((tab, i) => {
               const isActive = isActiveTab(tab, activeSlug)
