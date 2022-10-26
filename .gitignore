@@ -4,7 +4,6 @@
 /node_modules
 motif-docs/node_modules
 studio/node_modules
-studio/dist
 /.pnp
 .pnp.js
 
