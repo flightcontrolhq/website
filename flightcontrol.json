@@ -20,6 +20,7 @@
           "maxInstances": 2,
           "buildCommand": "npm run build",
           "startCommand": "npm run start",
+          "enableCloudfrontSwr": "true",
           "envVariables": {
             "DOCS_URL": {
               "fromService": {
@@ -70,6 +71,7 @@
           "buildCommand": "npm run build",
           "startCommand": "npm run start",
           "healthCheckPath": "/health",
+          "enableCloudfrontSwr": "true",
           "dependsOn": ["docs"],
           "envVariables": {
             "DOCS_URL": {
