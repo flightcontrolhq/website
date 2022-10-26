@@ -44,21 +44,6 @@
           "startCommand": "cd motif-docs && npm run start",
           "envVariables": {},
           "healthCheckPath": "/docs"
-        },
-        {
-          "id": "studio",
-          "name": "studio",
-          "type": "fargate",
-          "buildType": "nixpacks",
-          "cpu": 0.25,
-          "memory": 0.5,
-          "minInstances": 2,
-          "maxInstances": 2,
-          "installCommand": "cd studio && yarn",
-          "buildCommand": "cd studio && npm run build",
-          "startCommand": "cd studio && npm run start",
-          "envVariables": {},
-          "healthCheckPath": "/studio"
         }
       ]
     },
@@ -109,21 +94,6 @@
           "startCommand": "cd motif-docs && yarn start",
           "envVariables": {},
           "healthCheckPath": "/"
-        },
-        {
-          "id": "studio",
-          "name": "studio",
-          "type": "fargate",
-          "buildType": "nixpacks",
-          "cpu": 0.25,
-          "memory": 0.5,
-          "minInstances": 1,
-          "maxInstances": 1,
-          "installCommand": "cd studio && yarn",
-          "buildCommand": "cd studio && npm run build",
-          "startCommand": "cd studio && npm run start",
-          "envVariables": {},
-          "healthCheckPath": "/studio"
         }
       ]
     }
