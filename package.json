@@ -7,7 +7,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@makeswift/runtime": "^0.2.6",
+    "@makeswift/runtime": "^0.2.7",
     "@portabletext/react": "^1.0.6",
     "@sanity/image-url": "^1.0.1",
     "classnames": "^2.3.2",
