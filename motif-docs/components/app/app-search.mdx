@@ -229,7 +229,7 @@ dispatch({ type: 'SET_RESULTS', results: [] })
 break
 case 'Enter': {
 dispatch({ type: 'SET_RESULTS', results: [] })
-window.open(state.results[state.selectedIndex]?.path, '\_self')
+window.open('/docs' + state.results[state.selectedIndex]?.path, '\_self')
 break
 }
 default:
