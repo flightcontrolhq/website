@@ -36,7 +36,6 @@ const getTemplateId = (pathname: string) => {
 
 const getTemplate = (pathname: string) => {
   const templateId = getTemplateId(pathname)
-  console.log(templateId)
   switch (templateId) {
     case 'documentation':
       return dynamic(() =>
