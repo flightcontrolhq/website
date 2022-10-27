@@ -6,7 +6,7 @@ subtitle: Temporarily disable traffic to your service using our Maintenance Mode
 
 import { Image } from '@components/ui/image.mdx'
 
-## About
+## [About](#)
 
 Supported services: `fargate`, `static`.
 
@@ -21,7 +21,7 @@ The page your users will see looks like this:
 />
 </div>
 
-## How To Enable It
+## [How To Enable It](#-1)
 
 Go to the Environment where the services are located and click on the "Maintenance Mode" option within the Environment menu options.
 
@@ -37,11 +37,11 @@ Once the process has finished, the services set to Maintenance Mode will look li
  src="https://res.cloudinary.com/djp21wtxm/image/upload/v1666431532/i1600x576-MnKEoIcY9HmC_fh7cli.png"
 />
 
-## How To Disable It
+## [How To Disable It](#-2)
 
 To disable it and go back to the regular setup, you'll see the option in the same place where you enabled it, but this time you will not need to confirm.
 As soon as you click on the button, we'll revert the services back to the original configuration.
 
-## How It Works
+## [How It Works](#-3)
 
 This feature leverages the Cloudfront layer that is used by the supported services. We temporarily add an extra cache behavior to the existing Cloudfront Distribution, and we configure it to use a Lambda@Edge that in turn serve the page shown above.

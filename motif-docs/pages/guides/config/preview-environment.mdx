@@ -6,20 +6,20 @@ subtitle: Configure your project to create a short-lived environment on each pul
 
 import { Note } from '@components/ui/note.mdx'
 
-## About The Feature
+## [About The Feature](#)
 
 Flightcontrol’s Preview Environment feature is an alternative to long-lived staging environments. When configured, Flightcontrol will automatically create an ephemeral environment for each pull request or merge request. Here's an example of how it will look like in the Flightcontrol dashboard once it's configured and there are opened pull requests:
 
 ![](https://res.cloudinary.com/djp21wtxm/image/upload/v1665398938/i1600x513-JIMfKyHDx-DF_jbqctm.png)
 
-## Currently Supported Services
+## [Currently Supported Services](#-1)
 
 - ✅  Fargate
 - ✅  Fargate-worker
 
 <Note type="warning">⚠️ **RDS** and **static** service types are not yet supported. Make sure to omit these from the preview environment config in flightcontrol.json (see below). In the meantime for database, you can use a separate staging database and add the connection string to preview environments as an env variable.</Note>
 
-## Configuration
+## [Configuration](#-2)
 
 **With GUI**
 
@@ -129,7 +129,7 @@ Add a new environment to your environments array, with the following `source` ob
 }
 ```
 
-## Lifecycle
+## [Lifecycle](#-3)
 
 ### Creation
 
@@ -151,7 +151,7 @@ Your preview environment will be destroyed when:
 
 <Note type="warning">Pull requests opened in **DRAFT** state will not be deployed until they are marked “ready for review”. If you don’t like this, let us know!</Note>
 
-## Limitations
+## [Limitations](#-4)
 
 Preview environments are not intended for production workloads.
 
@@ -161,7 +161,7 @@ To reduce your resource cost and to increase speed of provisioning, they don’t
 2. No custom domains (every service and PR will have a Flightcontrol subdomain created automatically for it)
 3. No horizontal scaling or load balancing, services with servers will only have a single instance
 
-## Good to Know
+## [Good to Know](#-5)
 
 ### First deployment time
 
@@ -178,7 +178,7 @@ You can also check the Flightcontrol dashboard to see information about the prev
 
 You'll be able to get the preview URL once a preview environment has been fully deployed. This URL can be retrieved in the Flightcontrol dashboard as well as in the Github comment in your PR.
 
-## AWS Costs
+## [AWS Costs](#-6)
 
 - Constant
   - When you have preview environments enabled, there are a number of AWS resources that are configured all the time, even if you are not making pull requests. We do this (1) to speed up provisioning of an environment for each PR and (2) reduce incremental costs for each preview environment.
@@ -187,7 +187,7 @@ You'll be able to get the preview URL once a preview environment has been fully 
   - Each service on each preview environment will have an associated cost, same as normal environments.
   - AWS only charges you based on the time the services are running. So if the preview environment for a specific PR is only running for 2 days, then you’re only charged for 2 days of usage.
 
-## Advanced Topics
+## [Advanced Topics](#-7)
 
 ### VPC
 
