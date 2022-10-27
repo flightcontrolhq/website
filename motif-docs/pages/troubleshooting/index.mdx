@@ -4,61 +4,25 @@ heading: Support
 ---
 
 import { Collapse } from '@components/ui/collapse.mdx'
-import { Image } from '@components/ui/image.mdx'
+import DeploymentError from './deployment-errors.mdx'
+import ConcurrencyLimit from './concurrency-limit.mdx'
+import LongDeploys from './long-deploys.mdx'
 
-<Collapse title="Unusually long deploys. Like 30 min instead of normal 10 min">
 
-Sometimes if you have multiple services and AWS is limiting the number of concurrent builds, it takes longer for your build to actually start.
+## Unusually long deploys. Like 30 min instead of normal 10 min
 
-You can check the build status by clicking on “Build Logs” in the Flightcontrol dashboard, then click on the “Phase Details” tab. There you can see which step of the build it’s currently stuck at.
+<LongDeploys />
 
-<Image className="rounded-primary mx-auto w-full max-w-[600px] border" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655158737/i1338x856-jthu6oejgKyd_ie4brq.png" />
 
-If you suspect a concurrent build quote issue, [you can submit a quota increase request here](https://console.aws.amazon.com/servicequotas/home/services/codebuild/quotas/L-75822022).
 
-</Collapse>
+## Deployment Errors
 
-<Collapse title="Deployment Errors">
+<DeploymentError />
 
-If the user is getting this error:
 
-```
-[
-  [
-    {
-      "type": "FARGATE_DEPLOY_ERROR",
-      "message": "Service could not reach steady state; rolled back to previuos version. Please check runtime logs."
-    }
-  ]
-]
-```
 
-1. Go to the ECS service and under tasks see if there are stopped instances lately and what might be causing that in that instance log.
-2. Check the events tab under the service for any errors
-3. Check if the HealthCheck is not correct
+## Reached Concurrency Limit on the number of tasks
 
-</Collapse>
+<ConcurrencyLimit />
 
-<Collapse title="Reached Concurrency Limit on the number of tasks">
-
-If the user noticed this error in Fargate Service Events tab:
-
-> You've reached the limit on the number of tasks you can run concurrently
-
-#### Solution
-
-- In the same Region, go to the Services search box, and search for EC2
-- In EC2, start a new instance
-
-<Image className="rounded-primary mx-auto w-full max-w-[420px] border" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655158948/i682x546-1vpX25Xb22Ou_krbs3d.png" />
-
-- Choose the smallest instance size
-- Once the instance is created, tear it down
-- Deploy your application again
-
-This AWS official response:
-
-> You must activate the Region in which you want to run Fargate by launching an EC2 instance in that Region. Otherwise, you will experience a Fargate concurrent task limit issue. Launching an instance will enable you to run multiple concurrent Fargate tasks.
-
-</Collapse>
 

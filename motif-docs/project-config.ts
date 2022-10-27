@@ -131,7 +131,7 @@ export default {
         title: 'API',
         href: '/http-api',
       },
-      { title: 'Troubleshooting', href: '/troubleshooting' },
+      { title: 'Troubleshooting', href: '/troubleshooting/concurrency-limit' },
       { title: 'Changelog', href: '/changelog' },
       // Add roadmap
       // { title: "Roadmap", href: "/roadmap" },
@@ -164,5 +164,24 @@ export default {
         ],
       },
     ],
+    'troubleshooting': [
+      {
+        title: 'Common Issues',
+        pages: [
+          {
+            title: 'Reached Concurrency Limit on the number of tasks',
+            href: '/troubleshooting/concurrency-limit',
+          },
+          {
+            title: 'Deployment Errors',
+            href: '/troubleshooting/deployment-errors',
+          },
+          {
+            title: 'Unusually long deploys. Like 30 min instead of normal 10 min',
+            href: '/troubleshooting/long-deploys',
+          },
+        ]
+      }    
+    ]
   },
 }

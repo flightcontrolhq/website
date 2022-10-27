@@ -1,0 +1,25 @@
+---
+heading: Error handling
+title: Reached Concurrency Limit on the number of tasks
+---
+
+import { Image } from '@components/ui/image.mdx'
+
+If the user noticed this error in Fargate Service Events tab:
+
+> You've reached the limit on the number of tasks you can run concurrently
+
+#### Solution
+
+- In the same Region, go to the Services search box, and search for EC2
+- In EC2, start a new instance
+
+<Image className="rounded-primary mx-auto w-full max-w-[420px] border" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655158948/i682x546-1vpX25Xb22Ou_krbs3d.png" />
+
+- Choose the smallest instance size
+- Once the instance is created, tear it down
+- Deploy your application again
+
+This AWS official response:
+
+> You must activate the Region in which you want to run Fargate by launching an EC2 instance in that Region. Otherwise, you will experience a Fargate concurrent task limit issue. Launching an instance will enable you to run multiple concurrent Fargate tasks.
