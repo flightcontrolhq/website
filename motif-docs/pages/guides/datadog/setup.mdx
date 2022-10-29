@@ -29,7 +29,7 @@ import { Image } from '@components/ui/image.mdx'
    <Image rounded={true} border={true} className="rounded-primary w-full max-w-[360px]" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655161057/i682x206-fFjg2ZaWAa0B_wyoxsy.png" />
 9. You should now see some infrastructure under the “Infrastructure” menu item.
 
-## [To Set Up Log Forwarding](#to-set-up-log-forwarding)
+## To Set Up Log Forwarding
 
 Log forwarding to Datadog requires the `datadog-forwarder` stack to be created in every region you want to forward logs from. The default aws datadog integration automatically installs it in `us-east-1`. See instructions below for installing it in a new region.
 
@@ -76,7 +76,7 @@ For more details on setting up log triggers, see [Send AWS services logs with th
 6. Click **Add**
    <Image rounded={true} border={true} className="rounded-primary w-full max-w-[500px]" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655161690/i1600x1217-wjTy9rUrjTfV_szrtqa.png" />
 
-## [To Increase Lambda Concurrency Limit](#to-increase-lambda-concurrency-limit)
+## To Increase Lambda Concurrency Limit
 
 1. Go to [Quotas](https://console.aws.amazon.com/servicequotas/home/services/lambda/quotas)
 2. Select **Concurrent Executions,** then click **Request quota increase**

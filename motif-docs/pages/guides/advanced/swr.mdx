@@ -10,7 +10,7 @@ Flightcontrol has an option to add `stale-while-revalidate` cache-control header
 
 The [`stale-while-revalidate cache-control header`](https://datatracker.ietf.org/doc/html/rfc5861#section-3) is useful when you care more about the speed of all user’s requests more than you care about users seeing the latest data. When used, the CDN will will serve stale content to the user while refetching the latest data in the background so that the next user will get the latest data.
 
-## [When to use?](#)
+## When to use?
 
 You want to use stale while revalidate if you use any of the following:
 
@@ -21,15 +21,15 @@ You want to use stale while revalidate if you use any of the following:
 
 - Some information on actual cost?
 
-## [Next.js Incremental Static Revalidation](#-1)
+## Next.js Incremental Static Revalidation
 
 Next.js ISR is enabled by adding the `revalidate` prop to your `getStaticProps` function. See the [Next.js docs](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration) for more details.
 
-## [Stale While Revalidate Cache-Control Headers](#-2)
+## Stale While Revalidate Cache-Control Headers
 
 Flightcontrol’s SWR feature will also benefit you if you are manually controlling the cache-control headers in your app.
 
-## [Instructions](#-3)
+## Instructions
 
 **GUI**
 
@@ -42,7 +42,7 @@ Flightcontrol’s SWR feature will also benefit you if you are manually controll
 - You can also add this feature in your `flightcontrol.json` file by adding a field in the fargate services config like so:
     - `"enableCloudfrontSwr": "true"`
 
-## [How SWR Works](#-4)
+## How SWR Works
 
 In a broad sense, stale-while-revalidate allows you to cache a static page in a CDN and serve it to users while refetching an updated page. This allows you to add updates to your static site at runtime, while also creating faster load times for the user and decreasing server load. The time for the cache to become stale is controlled via cache-control headers, which can either be set in NextJS or manually.
 

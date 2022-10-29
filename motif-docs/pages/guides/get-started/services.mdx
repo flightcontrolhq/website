@@ -8,7 +8,7 @@ See below each service we support and what AWS resources are used.
 The `type` you see next to each service is the corresponding flighcontrol `type`, relevant for setting up the `flightcontrol.json` config file.
 
 
-## [Web Server](#)
+## Web Server
 `type: fargate`
 - run web services in Fargate containers
 - auto https
@@ -16,20 +16,20 @@ The `type` you see next to each service is the corresponding flighcontrol `type`
 - automatic cloudfront CDN
 - autoscaling, zero downtime deploys, self-healing
 
-## [Worker or Private Server](#-1)
+## Worker or Private Server
 `type: fargate-worker`
 - run private servers in fargate containers that don’t expose an HTTP endpoint
 - autoscaling, zero downtime deploys, self-healing
 
 Runs a long running process that fetches data from another services
 
-## [Database](#-2)
+## Database
 `type: rds`
 - database: postgres, mysql, or maria
 - automatically add it’s `DATABASE_URL` to 1 or more fargate services
 - Daily backups enabled by default with 35 day backup retention
 
-## [Static Websites](#-3)
+## Static Websites
 `type: static`
 - easily host a static site, like a create-react-app or Redwood.js frontend
 - high performance, powered by Cloudfront CDN
