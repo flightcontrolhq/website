@@ -5,6 +5,7 @@ import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import {remarkSluggifyHeadingId} from './remark-sluggyify-heading-id.js'
 import { createLoader } from 'simple-functional-loader'
 
 const buildTree = (dir, parentName = 'pages') => {
@@ -94,6 +95,7 @@ MDXContent.files=${JSON.stringify(files)}`
           options: {
             providerImportSource: '@mdx-js/react',
             remarkPlugins: [
+              remarkSluggifyHeadingId,
               remarkMath,
               remarkGfm,
               remarkFrontmatter,
