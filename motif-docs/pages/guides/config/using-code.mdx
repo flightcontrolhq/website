@@ -485,7 +485,8 @@ Environment variables can be configured two ways
     `private: boolean`
 
     - Example: `"private": true`
-    - Supported values: `false` (Private database support is planned. We’ll prioritize based on you telling us it’s a requirement for you)
+    - Supported values: `true | false`
+    - Incurs an extra ~$30/month AWS cost because of the NAT Gateway
     - Private means the database is not accessible from the internet. Public means it is. However, the database is fully secured when public, but it just allows attackers to try and brute force the secure credentials. Or try to find some vulnerability.
 
     `deletionProtection: boolean`
