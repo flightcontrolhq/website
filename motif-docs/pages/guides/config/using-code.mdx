@@ -119,6 +119,20 @@ Environment variables can be configured two ways
 
 <Note type="info">💡 Note: The optional filters work with an `AND` logic. If both filters are enabled, it will only deploy a PR that matches both the target branch(es) (`toBranches`) and one of the labels configured (`labels`).</Note>
 
+`vpc: object`
+
+- This allows you to connect this environment to an existing VPC instead of creating a new one
+- **Caveat:** This only works with new Environment deployments, if you have an existing environment deployed already, we cannot change the VPC, you will need to deploy a brand new environment, route your application traffic, then delete the old environment.
+- Make sure you set this environment’s region to match the region of your VPC
+- `id: string`
+  - Example: `"id": "vpc-1234"`
+  - Your VPC ID (not the VPC name)
+  - Make sure to use a VPC in the region you defined
+- `cidr: string`
+  - Example: `"cidr": "10.10.1.0/24"`
+  - _Optional:_ If you have a single CIDR attached to the VPC, you do not need to define a `CIDR`, as Flightcontrol will automatically use the default CIDR.
+  - If the VPC has multiple CIDR attached, you can select the CIDR you want to use to deploy the application, using this parameter.
+
 `envVariables: EnvVariables`
 
 - Environment variables configured at the environment level will be automatically inherited by all the services within this environment
@@ -134,7 +148,7 @@ Environment variables can be configured two ways
 - Deployment hooks are a way for you to trigger a deployment on an environment remotely with an HTTP request:
   - You must first create a deploy hook in the environment edit page accessed by clicking “Edit Environment” button on the project show page, and then locate the Deploy Hooks form in the UI.
     <Image rounded={true} border={true} className="w-full max-w-[260px]" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165074/i448x132-1xpvO1Oe_clb_dfdluu.png" />
-<Image rounded={true} border={true} className="w-full" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165094/i1600x518-RjDe674AMVxY_lh4txx.png" />
+    <Image rounded={true} border={true} className="w-full" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165094/i1600x518-RjDe674AMVxY_lh4txx.png" />
   - To trigger a deployment with this hook, make a HTTP GET request at this url (no payload is necessary).
 
 ## `Service`
