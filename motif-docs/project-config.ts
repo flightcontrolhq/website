@@ -164,24 +164,28 @@ export default {
         ],
       },
     ],
-    'troubleshooting': [
+    troubleshooting: [
       {
         title: 'Common Issues',
         pages: [
           {
-            title: 'Reached Concurrency Limit on the number of tasks',
-            href: '/troubleshooting/concurrency-limit',
+            title: 'Unusually Long Deploys',
+            href: '/troubleshooting/long-deploys',
+          },
+          {
+            title: 'Maximum Number of VPCs & Internet Gateways',
+            href: '/troubleshooting/too-many-vpcs',
           },
           {
             title: 'Deployment Errors',
             href: '/troubleshooting/deployment-errors',
           },
           {
-            title: 'Unusually long deploys. Like 30 min instead of normal 10 min',
-            href: '/troubleshooting/long-deploys',
+            title: 'Reached Tasks Concurrency Limit',
+            href: '/troubleshooting/concurrency-limit',
           },
-        ]
-      }    
-    ]
+        ],
+      },
+    ],
   },
 }

@@ -1,0 +1,15 @@
+---
+heading: Maximum Number of VPCs & Internet Gateways
+title: Maximum Number of VPCs & Internet Gateways
+---
+
+import Image from 'next/image'
+
+import errorImg from '../../public/img/max-num-vpc-internet-gateway.png'
+
+The default AWS quota is 5 VPCs and 5 Internet Gateways per region. If you get the below error, you need to request an increase from AWS.
+
+- [Request an increase for VPCs per region](https://console.aws.amazon.com/servicequotas/home/services/vpc/quotas/L-F678F1CE) (make sure console is set to correct region)
+- [Request an increase for Internet Gateways per region](https://console.aws.amazon.com/servicequotas/home/services/vpc/quotas/L-A4707A72) (make sure console is set to correct region)
+
+<Image className="rounded-primary mx-auto w-full max-w-[600px] border" src={errorImg}/>
