@@ -7,8 +7,6 @@ import remarkMath from 'remark-math'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import { createLoader } from 'simple-functional-loader'
 
-const docPath = "/docs"
-
 const buildTree = (dir, parentName = 'pages') => {
   const result = {}
   const list = fs.readdirSync(dir)
@@ -25,7 +23,7 @@ const buildTree = (dir, parentName = 'pages') => {
       const frontmatter = matter(fs.readFileSync(itemPath, { encoding: 'utf-8' }))
       const p = path
         .join(path.dirname(itemPath), path.basename(itemPath, path.extname(itemPath)))
-        .replace(/^pages/, docPath ? docPath : '')
+        .replace(/^pages/, '')
         .replace(/\/index$/, '')
 
       result.files = [
@@ -42,7 +40,7 @@ const buildTree = (dir, parentName = 'pages') => {
 }
 
 const config = {
-  basePath: docPath,
+  basePath: '/docs',
   async redirects() {
     return [
       {
