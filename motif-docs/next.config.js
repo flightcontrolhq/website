@@ -25,7 +25,6 @@ const buildTree = (dir, parentName = 'pages') => {
         .join(path.dirname(itemPath), path.basename(itemPath, path.extname(itemPath)))
         .replace(/^pages/, '')
         .replace(/\/index$/, '')
-
       result.files = [
         ...(result.files || []),
         {
