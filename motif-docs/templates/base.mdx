@@ -38,6 +38,7 @@ export const Template = ({ filename, path, files, meta, includeSidebar, includeF
             noFooterNav={!(includeFooterNav && !meta?.noFooterNav)}
             includeTOC={!meta?.noTOC}
             keepTOCSpace={true}
+            showSidebar={includeSidebar}
           >
             {children}
           </AppContainer>
