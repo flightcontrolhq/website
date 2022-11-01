@@ -6,9 +6,13 @@ import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-
 import motifConfig from '../motif.json'
 import '/styles/main.css'
+
+const Template = dynamic<{children: React.ReactNode, meta: any, path: string, filename: string, files: {}}>(() =>
+  import('@templates/documentation.mdx').then(mod => (mod as any).Template),
+  { ssr: false },
+)
 
 export const getBestGlobMatch = (globs: string[], path: string): string | undefined => {
   const match = globs
@@ -34,21 +38,23 @@ const getTemplateId = (pathname: string) => {
   }
 }
 
-const getTemplate = (pathname: string) => {
-  const templateId = getTemplateId(pathname)
-  switch (templateId) {
-    case 'documentation':
-      return dynamic(() =>
-        import('@templates/documentation.mdx').then(mod => (mod as any).Template),
-      )
-    case 'http-api':
-      return dynamic(() => import('@templates/http-api.mdx').then(mod => (mod as any).Template))
-    case 'base':
-      return dynamic(() => import('@templates/base.mdx').then(mod => (mod as any).Template))
-    default:
-      return dynamic(() => import('@templates/plain.mdx').then(mod => (mod as any).Template))
-  }
-}
+
+// The below code causes a weird flash. Commenting out and keeping as reference for now.
+// const getTemplate = (pathname: string) => {
+//   const templateId = getTemplateId(pathname)
+//   switch (templateId) {
+//     case 'documentation':
+//       return dynamic(() =>
+//         import('@templates/documentation.mdx').then(mod => (mod as any).Template),
+//       )
+//     case 'http-api':
+//       return dynamic(() => import('@templates/http-api.mdx').then(mod => (mod as any).Template))
+//     case 'base':
+//       return dynamic(() => import('@templates/base.mdx').then(mod => (mod as any).Template))
+//     default:
+//       return dynamic(() => import('@templates/plain.mdx').then(mod => (mod as any).Template))
+//   }
+// }
 
 export type Size = {
   width: number
@@ -91,7 +97,7 @@ const components = {
 }
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-  const Template = getTemplate(router.pathname) as any
+  // const Template = getTemplate(router.pathname) as any
 
   const meta = (Component as any).meta || {}
   const filename = (Component as any).filename || {}
