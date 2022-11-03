@@ -18,8 +18,8 @@ export const Hero = () => {
 
 <Hero />
 
-export const HeroLinkCard = ({ title, subtitle, Icon, href }) => {
-  return <a href={href} className="unstyled-link flex flex-row items-center gap-4 p-4 rounded-primary hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer transition not-prose">
+export const HeroLinkCard = ({ title, subtitle, Icon, href, ...props }) => {
+  return <a href={href} className="unstyled-link flex flex-row items-center gap-4 p-4 rounded-primary hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer transition not-prose" {...props}>
       <div className="w-16 h-16 border border-primary-200 dark:border-primary-800 p-3 text-primary-600 rounded-primary">
         <Icon />
       </div>
@@ -46,16 +46,19 @@ export const HeroLinkCards = () => {
     />
 
     <HeroLinkCard
+      href="https://roadmap.flightcontrol.dev/"
+      title="Roadmap & Feature Requests"
+      subtitle="See what's coming and give feedback"
+      Icon={DoneIcon}
+      target="_blank"
+      rel="noopener"
+    />
+
+    <HeroLinkCard
       href="/troubleshooting"
       title="Troubleshooting"
       subtitle="Get help fixing common problems."
       Icon={SupportIcon}
-    />
-    <HeroLinkCard
-      href="/changelog"
-      title="Changelog"
-      subtitle="See what we've shipped"
-      Icon={DoneIcon}
     />
 
   </div>

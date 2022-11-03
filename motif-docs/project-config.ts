@@ -132,7 +132,11 @@ export default {
         href: '/http-api',
       },
       { title: 'Troubleshooting', href: '/troubleshooting/concurrency-limit' },
-      { title: 'Changelog', href: '/changelog' },
+      {
+        title: 'Roadmap & Feedback',
+        href: 'https://roadmap.flightcontrol.dev/',
+        aProps: { target: '_blank', rel: 'noopener' },
+      },
       // Add roadmap
       // { title: "Roadmap", href: "/roadmap" },
     ],
