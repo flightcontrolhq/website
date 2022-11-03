@@ -41,8 +41,6 @@ const getTemplate = (pathname: string) => {
       return dynamic(() =>
         import('@templates/documentation.mdx').then(mod => (mod as any).Template),
       )
-    case 'http-api':
-      return dynamic(() => import('@templates/documentation.mdx').then(mod => (mod as any).Template))
     case 'base':
       return dynamic(() => import('@templates/base.mdx').then(mod => (mod as any).Template))
     default:

@@ -2,8 +2,8 @@
   "templates": {
     "**/*": "plain",
     "": "documentation",
-    "http-api": "http-api",
-    "http-api/**/*": "http-api",
+    "http-api": "documentation",
+    "http-api/**/*": "documentation",
 
 
     "guides": "documentation",
