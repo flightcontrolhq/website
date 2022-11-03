@@ -11,14 +11,13 @@ export const AppContainer = ({
   noTitle,
   noHeading,
   noFooterNav,
-  showSidebar,
   includeTOC,
   keepTOCSpace,
   children,
 }) => {
   const showHeading = !noHeading && heading
   return (
-    <div className={cn(`mx-auto antialiased w-full ${showSidebar && 'md:pl-64'}`)}>
+    <div className={cn('mx-auto antialiased w-full md:pl-64')}>
       <div className="max-w-full px-8">
         <div className="max-w-screen-xl mx-auto">
           <div

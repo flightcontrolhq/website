@@ -5,47 +5,14 @@ import fastLevenshtein from 'fast-levenshtein'
 
 export const Template = ({ filename, path, files, meta, children }) => {
 
-  const getBestGlobMatch = (globs, path) => {
-    const match = globs
-      .filter(p => minimatch(path, p))
-      .sort((m1, m2) => {
-        const d1 = fastLevenshtein.get(m1, path)
-        const d2 = fastLevenshtein.get(m2, path)
-        return d1 < d2 ? -1 : 1
-      })?.[0]
-
-    if (match === undefined && globs.includes('**/*')) {
-      return '**/*'
-    }
-    return match
-  }
-
-  const getTemplateId = (pathname) => {
-    const templateMappings = (motifConfig.templates) || {}
-    const path = pathname === '/' ? '' : pathname.replace(/^\//, '')
-    const matchingGlob = getBestGlobMatch(Object.keys(templateMappings), path)
-    if (matchingGlob !== undefined && matchingGlob in templateMappings) {
-      return templateMappings[matchingGlob]
-    }
-  }
-
-  const showSidebarFooter = () => {
-    const templateId = getTemplateId(path)
-
-    if (templateId === 'plain') {
-      return false
-    }
-    return true
-  }
-
   return (
     <BaseTemplate
       filename={filename}
       path={path}
       files={files}
       meta={meta}
-      includeSidebar={showSidebarFooter()}
-      includeFooterNav={showSidebarFooter()}
+      includeSidebar={true}
+      includeFooterNav={true}
     >
       {children}
     </BaseTemplate>
