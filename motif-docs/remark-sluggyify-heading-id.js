@@ -59,6 +59,9 @@ export function remarkSluggifyHeadingId() {
         node.depth === 5 ||
         node.depth === 6
       ) {
+        
+
+
         if (hasProperty(node, 'id')) {
           return
         }
@@ -76,8 +79,20 @@ export function remarkSluggifyHeadingId() {
         const slug = generateUniqueSlug(text, slugs)
         slugs.push(slug)
 
+
         node.data.id = slug
         node.data.hProperties.id = slug
+
+        if(node.depth === 2 || node.depth === 3) {
+          // Wrap the heading with a link to the heading
+          node.children = [
+            {
+              type: 'link',
+              url: `#${slug}`,
+              children: node.children,
+            },
+          ]
+        }
       }
     })
   }
