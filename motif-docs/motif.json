@@ -3,16 +3,11 @@
     "**/*": "plain",
     "": "documentation",
     "http-api": "http-api",
-    "http-api/authorization/api-keys": "http-api",
-    "http-api/cloudfront/cache-invalidation-api": "http-api",
-    "http-api/cloudfront/cache-invalidation-status-api": "http-api",
+    "http-api/**/*": "http-api",
+
 
     "guides": "documentation",
     "guides/**/*": "documentation",
-    "docs/http-api/authorization/api-keys": "http-api",
-    "docs/http-api/cloudfront/cache-invalidation-api": "http-api",
-    "docs/http-api/cloudfront/cache-invalidation-status-api": "http-api",
-    "docs/http-api": "http-api",
     "troubleshooting": "documentation",
     "troubleshooting/*": "documentation"
   },

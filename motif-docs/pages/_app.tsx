@@ -1,15 +1,54 @@
 import { MDXProvider } from '@mdx-js/react'
+import fastLevenshtein from 'fast-levenshtein'
+import minimatch from 'minimatch'
 import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import motifConfig from '../motif.json'
 import '/styles/main.css'
 
-const Template = dynamic<{children: React.ReactNode, meta: any, path: string, filename: string, files: {}}>(() =>
-  import('@templates/documentation.mdx').then(mod => (mod as any).Template),
-  { ssr: false },
-)
+export const getBestGlobMatch = (globs: string[], path: string): string | undefined => {
+  const match = globs
+    .filter(p => minimatch(path, p))
+    .sort((m1, m2) => {
+      const d1 = fastLevenshtein.get(m1, path)
+      const d2 = fastLevenshtein.get(m2, path)
+      return d1 < d2 ? -1 : 1
+    })?.[0]
+
+  if (match === undefined && globs.includes('**/*')) {
+    return '**/*'
+  }
+  return match
+}
+
+const getTemplateId = (pathname: string) => {
+  const templateMappings = (motifConfig.templates as { [k: string]: string }) || {}
+  const path = pathname === '/' ? '' : pathname?.replace(/^\//, '')
+  const matchingGlob = getBestGlobMatch(Object.keys(templateMappings), path)
+  if (matchingGlob !== undefined && matchingGlob in templateMappings) {
+    return templateMappings[matchingGlob]
+  }
+}
+
+const getTemplate = (pathname: string) => {
+  const templateId = getTemplateId(pathname)
+  switch (templateId) {
+    case 'documentation':
+      return dynamic(() =>
+        import('@templates/documentation.mdx').then(mod => (mod as any).Template),
+      )
+    case 'http-api':
+      return dynamic(() => import('@templates/documentation.mdx').then(mod => (mod as any).Template))
+    case 'base':
+      return dynamic(() => import('@templates/base.mdx').then(mod => (mod as any).Template))
+    default:
+      return dynamic(() => import('@templates/plain.mdx').then(mod => (mod as any).Template))
+  }
+}
 
 export type Size = {
   width: number
@@ -51,8 +90,8 @@ const components = {
   },
 }
 
-
 function MyApp({ Component, pageProps, router }: AppProps) {
+  const Template = getTemplate(router.pathname) as any
 
   const meta = (Component as any).meta || {}
   const filename = (Component as any).filename || {}
