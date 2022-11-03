@@ -1,7 +1,10 @@
 import { Template as BaseTemplate } from '@templates/base.mdx'
+import motifConfig from '../motif.json'
+import minimatch from 'minimatch'
+import fastLevenshtein from 'fast-levenshtein'
 
 export const Template = ({ filename, path, files, meta, children }) => {
-  console.log("filename", filename)
+
   return (
     <BaseTemplate
       filename={filename}
