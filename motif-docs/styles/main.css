@@ -155,10 +155,12 @@ code::before, code::after {
 
 .prose h2 a {
   border-bottom-width: 0px !important;
+  font-weight: inherit !important;
 }
 
 .prose h3 a {
   border-bottom-width: 0px !important;
+  font-weight: inherit !important;
 }
 
 .prose h2 a:hover {
