@@ -23,15 +23,15 @@ Here is a complete example:
   "minInstances": 1,
   "maxInstances": 1,
   "dockerLabels": {
-    "com.datadoghq.ad.instances": "[{\"host\": \"%%host%%\", \"port\": 3000}]", //change the port
-    "com.datadoghq.ad.check_names": "[\"NAME\"]", // add the correct CheckNames
+    "com.datadoghq.ad.instances": "[{\"host\": \"%%host%%\", \"port\": 3000}]", //change the port if needed
+    "com.datadoghq.ad.check_names": "[\"DISPLAY_NAME\"]", // name that will show in datadog
     "com.datadoghq.ad.init_configs": "[{}]"
   },
   "experimental": { // make sure the datadog object is added under experimental
     "datadog": {
       "enabled": true,
       "datadogSite": "us5.datadoghq.com", //plaintext
-      "datadogApiKey": "DD_API_KEY.from.parameter.store" //from parameter store or secrets manager
+      "datadogApiKey": "<REFRENCE_TO_DD_API_KEY_IN_AWS>" //from parameter store or secrets manager
     }
   }
 }
