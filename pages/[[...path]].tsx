@@ -4,6 +4,8 @@ import {
   getStaticProps as makeswiftGetStaticProps,
 } from '@makeswift/runtime/next'
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 import { BlogContext, BlogSummaryContext } from 'lib/blog-context'
 import { getConfig } from 'lib/config'
@@ -12,6 +14,7 @@ import { getClient } from 'lib/sanity/sanity.server'
 import { BlogPost, BlogPostSummaries } from 'lib/sanity/types'
 
 import '../lib/makeswift/register-components'
+import { useSession } from '../src/blitz-client'
 
 export async function getStaticProps(
   ctx: GetStaticPropsContext<{ path: string[] }, { makeswift: boolean }>,
@@ -51,6 +54,15 @@ export default function Page({ blogPostSummaries, blogPost, ...props }: PageProp
     initialData: blogPost,
     enabled: false,
   })
+
+  const { pathname } = useRouter()
+  const session = useSession()
+
+  useEffect(() => {
+    if (pathname === '/' && !session.isLoading && session.userId) {
+      window.location.href = 'https://app.flightcontrol.dev'
+    }
+  }, [pathname, session])
 
   return (
     <BlogSummaryContext.Provider value={previewBlogPostSummaries}>
