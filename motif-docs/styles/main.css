@@ -7,12 +7,13 @@
   background: #d2f7f9;
 }
 
-html, body {
-@apply dark:bg-gray-900;
+html,
+body {
+  @apply dark:bg-gray-900;
 }
 
 .underline-links a:not(.unstyled-link) {
-  @apply no-underline font-semibold text-gray-900 dark:text-white hover:text-gray-900 dark:hover:text-white/50 hover:border-b-2 border-b border-primary-600 transition;
+  @apply border-primary-600 border-b font-semibold text-gray-900 no-underline transition hover:border-b-2 hover:text-gray-900 dark:text-white dark:hover:text-white/50;
 }
 
 .unstyled-link {
@@ -29,11 +30,11 @@ h6 {
 }
 
 .doc-content h1 {
-  @apply inline-block text-3xl tracking-normal font-bold text-gray-900 !important;
+  @apply inline-block text-3xl font-bold tracking-normal text-gray-900 !important;
 }
 
 .subheading {
-  @apply max-w-screen-lg text-gray-500 text-lg sm:text-2xl sm:leading-8 font-medium mb-4;
+  @apply mb-4 max-w-screen-lg text-lg font-medium text-gray-500 sm:text-2xl sm:leading-8;
 }
 
 .hiddenScrollbar::-webkit-scrollbar {
@@ -48,39 +49,35 @@ h6 {
 /* Syntax highlighting */
 
 pre {
-  @apply text-white bg-gray-800 overflow-x-auto text-sm p-6 rounded-primary !important;
+  @apply rounded-primary overflow-x-auto bg-gray-800 p-6 text-sm text-white !important;
   line-height: 1.7142857 !important;
 }
-.prose :where(pre):not(:where([class~="not-prose"] *)) {
+.prose :where(pre):not(:where([class~='not-prose'] *)) {
   margin-top: 0;
   margin-bottom: 0;
 }
 
 /* Inline code snippets */
-.prose *:not(pre) > :where(code):not(:where([class~="not-prose"] *)) {
-  @apply text-primary-800 bg-primary-50/50 dark:text-primary-500 dark:bg-primary-900/20 py-px px-1 rounded-[0.125rm];
+.prose *:not(pre) > :where(code):not(:where([class~='not-prose'] *)) {
+  @apply text-primary-800 bg-primary-50/50 dark:text-primary-500 dark:bg-primary-900/20 rounded-[0.125rm] py-px px-1;
 }
+.note code {
+  @apply dark:text-primary-800;
+}
+
 /* Large code blocks */
-.prose pre :where(code):not(:where([class~="not-prose"] *)) {
+.prose pre :where(code):not(:where([class~='not-prose'] *)) {
   @apply text-primary-400 dark:text-primary-400;
 }
 
-
-code::before, code::after {
+code::before,
+code::after {
   display: none;
 }
 
 .hero-gradient {
-  background: linear-gradient(
-      83.84deg,
-      #0ea5e9 -3.34%,
-      rgba(71, 201, 242, 0.133) 35.77%
-    ),
-    linear-gradient(
-      101.71deg,
-      rgba(227, 167, 228, 0.047) 46.42%,
-      #e879f9 94.51%
-    ),
+  background: linear-gradient(83.84deg, #0ea5e9 -3.34%, rgba(71, 201, 242, 0.133) 35.77%),
+    linear-gradient(101.71deg, rgba(227, 167, 228, 0.047) 46.42%, #e879f9 94.51%),
     linear-gradient(149.12deg, #6d28d9 13.67%, rgba(51, 8, 173, 0) 86.42%);
 }
 
@@ -133,24 +130,24 @@ code::before, code::after {
 }
 
 .token.deleted:not(.prefix) {
-  @apply relative block -mx-4 px-4;
+  @apply relative -mx-4 block px-4;
 }
 
 .token.deleted:not(.prefix)::after {
-  content: "";
+  content: '';
   @apply pointer-events-none absolute inset-0 block bg-rose-400 bg-opacity-25;
 }
 
 .token.deleted.prefix {
-  @apply text-gray-400 select-none;
+  @apply select-none text-gray-400;
 }
 
 .token.inserted:not(.prefix) {
-  @apply block bg-emerald-700 bg-opacity-50 -mx-4 px-4;
+  @apply -mx-4 block bg-emerald-700 bg-opacity-50 px-4;
 }
 
 .token.inserted.prefix {
-  @apply text-emerald-200 text-opacity-75 select-none;
+  @apply select-none text-emerald-200 text-opacity-75;
 }
 
 .prose h2 a {
@@ -170,5 +167,3 @@ code::before, code::after {
 .prose h3 a:hover {
   border-bottom-width: 2px !important;
 }
-
-
