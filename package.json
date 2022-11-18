@@ -9,7 +9,7 @@
   "dependencies": {
     "@blitzjs/auth": "2.0.0-beta.16",
     "@blitzjs/next": "2.0.0-beta.16",
-    "@makeswift/runtime": "^0.1.12",
+    "@makeswift/runtime": "^0.2.7",
     "@portabletext/react": "^1.0.6",
     "@sanity/image-url": "^1.0.1",
     "blitz": "2.0.0-beta.16",
