@@ -5,7 +5,8 @@
     "dataset": "production"
   },
   "project": {
-    "name": "FlightControl Website"
+    "name": "FlightControl Website",
+    "basePath": "/studio"
   },
   "plugins": [
     "@sanity/base",

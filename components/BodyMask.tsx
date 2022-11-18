@@ -1,12 +1,14 @@
 import classNames from 'classnames'
 import { HTMLMotionProps, motion } from 'framer-motion'
-import { useLayoutEffect, ComponentPropsWithRef, useState } from 'react'
+import { ComponentPropsWithRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
 export function useDocument(): Document | null {
   const [doc, setDoc] = useState<Document | null>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setDoc(document)
   }, [])
 
@@ -18,7 +20,7 @@ type Props = ComponentPropsWithRef<'div'> & HTMLMotionProps<'div'>
 export function BodyMask(props: Props) {
   const doc = useDocument()
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!doc) return
 
     const { body } = doc
