@@ -167,6 +167,15 @@ export default {
           },
         ],
       },
+      {
+        title: 'Deployments',
+        pages: [
+          {
+            title: 'Deploy Hooks',
+            href: '/http-api/deployments/deploy-hooks',
+          },
+        ],
+      },
     ],
     troubleshooting: [
       {
