@@ -60,6 +60,10 @@ const mainSidebar = [
         href: '/guides/advanced/watch-paths',
       },
       {
+        title: 'Git Submodules',
+        href: '/guides/advanced/git-submodules',
+      },
+      {
         title: 'Fargate Port Change',
         href: '/guides/advanced/fargate-port-change',
       },
