@@ -59,7 +59,13 @@ export async function getStaticProps({
   if (snapshot == null) return { notFound: true }
 
   return {
-    props: { preview: previewData?.makeswift == true, snapshot, blogPostSummaries, blogPost },
+    props: {
+      preview: preview ?? false,
+      previewData: previewData?.makeswift == true,
+      snapshot,
+      blogPostSummaries,
+      blogPost,
+    },
   }
 }
 
@@ -67,12 +73,20 @@ type PageProps = {
   blogPostSummaries: BlogPostSummaries
   blogPost: BlogPost
   preview: boolean
+  previewData: boolean
 } & MakeswiftPageProps
 
-export default function Page({ snapshot, preview, blogPostSummaries, blogPost }: PageProps) {
+export default function Page({
+  snapshot,
+  preview,
+  previewData,
+  blogPostSummaries,
+  blogPost,
+}: PageProps) {
   console.log({
     route: 'catchall',
     preview,
+    previewData,
   })
   const { data: previewBlogPostSummaries } = usePreviewSubscription<BlogPostSummaries>(
     BLOG_SUMMARIES_QUERY,
