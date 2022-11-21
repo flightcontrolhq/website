@@ -31,6 +31,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({
   params,
   previewData,
+  preview,
 }: GetStaticPropsContext<{ slug: string }, { makeswift: boolean }>) {
   const config = getConfig()
 
@@ -53,7 +54,8 @@ export async function getStaticProps({
       snapshot,
       blogPostSummaries,
       blogPost,
-      preview: previewData?.makeswift == true,
+      previewData: previewData?.makeswift == true,
+      preview: preview ?? false,
     },
     revalidate: 1,
   }
@@ -63,12 +65,20 @@ type PageProps = {
   blogPostSummaries: BlogPostSummaries
   blogPost: BlogPost
   preview: boolean
+  previewData: boolean
 } & MakeswiftPageProps
 
-export default function Page({ snapshot, preview, blogPostSummaries, blogPost }: PageProps) {
+export default function Page({
+  snapshot,
+  preview,
+  previewData,
+  blogPostSummaries,
+  blogPost,
+}: PageProps) {
   console.log({
     route: 'dynamic blog route',
     preview,
+    previewData,
   })
   const { data: previewBlogPostSummaries } = usePreviewSubscription<BlogPostSummaries>(
     BLOG_SUMMARIES_QUERY,
