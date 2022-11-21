@@ -53,7 +53,7 @@ export async function getStaticProps({
       snapshot,
       blogPostSummaries,
       blogPost,
-      isPreview: previewData?.makeswift == true,
+      preview: previewData?.makeswift == true,
     },
     revalidate: 1,
   }
@@ -62,21 +62,25 @@ export async function getStaticProps({
 type PageProps = {
   blogPostSummaries: BlogPostSummaries
   blogPost: BlogPost
-  isPreview: boolean
+  preview: boolean
 } & MakeswiftPageProps
 
-export default function Page({ snapshot, isPreview, blogPostSummaries, blogPost }: PageProps) {
+export default function Page({ snapshot, preview, blogPostSummaries, blogPost }: PageProps) {
+  console.log({
+    route: 'dynamic blog route',
+    preview,
+  })
   const { data: previewBlogPostSummaries } = usePreviewSubscription<BlogPostSummaries>(
     BLOG_SUMMARIES_QUERY,
     {
       initialData: blogPostSummaries,
-      enabled: isPreview,
+      enabled: preview,
     },
   )
   const { data: previewBlogPost } = usePreviewSubscription<BlogPost>(BLOG_BY_SLUG_QUERY, {
     params: { slug: blogPost?.slug },
+    enabled: preview,
     initialData: blogPost,
-    enabled: isPreview,
   })
 
   return (
