@@ -171,6 +171,13 @@ Environment variables can be configured two ways
 - Docker:
   - Bring your own Dockerfile for full control
 
+`watchPaths?: string[]`
+
+- Example: `"watchPaths": ["apps/frontend/**"]`
+- *Optional*
+- This service will only build & deploy if there is a file change since the last successful deploy that matches the given glob pattern(s)
+- Uses [`glob` patterns](https://github.com/micromatch/micromatch#matching-features)
+
 `envVariables: EnvVariables`
 
 `type: 'fargate'` (web server)

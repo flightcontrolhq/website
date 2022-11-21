@@ -56,6 +56,10 @@ const mainSidebar = [
         href: '/guides/advanced/custom-domains',
       },
       {
+        title: 'Watch Paths',
+        href: '/guides/advanced/watch-paths',
+      },
+      {
         title: 'Fargate Port Change',
         href: '/guides/advanced/fargate-port-change',
       },
