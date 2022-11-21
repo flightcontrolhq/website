@@ -141,8 +141,11 @@ export default {
         href: 'https://roadmap.flightcontrol.dev/',
         aProps: { target: '_blank', rel: 'noopener' },
       },
-      // Add roadmap
-      // { title: "Roadmap", href: "/roadmap" },
+      {
+        title: 'Changelog',
+        href: 'https://roadmap.flightcontrol.dev/changelog',
+        aProps: { target: '_blank', rel: 'noopener' },
+      },
     ],
   },
   sidebars: {
