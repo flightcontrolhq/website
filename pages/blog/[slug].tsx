@@ -30,13 +30,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({
   params,
-  preview = false,
-}: GetStaticPropsContext<{ slug: string }>) {
+  previewData,
+}: GetStaticPropsContext<{ slug: string }, { makeswift: boolean }>) {
   const config = getConfig()
 
   const makeswift = new Makeswift(config.makeswift.siteApiKey)
   const snapshot = await makeswift.getPageSnapshot(config.makeswift.blogTemplatePathname, {
-    preview,
+    preview: previewData?.makeswift == true,
   })
 
   if (snapshot == null) return { notFound: true }
@@ -53,7 +53,7 @@ export async function getStaticProps({
       snapshot,
       blogPostSummaries,
       blogPost,
-      preview,
+      isPreview: previewData?.makeswift == true,
     },
     revalidate: 1,
   }
@@ -62,21 +62,21 @@ export async function getStaticProps({
 type PageProps = {
   blogPostSummaries: BlogPostSummaries
   blogPost: BlogPost
-  preview: boolean
+  isPreview: boolean
 } & MakeswiftPageProps
 
-export default function Page({ snapshot, preview, blogPostSummaries, blogPost }: PageProps) {
+export default function Page({ snapshot, isPreview, blogPostSummaries, blogPost }: PageProps) {
   const { data: previewBlogPostSummaries } = usePreviewSubscription<BlogPostSummaries>(
     BLOG_SUMMARIES_QUERY,
     {
       initialData: blogPostSummaries,
-      enabled: preview,
+      enabled: isPreview,
     },
   )
   const { data: previewBlogPost } = usePreviewSubscription<BlogPost>(BLOG_BY_SLUG_QUERY, {
     params: { slug: blogPost?.slug },
     initialData: blogPost,
-    enabled: preview,
+    enabled: isPreview,
   })
 
   return (
