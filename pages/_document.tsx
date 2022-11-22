@@ -3,6 +3,11 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
   render() {
+    console.log({
+      location: 'document',
+      isPreview: this.props.__NEXT_DATA__.isPreview,
+      ...this.props.__NEXT_DATA__,
+    })
     return (
       <Html lang="en">
         <Head>
