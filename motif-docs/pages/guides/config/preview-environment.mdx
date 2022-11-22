@@ -19,7 +19,7 @@ Flightcontrol’s Preview Environment feature is an alternative to long-lived st
 - ✅ RDS (Beta)
   Note: There's currently a limitation on changing the config after it has been deployed (see RDS section for more info)
 
-<Note type="warning">⚠️ **static** service types are not yet supported. Make sure to omit these from the preview environment config in flightcontrol.json (see below). </Note>
+<Note type="warning">⚠️ **static** service type is not yet supported. Make sure to omit it from the preview environment config in flightcontrol.json (see below). </Note>
 
 ## Configuration
 
@@ -69,7 +69,7 @@ The service configuration schema is the same as the regular environment.
           },
           "services": [
             ...your supported service config
-            // ⚠️ **static** service types are not yet supported
+            // ⚠️ Do not include **static** service type as it is not supported yet
           ]
           ...rest of env config
         }
