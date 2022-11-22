@@ -7,6 +7,8 @@ import { Collapse } from '@components/ui/collapse.mdx'
 import { Image } from '@components/ui/image.mdx'
 import { Note } from '@components/ui/note.mdx'
 import { Spacer } from '@components/ui/spacer.mdx'
+import NextImage from 'next/image'
+import dashBoardPic from '../../../../public/dashboard-maintenance-window.png'
 
 To use your own file, you'll need to create a compatible JSON, YAML, or CUE file and add it to the path you indicated in the configuration.
 
@@ -59,7 +61,11 @@ Environment variables can be configured two ways
        - **Important: Your parameter store item must be in the same region as your service**
        - Screenshot of parameter store
          {' '}
-         <Image rounded={true} border={true} src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655164946/i1600x1708-omdv9rVjfGZZ_muha6h.png" />
+         <Image
+           rounded={true}
+           border={true}
+           src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655164946/i1600x1708-omdv9rVjfGZZ_muha6h.png"
+         />
      - **From Secrets Manager:**
        - Format: `"NAME": {"fromSecretsManager": "<arn:your-secret-arn>"}`
        - Example: `"STRIPE_API_KEY": {"fromSecretsManager": "arn:aws:secretsmanager:us-west-1:832786265645:secret:/stripe-y6uINZ"}`
@@ -105,7 +111,13 @@ Environment variables can be configured two ways
   - Optional with default to `"push"`
   - Leaving the trigger as `”push”` will result in an automatic deployment of any git push to the branch. Changing the trigger to `"manual"` will prevent automatic deployments and require manually deploying the environment in the hamburger menu in the environment show page:
     {' '}
-    <div className="max-w-xs"><Image rounded={true} border={true} src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165043/i686x716-7i2z1btLjnel_ysjwps.png" /></div>
+    <div className="max-w-xs">
+      <Image
+        rounded={true}
+        border={true}
+        src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165043/i686x716-7i2z1btLjnel_ysjwps.png"
+      />
+    </div>
 - `pr: true | undefined`
   - _Optional_, for configuring [Preview Environments](/guides/config/preview-environment)
 - `filter.toBranches: string[] | undefined`
@@ -117,7 +129,11 @@ Environment variables can be configured two ways
   - Example: `"labels": ["deploy-preview"]`
   - If set, only pull or merge requests with at least one of the specified labels will be deployed. It will be deployed when the label is added, whether that’s during PR creation or some time after the PR is opened.
 
-<Note type="info">💡 Note: The optional filters work with an `AND` logic. If both filters are enabled, it will only deploy a PR that matches both the target branch(es) (`toBranches`) and one of the labels configured (`labels`).</Note>
+<Note type="info">
+  💡 Note: The optional filters work with an `AND` logic. If both filters are enabled, it will only
+  deploy a PR that matches both the target branch(es) (`toBranches`) and one of the labels
+  configured (`labels`).
+</Note>
 
 `vpc: object`
 
@@ -142,7 +158,6 @@ Environment variables can be configured two ways
 
 - These services will be deployed and updated together.
 - These services exist inside the same VPC (each environment has it’s own VPC)
-
 
 ## `Service`
 
@@ -448,6 +463,11 @@ Environment variables can be configured two ways
     - Example: `"engine": "postgres"`
     - Supported values: `"postgres", "mysql", "mariadb"`
 
+    `applyChangesImmediately: boolean`
+
+    - When set to true, changes to the RDS config will trigger a new deployment with the changes. When set to false, these changes will be applied at the next scheduled maintenance window. Refer to [AWS documentation on maintenance windows](https://aws.amazon.com/premiumsupport/knowledge-center/rds-maintenance-window) if needed.
+    - The next window for changes to be applied can be seen in the dashboard: <NextImage src={dashBoardPic} alt="Dashboard with maintenance window highlighted" />
+
     `engineVersion: string`
 
     - Example: `"engineVersion": "12"`
@@ -503,73 +523,5 @@ Environment variables can be configured two ways
         - Postgres: `5432`
         - Mysql: `3306`
         - Mariadb: `3306`
-
-    <Collapse title="Extra options for Node.js only">
-
-    `port: number`
-
-    - Example: `"port": 8080`
-    - Optional with default: `3000`
-    - The http port we’ll direct incoming traffic to
-
-    `installCommand: string`
-
-    - Example: `"installCommand": "./install.sh"`
-    - Optional with default:
-        - If you have `yarn.lock` ,  `yarn install --frozen-lockfile --production=false`
-        - If you have `pnpm-lock.yaml` ,  `pnpm install --frozen-lockfile --prod=false`
-        - Else  `npm ci --production=false`
-    - What we use to install dependencies for your build
-
-    `buildCommand: string`
-
-    - Example: `"buildCommand": "blitz build"`
-    - Optional with default:
-        - If you have `yarn.lock` ,  `yarn build`
-        - If you have `pnpm-lock.yaml` ,  `pnpm build`
-        - Else  `npm run build`
-    - What we use to build your app
-
-    `postBuildCommand: string`
-
-    - Example: `"postBuildCommand": "npm run cleanup"`
-    - Optional with default:
-        - If you have `yarn.lock` ,  `yarn install --production --force`
-        - If you have `pnpm-lock.yaml` ,  `pnpm prune --production`
-        - Else  `npm prune --production`
-    - What we use to clean to remove all development dependencies before starting your app. This reduces the build image size and improves security by minimizing the attack surface area.
-
-    `startCommand: string`
-
-    - Example: `"startCommand": "blitz start"`
-    - Optional with default:
-        - If you have `yarn.lock` ,  `yarn start`
-        - If you have `pnpm-lock.yaml` ,  `pnpm start`
-        - Else  `npm run start`
-    - What we use to start your app
-
-    </Collapse>
-
-    <Collapse title="Extra options for custom Dockerfile only">
-    `port: number`
-
-    - Example: `"port": 8080`
-    - The http port we’ll direct incoming traffic to
-    - We automatically set the `PORT` environment variable to whatever you configure here
-
-    `dockerfilePath: string`
-
-    - Example: `"dockerfilePath": "packages/web/Dockerfile"`
-    - Relative path to the Dockerfile from your repo root
-    - It’s recommended to use `ENTRYPOINT` instead of `CMD` for your start command
-    - You can authenticate with Docker Hub by adding your Docker Hub credentials as `DOCKER_USERNAME` and `DOCKER_PASSWORD` environment variables. If these env variables are present, we’ll run `docker login` with them. *This will prevent Docker Hub rate limit issues.*
-
-    `dockerContext: string`
-
-    - Example: `"dockerContext": "packages/web"`
-    - Optional with default: `"."` (repo root)
-    - Relative path to the docker context from the repo root
-    - It’s recommended to use `ENTRYPOINT` instead of `CMD` for your start command
-    </Collapse>
 
 </Collapse>
