@@ -424,15 +424,15 @@
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.20.2.tgz#9aeb9b92f64412b5f81064d46f6a1ac0881337f4"
   integrity sha512-afk318kh2uKbo7BEj2QtEi8HVCGrwHUffrYDy7dgVcSa2j9lY3LDjPzcyGdpX7xgm35aWqvciZJ4WKmdF/SxYg==
 
+"@babel/parser@^7.16.7", "@babel/parser@^7.19.6":
+  version "7.20.3"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.20.3.tgz#5358cf62e380cf69efcb87a7bb922ff88bfac6e2"
+  integrity sha512-OP/s5a94frIPXwjzEcv5S/tpQfc6XhxYUnmWpgdqMWGgYCuErA3SzozaRAMQgSZWKeTJxht9aWAkUY+0UzvOFg==
+
 "@babel/parser@^7.17.3", "@babel/parser@^7.17.8", "@babel/parser@^7.18.10", "@babel/parser@^7.19.1":
   version "7.19.1"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.19.1.tgz#6f6d6c2e621aad19a92544cc217ed13f1aac5b4c"
   integrity sha512-h7RCSorm1DdTVGJf3P2Mhj3kdnkmF/EiysUkzS2TdgAYqyjFdMQJbVuXOBej2SBJaXan/lIVtT6KkGbyyq753A==
-
-"@babel/parser@^7.19.6":
-  version "7.20.3"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.20.3.tgz#5358cf62e380cf69efcb87a7bb922ff88bfac6e2"
-  integrity sha512-OP/s5a94frIPXwjzEcv5S/tpQfc6XhxYUnmWpgdqMWGgYCuErA3SzozaRAMQgSZWKeTJxht9aWAkUY+0UzvOFg==
 
 "@babel/plugin-proposal-async-generator-functions@^7.12.1":
   version "7.20.1"
@@ -1508,10 +1508,10 @@
   dependencies:
     next-transpile-modules "^9.0.0"
 
-"@makeswift/runtime@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@makeswift/runtime/-/runtime-0.2.7.tgz#f603fdda1e293eb3c5e89169d5316552597f4ce9"
-  integrity sha512-fcjunrIl76bcojZdhNoxZtL6x3jWv0yjb94lmIoZfblNdhUHvWEjdU5rUl4CFChNsfLdMpL9Zfx/wnU7skJRXQ==
+"@makeswift/runtime@0.0.0-20221122160625":
+  version "0.0.0-20221122160625"
+  resolved "https://registry.yarnpkg.com/@makeswift/runtime/-/runtime-0.0.0-20221122160625.tgz#d375d75d4ae051237e77697f2e8b77523b24f1d8"
+  integrity sha512-MfDPD/7RpH5sVr8Jpr1vON1Zz73VHJv7kbElqATsnwwoCsy66jgRV+QFhkjneGqyYtqxdgxjHIPGR+Xv9yCo0A==
   dependencies:
     "@apollo/client" "^3.5.10"
     "@convertkit/slate-lists" "^0.2.4"

@@ -62,6 +62,7 @@ export async function getStaticProps({
     props: {
       preview: preview ?? false,
       previewData: previewData?.makeswift == true,
+      nodeEnv: process.env.NODE_ENV,
       snapshot,
       blogPostSummaries,
       blogPost,
@@ -74,6 +75,7 @@ type PageProps = {
   blogPost: BlogPost
   preview: boolean
   previewData: boolean
+  nodeEnv: string
 } & MakeswiftPageProps
 
 export default function Page({
@@ -82,11 +84,13 @@ export default function Page({
   previewData,
   blogPostSummaries,
   blogPost,
+  nodeEnv,
 }: PageProps) {
   console.log({
     route: 'catchall',
     preview,
     previewData,
+    nodeEnv,
   })
   const { data: previewBlogPostSummaries } = usePreviewSubscription<BlogPostSummaries>(
     BLOG_SUMMARIES_QUERY,
