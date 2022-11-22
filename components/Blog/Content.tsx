@@ -21,8 +21,7 @@ export function BlogContent({ className }: Pick<Props, 'className'>) {
           types: {
             code: props => {
               return (
-                <div className="not-prose prose-zinc relative z-0 border border-midGray bg-darkGray">
-                  <Corners />
+                <div className="not-prose prose-zinc relative z-0 bg-black/50 ">
                   <Code language={props.value.language} code={props.value.code} />
                 </div>
               )
