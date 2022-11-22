@@ -243,10 +243,11 @@ Alternatively, you can deploy preview environments to an existing VPC by setting
 
 ### RDS Preview Environment
 
-To keep the cost low and the deployment faster, the RDS in Preview Environment will have a single RDS instance per service configured.
-i.e.: if you have 2 RDS services, there will be 2 instances created in AWS.
+To keep costs as low as possible and to increase deployment time, the RDS service in Preview Environment will only have a single AWS RDS instance per service configured that will be shared.
+i.e.: if you have 1 RDS services and 10 PRs open, there will only be 1 instance created in AWS.
 
-For each preview environment created a new database within that instance will be created.
+Then, for each preview environment, a new database within that instance will be created.
+The correct connection string with the correct database name can be referenced from the other services.
 
 When the PR is merged and the preview environment is cleaned up, that database will be deleted.
 
