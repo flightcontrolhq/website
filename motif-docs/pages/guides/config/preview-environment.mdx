@@ -16,8 +16,10 @@ Flightcontrol’s Preview Environment feature is an alternative to long-lived st
 
 - ✅  Fargate
 - ✅  Fargate-worker
+- ✅ RDS (Beta)
+  Note: There's currently a limitation on changing the config after it has been deployed (see RDS section for more info)
 
-<Note type="warning">⚠️ **RDS** and **static** service types are not yet supported. Make sure to omit these from the preview environment config in flightcontrol.json (see below). In the meantime for database, you can use a separate staging database and add the connection string to preview environments as an env variable.</Note>
+<Note type="warning">⚠️ **static** service types are not yet supported. Make sure to omit these from the preview environment config in flightcontrol.json (see below). </Note>
 
 ## Configuration
 
@@ -43,9 +45,11 @@ Add a new environment to your environments array, with the following `source` ob
 
 <Note type="info">💡 Note: The optional filters work with an `AND` logic. If both filters are enabled, it will only deploy a PR that matches both the target branch(es) (`toBranches`) and one of the labels configured (`labels`).</Note>
 
+The service configuration schema is the same as the regular environment.
+
 ### Examples
 
-#### Preview environment config
+#### Example of the environment config
 
 ```json
     {
@@ -64,8 +68,8 @@ Add a new environment to your environments array, with the following `source` ob
             }
           },
           "services": [
-            ...your fargate config
-            // ⚠️ **RDS** and **static** service types are not yet supported
+            ...your supported service config
+            // ⚠️ **static** service types are not yet supported
           ]
           ...rest of env config
         }
@@ -73,7 +77,49 @@ Add a new environment to your environments array, with the following `source` ob
     }
 ```
 
-#### Preview environment config using database from another non-preview environment
+## Config using preview RDS with fargate
+
+In this example, we're retrieving the database URL from the preview environment URL.
+
+```
+{
+  "environments": [
+    ...otherEnvironments,
+    {
+      // Preview environment (`pr: true`)
+      "source": {
+        "pr": true,
+        "filter": {
+          "toBranches": ["main"]
+        }
+      },
+      "services": [
+        {
+          "id": "preview-db",
+          "type": "rds",
+          "engine": "postgres"
+          ...restOfConfig
+        },
+        {
+          "id": "backend-api",
+          "envVariables": {
+            "DATABASE_URL": {
+              "fromService": {
+                "id": "preview-db",
+                "value": "dbConnectionString"
+              }
+            }
+          }
+          ...restOfConfig
+        }
+      ]
+    }
+  ]
+}
+
+```
+
+#### Example config using database from another non-preview environment
 
 ```json
 {
@@ -187,10 +233,25 @@ You'll be able to get the preview URL once a preview environment has been fully 
   - Each service on each preview environment will have an associated cost, same as normal environments.
   - AWS only charges you based on the time the services are running. So if the preview environment for a specific PR is only running for 2 days, then you’re only charged for 2 days of usage.
 
-## Advanced Topics
-
-### VPC
+## VPC
 
 By default, a new, single VPC is used for all preview environments.
 
 Alternatively, you can deploy preview environments to an existing VPC by setting the `vpc` field in `flightcontrol.json`.
+
+## How it works
+
+### RDS Preview Environment
+
+To keep the cost low and the deployment faster, the RDS in Preview Environment will have a single RDS instance per service configured.
+i.e.: if you have 2 RDS services, there will be 2 instances created in AWS.
+
+For each preview environment created a new database within that instance will be created.
+
+When the PR is merged and the preview environment is cleaned up, that database will be deleted.
+
+### Limitation on changing the config
+
+We do not currently support changing the RDS config once it has been deployed and as way around that we suggest you change the ID for the RDS service type.
+
+This will create a new RDS instance which can have the changed config.
