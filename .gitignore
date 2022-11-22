@@ -8,6 +8,10 @@ studio/dist
 /.pnp
 .pnp.js
 
+# sitemap
+/public/sitemap*
+/public/robots.txt
+
 # testing
 /coverage
 
