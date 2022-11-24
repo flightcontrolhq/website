@@ -8,6 +8,7 @@ studio/dist
 /.pnp
 .pnp.js
 
+.env
 # sitemap
 /public/sitemap*
 /public/robots.txt

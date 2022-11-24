@@ -7,6 +7,7 @@ import remarkMath from 'remark-math'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import {remarkSluggifyHeadingId} from './remark-sluggyify-heading-id.js'
 import { createLoader } from 'simple-functional-loader'
+import algoliasearch from 'algoliasearch';
 
 const buildTree = (dir, parentName = 'pages') => {
   const result = {}
@@ -63,6 +64,57 @@ const config = {
   },
   webpack(config, options) {
     const files = buildTree('./pages')
+
+
+    /* Indexing Algolia */
+    const getDescription = file => {
+      return (
+        file.meta?.description || file.meta?.meta?.description || file.meta?.meta?.['og:description']
+      )
+    }
+    
+    const getTitle = file => {
+      return file.meta?.title || file.meta?.meta?.title || (file.name && removeFileExtension(file.name))
+    }
+
+    const filesToSearchData = (folder, parentFolderNames, rootName = 'Home') => {
+      const isRoot = !parentFolderNames
+      const folders = [...(parentFolderNames || []), isRoot ? rootName : folder.name]
+      let data = folder.files?.map(f => ({
+        path: f.path,
+        title: getTitle(f),
+        description: getDescription(f),
+        folders: folders,
+      }))
+      if (!data) {
+        return []
+      }
+      for (const f of folder.folders || []) {
+        data = data.concat(filesToSearchData(f, folders, rootName))
+      }
+      return data
+    }
+
+    const searchData = () => {
+      return filesToSearchData(files, undefined, "Home")
+    }
+
+    const client = algoliasearch('VTSKZ0Z9CR', process.env.ALGOLIA_WRITE_KEY);
+    const index = client.initIndex('fc-docs');
+
+    const transformed = searchData().filter(article => article.title !== "Flightcontrol Docs").map(article => {    
+      return {
+        objectID: article.path,
+        title: article.title,
+        description: article.description,
+        slug: article.path,
+        type: 'article',
+      };
+    });
+
+    index.saveObjects(transformed, { autoGenerateObjectIDIfNotExist: true });
+
+    /* End Indexing Algolia */
 
     config.module.rules.push({
       test: { and: [/\.mdx$/] },
