@@ -246,7 +246,7 @@ To keep costs as low as possible and to increase deployment time, the RDS servic
 i.e.: if you have 1 RDS services and 10 PRs open, there will only be 1 instance created in AWS.
 
 Then, for each preview environment, a new database within that instance will be created.
-The correct connection string with the correct database name can be referenced from the other services.
+The connection string for a specific PR can be accessed from the other services via the configured environment variable.
 
 When the PR is merged and the preview environment is cleaned up, that database will be deleted.
 
