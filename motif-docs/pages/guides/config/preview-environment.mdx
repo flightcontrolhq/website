@@ -48,7 +48,7 @@ The service configuration schema is the same as the regular environment.
 
 ### Examples
 
-#### Example of the environment config
+#### Preview Environment Example
 
 ```json
     {
@@ -76,7 +76,7 @@ The service configuration schema is the same as the regular environment.
     }
 ```
 
-## Config using preview RDS with fargate
+## Preview RDS With Fargate Example
 
 In this example, we're retrieving the database URL from the preview environment URL.
 
@@ -118,7 +118,7 @@ In this example, we're retrieving the database URL from the preview environment 
 
 ```
 
-#### Example config using database from another non-preview environment
+#### Using Database From Another Non-preview Environment Example
 
 ```json
 {
@@ -208,7 +208,7 @@ To reduce your resource cost and to increase speed of provisioning, they don’t
 
 ## Good to Know
 
-### First deployment time
+### First Deployment Time
 
 All the preview environments will share AWS resources. What this means in term of deployment time is that the very first time a pull request is created, it will take a bit longer to create the preview environment but subsequent pull requests will skip this step. The time for build and deploy will be the same.
 
@@ -232,7 +232,7 @@ You'll be able to get the preview URL once a preview environment has been fully 
   - Each service on each preview environment will have an associated cost, same as normal environments.
   - AWS only charges you based on the time the services are running. So if the preview environment for a specific PR is only running for 2 days, then you’re only charged for 2 days of usage.
 
-## How it works
+## How It Works
 
 ## VPC
 
@@ -250,7 +250,7 @@ The correct connection string with the correct database name can be referenced f
 
 When the PR is merged and the preview environment is cleaned up, that database will be deleted.
 
-### Limitation on changing the config
+### Limitation
 
 We do not currently support changing the RDS config once it has been deployed and as way around that we suggest you change the ID for the RDS service type.
 
