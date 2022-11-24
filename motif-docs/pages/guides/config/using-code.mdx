@@ -48,6 +48,7 @@ Environment variables can be configured two ways
        - Example: `"NAME": {"fromService": {"id": "db", value: "dbConnectionString"}}`
        - Supported values for `type: "rds"` services:
          `dbConnectionString, username, password, host, port`
+         In preview environment we also include `dbName` and `dbEngine`.
        - Supported values for `type: "fargate"` and `type: "static"` services:
 
          `host` will include the service URL without protocol: `www.example.com`
