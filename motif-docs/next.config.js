@@ -8,6 +8,10 @@ import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import {remarkSluggifyHeadingId} from './remark-sluggyify-heading-id.js'
 import { createLoader } from 'simple-functional-loader'
 import algoliasearch from 'algoliasearch';
+import {remark} from 'remark'
+import mdx from 'remark-mdx'
+import strip from 'strip-markdown'
+import stripMdx from './mdx-to-plain.js'
 
 const buildTree = (dir, parentName = 'pages') => {
   const result = {}
@@ -23,16 +27,21 @@ const buildTree = (dir, parentName = 'pages') => {
       result.folders = [...(result.folders || []), buildTree(itemPath, item)]
     } else {
       const frontmatter = matter(fs.readFileSync(itemPath, { encoding: 'utf-8' }))
+
+      const plain = remark().use(mdx).use(stripMdx).use(strip).processSync(frontmatter.content)
+
       const p = path
         .join(path.dirname(itemPath), path.basename(itemPath, path.extname(itemPath)))
         .replace(/^pages/, '')
         .replace(/\/index$/, '')
+
       result.files = [
         ...(result.files || []),
         {
           name: item,
           path: p,
           meta: frontmatter.data,
+          content: plain.value
         },
       ]
     }
@@ -80,12 +89,17 @@ const config = {
     const filesToSearchData = (folder, parentFolderNames, rootName = 'Home') => {
       const isRoot = !parentFolderNames
       const folders = [...(parentFolderNames || []), isRoot ? rootName : folder.name]
-      let data = folder.files?.map(f => ({
-        path: f.path,
-        title: getTitle(f),
-        description: getDescription(f),
-        folders: folders,
-      }))
+      let data = folder.files?.map(f => {
+        return (
+          {
+            path: f.path,
+            title: getTitle(f),
+            description: getDescription(f),
+            folders: folders,
+            content: f.content
+          }
+        )
+      })
       if (!data) {
         return []
       }
@@ -102,17 +116,35 @@ const config = {
     const client = algoliasearch('VTSKZ0Z9CR', process.env.ALGOLIA_WRITE_KEY);
     const index = client.initIndex('fc-docs');
 
-    const transformed = searchData().filter(article => article.title !== "Flightcontrol Docs").map(article => {    
-      return {
-        objectID: article.path,
+
+    const transformed = searchData().filter(article => article.title !== "Flightcontrol Docs").map(article => {
+      return article.content.split(/\r?\n/).filter(e => e).map((e, i) => ({
+        objectID: `${article.path}-${i}`,
         title: article.title,
-        description: article.description,
         slug: article.path,
-        type: 'article',
-      };
+        section: i,
+        content: e
+      }))
+      // return {
+      //   objectID: article.path,
+      //   title: article.title,
+      //   description: article.description,
+      //   slug: article.path,
+      //   type: 'article',
+      //   // content: article.content
+      // };
     });
 
-    index.saveObjects(transformed, { autoGenerateObjectIDIfNotExist: true });
+    const arrayTransformed = transformed.filter(e => e.length).flatMap(f => {
+      return f
+    })
+
+    index.setSettings({
+      attributeForDistinct: 'section',
+      distinct: true
+    })
+
+    index.saveObjects(arrayTransformed, { autoGenerateObjectIDIfNotExist: true });
 
     /* End Indexing Algolia */
 

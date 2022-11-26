@@ -4,9 +4,21 @@ import cn from 'classnames'
 import SearchIcon from '@components/icons/search.mdx'
 import { Keys } from '@components/ui/keys'
 import { removeFileExtension } from '@lib/files'
+import algoliasearch from 'algoliasearch/lite';
+import { InstantSearch, useInstantSearch } from 'react-instantsearch-hooks-web';
+
+export const searchClient = algoliasearch('VTSKZ0Z9CR', '53d6a35f0170907910d2631169af45a8');
 
 export const getFolderName = (rawName) => {
   return rawName.charAt(0).toUpperCase() + rawName.slice(1);
+}
+
+export const Hit = ({hit}) => {
+  return (
+    <article>
+      <h1>{hit.title}</h1>
+    </article>
+  );
 }
 
 export const SearchResult = ({ result, selected, onMouseOver, onClick }) => {
@@ -79,6 +91,7 @@ export const SearchResults = ({
 
 export const SearchInput = forwardRef(
   ({ onKeyDown, onChange, onFocus, showKey, placeholder }, inputRef) => {
+
     return (
       <div className="relative antialiased">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -255,35 +268,36 @@ const onBlur = useCallback(() => {
 }, [])
 
 return (
+<InstantSearch searchClient={searchClient} indexName="fc-docs">
+  <div className="flex flex-col">
+    <SearchInput
+    ref={searchInputRef}
+    onKeyDown={onKeyDown}
+    onFocus={onFocus}
+    placeholder={placeholder}
+    />
 
-<div className="flex flex-col">
-  <SearchInput
-  ref={searchInputRef}
-  onKeyDown={onKeyDown}
-  onChange={(e) => search(e.target.value)}
-  onFocus={onFocus}
-  placeholder={placeholder}
-  />
-  <div
-  ref={searchResultsRef}
-  className={cn('relative z-50', {
-  'opacity-0 pointer-events-none': state.results.length === 0,
-  })} >
-    <div className="z-50 sm:absolute left-0 right-[-320px] top-2">
-      <SearchResults
-      results={state.results}
-      selectedIndex={state.selectedIndex}
-      setSelectedIndex={(i) =>
-      dispatch({ type: 'SELECT_INDEX', index: i })
-      }
-      onSubmit={() => {
-      dispatch({ type: 'SET_RESULTS', results: [] })
-      }}
-      limit={state.limit}
-      />
+    <div
+    ref={searchResultsRef}
+    className={cn('relative z-50', {
+    'opacity-0 pointer-events-none': state.results.length === 0,
+    })} >
+      <div className="z-50 sm:absolute left-0 right-[-320px] top-2">
+        <SearchResults
+        results={state.results}
+        selectedIndex={state.selectedIndex}
+        setSelectedIndex={(i) =>
+        dispatch({ type: 'SELECT_INDEX', index: i })
+        }
+        onSubmit={() => {
+        dispatch({ type: 'SET_RESULTS', results: [] })
+        }}
+        limit={state.limit}
+        />
+      </div>
     </div>
   </div>
-</div>
+</InstantSearch>
 )
 }
 
