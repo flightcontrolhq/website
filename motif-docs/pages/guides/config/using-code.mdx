@@ -8,6 +8,7 @@ import { Image } from '@components/ui/image.mdx'
 import { Note } from '@components/ui/note.mdx'
 import { Spacer } from '@components/ui/spacer.mdx'
 import NextImage from 'next/image'
+
 import dashBoardPic from '../../../../public/dashboard-maintenance-window.png'
 
 To use your own file, you'll need to create a compatible JSON, YAML, or CUE file and add it to the path you indicated in the configuration.
@@ -162,6 +163,8 @@ Environment variables can be configured two ways
 
 ## `Service`
 
+The following properties are common for all service types:
+
 `id: string`
 
 - Example: `"id": "production-web"`
@@ -190,13 +193,19 @@ Environment variables can be configured two ways
 `watchPaths?: string[]`
 
 - Example: `"watchPaths": ["apps/frontend/**"]`
-- *Optional*
+- _Optional_
 - This service will only build & deploy if there is a file change since the last successful deploy that matches the given glob pattern(s)
 - Uses [`glob` patterns](https://github.com/micromatch/micromatch#matching-features)
 
 `envVariables: EnvVariables`
 
-`type: 'fargate'` (web server)
+### `Service-Specific Configuration`
+
+Besides the common properties above, each service will have specific properties, specified below:
+
+### Web Server
+
+`type: 'fargate'`
 
 <Collapse title="Fargate service options">
     `cpu: number`
@@ -310,7 +319,9 @@ Environment variables can be configured two ways
 
 </Collapse>
 
-`type: 'fargate-worker'` (private server)
+### Private Server / Worker
+
+`type: 'fargate-worker'`
 
 <Collapse title="Fargate worker service options">
     `cpu: number`
@@ -401,7 +412,9 @@ Environment variables can be configured two ways
 
 </Collapse>
 
-`type: 'static'` (static website)
+### Static Website
+
+`type: 'static'`
 
 <Collapse title="Static service options">
 `domain: string`
@@ -455,7 +468,9 @@ Environment variables can be configured two ways
 
 </Collapse>
 
-`type: 'rds'` (database)
+### Database
+
+`type: 'rds'`
 
 <Collapse title="RDS service options">
 
@@ -524,5 +539,98 @@ Environment variables can be configured two ways
         - Postgres: `5432`
         - Mysql: `3306`
         - Mariadb: `3306`
+
+</Collapse>
+
+### Redis (BETA)
+
+`type: 'elasticache'`
+
+<Collapse title="Elasticache service options">
+
+#### About
+
+This service will create a Redis instance using AWS Elasticache with AUTH and Encryption in transit (TLS) enabled by default.
+
+The password and the connection URL(s) will be stored in the SSM Parameter Store in your AWS Account - Flightcontrol does not store it.
+The connection URL can also be made available to the other services in the same environment by setting up `connectionStringEnvVarName` (see the docs below for an example).
+
+Besides the AWS Elasticache resource and the SSM Parameter, there are a couple of other AWS resources needed for the architecture which we abstract away, like Subnets and Security Group.
+
+#### Limitations:
+
+- We do not currently support:
+
+  - Changing the cluster configuration after creation, i.e.: the engine version or the instance size.
+    This means if you need to make changes after deployment, you will need to delete the service and add a new one with a different ID.
+
+  - AWS Cluster Mode, which includes sharding and multiple clusters under the same service
+
+#### Required Properties
+
+`engine: string`
+
+The cache engine to be created. Supported values: `"redis"`
+
+- Example: `"engine": "redis"`
+
+`instanceSize: string`
+
+- The AWS instance size
+- Example: `"instanceSize": "cache.t4g.small"`
+- Support values: [See the AWS documentation](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html)
+- Changing this after creation will not currently work.
+
+`engineVersion: string`
+
+- Cannot be changed after initial deployment
+- Supported values:
+  - Redis: ` "7.0", "6.2", "6.0", "5.0.6", "5.0.5", "5.0.4", "5.0.3", "5.0.0", "4.0.10", "3.2.10", "3.2.6", "3.2.4", "2.8.24", "2.8.23", "2.8.22", "2.8.21", "2.8.19", "2.8.6", "2.6.13"`
+- Default: `7.0`
+- Example: `"engineVersion": "6.2"`
+
+#### Optionals:
+
+`numberOfReplicas: number`
+
+- The number of replicas you want in your Redis service
+- Optional with default: `1`
+
+`connectionStringEnvVarName: string`
+
+- The name of the environment variable that will contain the URL for connecting to Redis.
+- When this is set, Flightcontrol automatically injects the environment variable to other services in the same environment.
+- Optional with NO default
+- Example: `"connectionStringEnvVarName": "REDIS_URL"`
+  (In this case, REDIS_URL will be available as an env var for any other service in the **same environment**)
+
+`autoUpgradeMinorVersions: boolean`
+
+- Example: `“autoUpgradeMinorVersions": true`
+- Optional with default: `true`
+
+`port: int`
+
+- Example: `"port": 6379`
+- Optional with default:
+  - Redis: `6379`
+
+### Configuration Example
+
+Note:
+
+- `name` is what will be displayed in your FC dashboard
+- `id` should be unique and is used by FC as the source of truth for your service, changing this will create a new service under the same environment
+
+```json
+{
+  "id": "redis",
+  "type": "elasticache",
+  "engine": "redis",
+  "name": "My Redis Service",
+  "engineVersion": "7.0",
+  "instanceSize": "cache.t4g.small"
+}
+```
 
 </Collapse>
