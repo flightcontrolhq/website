@@ -574,6 +574,13 @@ The cache engine to be created. Supported values: `"redis"`
 
 - Example: `"engine": "redis"`
 
+`instanceSize: string`
+
+- The AWS instance size
+- Example: `"instanceSize": "cache.t4g.small"`
+- Support values: [See the AWS documentation](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html)
+- Changing this after creation will not currently work.
+
 `engineVersion: string`
 
 - Cannot be changed after initial deployment
@@ -581,13 +588,6 @@ The cache engine to be created. Supported values: `"redis"`
   - Redis: ` "7.0", "6.2", "6.0", "5.0.6", "5.0.5", "5.0.4", "5.0.3", "5.0.0", "4.0.10", "3.2.10", "3.2.6", "3.2.4", "2.8.24", "2.8.23", "2.8.22", "2.8.21", "2.8.19", "2.8.6", "2.6.13"`
 - Default: `7.0`
 - Example: `"engineVersion": "6.2"`
-
-`instanceSize: string`
-
-- The AWS instance size
-- Example: `"instanceSize": "cache.t4g.small"`
-- Support values: [See the AWS documentation](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html)
-- Changing this after creation will not currently work.
 
 #### Optionals:
 
@@ -614,5 +614,23 @@ The cache engine to be created. Supported values: `"redis"`
 - Example: `"port": 6379`
 - Optional with default:
   - Redis: `6379`
+
+### Configuration Example
+
+Note:
+
+- `name` is what will be displayed in your FC dashboard
+- `id` should be unique and is used by FC as the source of truth for your service, changing this will create a new service under the same environment
+
+```json
+{
+  "id": "redis",
+  "type": "elasticache",
+  "engine": "redis",
+  "name": "My Redis Service",
+  "engineVersion": "7.0",
+  "instanceSize": "cache.t4g.small"
+}
+```
 
 </Collapse>
