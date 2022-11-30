@@ -2,16 +2,16 @@ import { useMemo } from "react"
 import { AppContainer } from "@components/app/app-container.mdx"
 import { AppNavbar } from "@components/app/app-navbar.mdx"
 import { AppSidebar } from "@components/app/app-sidebar.mdx"
-import { filesToSearchData } from "@components/app/app-search.mdx"
+// import { filesToSearchData } from "@components/app/app-search.mdx"
 import { getSection as getGuideSection } from "@lib/sidebar.ts"
 import { removeFileExtension } from "@lib/files.ts"
 import { ThemeProvider } from "next-themes"
 import config from "/project-config"
 
 export const Template = ({ filename, path, files, meta, includeSidebar, includeFooterNav, children }) => {
-  const searchData = useMemo(() => {
-    return (files && filesToSearchData(files, undefined, "Home")) || []
-  }, [files])
+  // const searchData = useMemo(() => {
+  //   return (files && filesToSearchData(files, undefined, "Home")) || []
+  // }, [files])
 
   const isGuide = path?.startsWith("/guides")
   const basePath = isGuide ? "/guides" : ""
@@ -19,7 +19,8 @@ export const Template = ({ filename, path, files, meta, includeSidebar, includeF
   return (
     <ThemeProvider attribute="class">
       <div className="fixed top-0 left-0 w-full z-50">
-        <AppNavbar activeSlug={path} searchData={searchData} />
+        {/* <AppNavbar activeSlug={path} searchData={searchData} /> */}
+        <AppNavbar activeSlug={path} />
       </div>
       <div className="relative min-h-screen pt-24">
         {includeSidebar &&
