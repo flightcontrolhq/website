@@ -7,7 +7,7 @@ import '../lib/global.css'
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   useEffect(() => {
-    document.cookie = 'ref=' + router.query.ref
+    document.cookie = `fc-referral-ref=${router.query.ref}; domain=flightcontrol.dev`
   }, [router.query.ref])
   return <Component {...pageProps} />
 }
