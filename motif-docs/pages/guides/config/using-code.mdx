@@ -8,6 +8,7 @@ import { Image } from '@components/ui/image.mdx'
 import { Note } from '@components/ui/note.mdx'
 import { Spacer } from '@components/ui/spacer.mdx'
 import NextImage from 'next/image'
+
 import dashBoardPic from '../../../../public/dashboard-maintenance-window.png'
 
 To use your own file, you'll need to create a compatible JSON, YAML, or CUE file and add it to the path you indicated in the configuration.
@@ -190,7 +191,7 @@ Environment variables can be configured two ways
 `watchPaths?: string[]`
 
 - Example: `"watchPaths": ["apps/frontend/**"]`
-- *Optional*
+- _Optional_
 - This service will only build & deploy if there is a file change since the last successful deploy that matches the given glob pattern(s)
 - Uses [`glob` patterns](https://github.com/micromatch/micromatch#matching-features)
 
@@ -237,9 +238,7 @@ Environment variables can be configured two ways
     - Example: `"domain": "www.example.com"`
     - Optional, defaults to a random url like `123456789.cloudfront.net`
     - Wildcard domains are supported: `"domain": "*.example.com"` The http `host` header will contain the specific domain that’s being used.
-    - If configured, during the setup phase in the Flightcontrol dashboard we’ll show you the required DNS changes to actually point your custom domain to this service. If you configure the domain here but don’t change your DNS, you can still access the service using the random generated `[x.cloudfront.net](http://x.cloudfront.net)` domain.
-        - *Example screenshot*
-            <Image rounded={true} border={true} src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165403/i1600x349-REQhW6PMBk1__xncshv.png" />
+    - See our recommendation and detailed setup info [in this section](/advanced/custom-domains)
 
     `port: number`
 
@@ -409,18 +408,7 @@ Environment variables can be configured two ways
 - Example: `"domain": "www.example.com"`
 - Optional, defaults to a random url like `123456789.cloudfront.net`
 - Wildcard domains are supported: `"domain": "*.example.com"` The http `host` header will contain the specific domain that’s being used.
-- If configured, during the setup phase in the Flightcontrol dashboard we’ll show you the required DNS changes to actually point your custom domain to this service. If you configure the domain here but don’t change your DNS, you can still access the service using the random generated `[x.cloudfront.net](http://x.cloudfront.net)` domain.
-
-  - _Example screenshot_
-
-        {' '}
-
-        <Image
-
-    rounded={true}
-    border={true}
-    src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165922/i1600x349-0NhJiulDrUvt_aymzp2.png"
-    />
+- See our recommendation and detailed setup info [in this section](/advanced/custom-domains)
 
 `singlePageApp: boolean`
 
