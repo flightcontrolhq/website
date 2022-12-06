@@ -11,7 +11,7 @@ import { Note } from '@components/ui/note.mdx'
 
 ## Root Domains Recommends
 
-### Use a Subdomain Instead of the Root Domain
+### Use the `www` Subdomain Instead of the Root Domain
 
 We recommend you add a subdomain (i.e.: use `www.example.com`) instead of directly referencing the root domain (`example.com`).
 
@@ -112,7 +112,7 @@ With this option you can make use of the `HOST` HTTP Request Header sent to your
 
 <Collapse title="I have added the domain but still haven't made the DNS changes. Can I still access my service?">
   Yes, you can still access the service using the random generated
-  `[x.cloudfront.net](http://x.cloudfront.net)` domain. This domain can be found under AWS Resources
+  `x.cloudfront.net` domain. This domain can be found under AWS Resources
   -> `cloudfrontDomain`
 </Collapse>
 

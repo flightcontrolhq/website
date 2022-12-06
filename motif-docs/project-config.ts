@@ -201,10 +201,6 @@ export default {
             href: '/troubleshooting/concurrency-limit',
           },
           {
-            title: 'Custom Domain Errors',
-            href: '/troubleshooting/custom-domain-errors',
-          },
-          {
             title: 'Unusually Long Deploys',
             href: '/troubleshooting/long-deploys',
           },
