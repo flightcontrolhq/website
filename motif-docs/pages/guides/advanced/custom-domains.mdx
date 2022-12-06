@@ -4,7 +4,6 @@ title: Adding a Custom Domain
 description: Connect your custom domain to your service created with Flightcontrol
 noTOC: false
 ---
-
 import { Collapse } from '@components/ui/collapse.mdx'
 import { Image } from '@components/ui/image.mdx'
 import { Note } from '@components/ui/note.mdx'
@@ -70,23 +69,18 @@ You'll need to add those records to your domain provider.
 
 Here are some guides from different providers:
 
-- <Link
+{/* Mdx does not inherit link styling if the anchor tags are not on the same line */}
+- <a
     target="_blank"
     rel="noopener"
     href="https://www.namecheap.com/support/knowledgebase/article.aspx/434/2237/how-do-i-set-up-host-records-for-a-domain/"
-  >
-    <a>Namecheap (External article)</a>
-  </Link>
-- <Link
+  >Namecheap (External article)</a>
+- <a
     target="_blank"
     rel="noopener"
     href="https://support.google.com/domains/answer/3290350?authuser=0&hl=en#zippy=%2Ctype-of-resource-record%2Cadd-a-resource-record"
-  >
-    <a>Google Domains (External article)</a>
-  </Link>
-- <Link target="_blank" rel="noopener" href="https://ca.godaddy.com/help/add-a-cname-record-19236">
-    <a>GoDaddy (External article)</a>
-  </Link>
+  >Google Domains (External article)</a>
+- <a target="_blank" rel="noopener" href="https://ca.godaddy.com/help/add-a-cname-record-19236">GoDaddy (External article)</a>
 
 ### For a Root Domain
 
@@ -111,9 +105,8 @@ With this option you can make use of the `HOST` HTTP Request Header sent to your
 ## FAQ
 
 <Collapse title="I have added the domain but still haven't made the DNS changes. Can I still access my service?">
-  Yes, you can still access the service using the random generated
-  `x.cloudfront.net` domain. This domain can be found under AWS Resources
-  -> `cloudfrontDomain`
+  Yes, you can still access the service using the random generated `x.cloudfront.net` domain. This
+  domain can be found under AWS Resources -> `cloudfrontDomain`
 </Collapse>
 
 <Collapse title="Why do you recommend using subdomain instead of root domain?">
