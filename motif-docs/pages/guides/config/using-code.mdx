@@ -246,9 +246,7 @@ Besides the common properties above, each service will have specific properties,
     - Example: `"domain": "www.example.com"`
     - Optional, defaults to a random url like `123456789.cloudfront.net`
     - Wildcard domains are supported: `"domain": "*.example.com"` The http `host` header will contain the specific domain that’s being used.
-    - If configured, during the setup phase in the Flightcontrol dashboard we’ll show you the required DNS changes to actually point your custom domain to this service. If you configure the domain here but don’t change your DNS, you can still access the service using the random generated `[x.cloudfront.net](http://x.cloudfront.net)` domain.
-        - *Example screenshot*
-            <Image rounded={true} border={true} src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165403/i1600x349-REQhW6PMBk1__xncshv.png" />
+    - See our recommendation and detailed setup info [in this section](/advanced/custom-domains)
 
     `port: number`
 
@@ -422,18 +420,7 @@ Besides the common properties above, each service will have specific properties,
 - Example: `"domain": "www.example.com"`
 - Optional, defaults to a random url like `123456789.cloudfront.net`
 - Wildcard domains are supported: `"domain": "*.example.com"` The http `host` header will contain the specific domain that’s being used.
-- If configured, during the setup phase in the Flightcontrol dashboard we’ll show you the required DNS changes to actually point your custom domain to this service. If you configure the domain here but don’t change your DNS, you can still access the service using the random generated `[x.cloudfront.net](http://x.cloudfront.net)` domain.
-
-  - _Example screenshot_
-
-        {' '}
-
-        <Image
-
-    rounded={true}
-    border={true}
-    src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165922/i1600x349-0NhJiulDrUvt_aymzp2.png"
-    />
+- See our recommendation and detailed setup info [in this section](/advanced/custom-domains)
 
 `singlePageApp: boolean`
 

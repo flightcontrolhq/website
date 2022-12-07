@@ -139,7 +139,7 @@ export default {
         title: 'API',
         href: '/http-api',
       },
-      { title: 'Troubleshooting', href: '/troubleshooting/concurrency-limit' },
+      { title: 'Troubleshooting', href: '/troubleshooting' },
       {
         title: 'Roadmap & Feedback',
         href: 'https://roadmap.flightcontrol.dev/',
@@ -193,20 +193,20 @@ export default {
         title: 'Common Issues',
         pages: [
           {
-            title: 'Unusually Long Deploys',
-            href: '/troubleshooting/long-deploys',
-          },
-          {
-            title: 'Maximum Number of VPCs & Internet Gateways',
-            href: '/troubleshooting/too-many-vpcs',
-          },
-          {
             title: 'Deployment Errors',
             href: '/troubleshooting/deployment-errors',
           },
           {
             title: 'Reached Tasks Concurrency Limit',
             href: '/troubleshooting/concurrency-limit',
+          },
+          {
+            title: 'Unusually Long Deploys',
+            href: '/troubleshooting/long-deploys',
+          },
+          {
+            title: 'Maximum Number of VPCs & Internet Gateways',
+            href: '/troubleshooting/too-many-vpcs',
           },
         ],
       },
