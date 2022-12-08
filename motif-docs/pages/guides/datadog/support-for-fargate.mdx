@@ -27,21 +27,23 @@ Here is a complete example:
     "com.datadoghq.ad.check_names": "[\"NAME\"]", // add the correct CheckNames
     "com.datadoghq.ad.init_configs": "[{}]"
   },
-  "experimental": { // make sure the datadog object is added under experimental
+  "experimental": {
+    // make sure the datadog object is added under experimental
     "datadog": {
       "enabled": true,
       "datadogSite": "us5.datadoghq.com", //plaintext
       "datadogApiKey": "DD_API_KEY.from.parameter.store", //from parameter store or secrets manager
-      "envVariables":{
+      "envVariables": {
         // Environment variables to pass to the datadog agent
-				// Similar to regular services variables
-				"DD_APM_ENABLED": true,
-				"ANOTHER_VARIABLE":{
-					"fromParameterStore": "parameter.store.name"
-				},
-				"THIRD_VARIABLE":{
-					"fromSecretsManager": "secrets.manager.arn"
-				}
+        // Similar to regular services variables
+        "DD_APM_ENABLED": true,
+        "ANOTHER_VARIABLE": {
+          "fromParameterStore": "parameter.store.name"
+        },
+        "THIRD_VARIABLE": {
+          "fromSecretsManager": "secrets.manager.arn"
+        }
+      }
     }
   }
 }
