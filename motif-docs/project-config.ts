@@ -208,6 +208,10 @@ export default {
             title: 'Maximum Number of VPCs & Internet Gateways',
             href: '/troubleshooting/too-many-vpcs',
           },
+          {
+            title: 'Fargate deployment error - No space left on device',
+            href: '/troubleshooting/fargate-task-storage',
+          },
         ],
       },
     ],

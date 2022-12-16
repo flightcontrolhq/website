@@ -1,0 +1,23 @@
+---
+heading: Fargate task storage related errors
+title: Fargate deployment error - No space left on device
+---
+
+import Image from 'next/image'
+
+import errorImg from '../../public/img/max-num-vpc-internet-gateway.png'
+
+If you are recieving a similar error while deploying your `fargate` or `fargate-worker` service:
+```
+[
+  {
+    "type": "FARGATE_DEPLOY_ERROR",
+    "message": "Cannotpullcontainererror: ref pull has been retried 1 time(s): failed to extract layer: <layer_id> no space left on device: unknown"
+  }
+]
+```
+Consider increasing your ECS Fargate task storage. By default, AWS assigns 20GB for each task, but you can increase this value up to 200GB. For more details about Fargate task storage check the [AWS Fargate task storage page](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-task-storage.html).
+
+In order to change the task storage for your service:
+- If you are using IaC configuration, add `storage: 100` property to your configuration file. This will configure the Fargate task with 100GB.
+- If you are using Flightcontrol GUI dashboard, you can the storage under the service **Advanced** settings.
