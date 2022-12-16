@@ -4,8 +4,7 @@ title: Fargate deployment error - No space left on device
 ---
 
 import Image from 'next/image'
-
-import errorImg from '../../public/img/max-num-vpc-internet-gateway.png'
+import fargateStorageImg from '../../public/img/fargate-task-storage.png'
 
 If you are recieving a similar error while deploying your `fargate` or `fargate-worker` service:
 ```
@@ -21,3 +20,4 @@ Consider increasing your ECS Fargate task storage. By default, AWS assigns 20GB 
 In order to change the task storage for your service:
 - If you are using IaC configuration, add `storage: 100` property to your configuration file. This will configure the Fargate task with 100GB.
 - If you are using Flightcontrol GUI dashboard, you can the storage under the service **Advanced** settings.
+<Image className="rounded-primary mx-auto w-full max-w-[450px] border" src={fargateStorageImg} />
