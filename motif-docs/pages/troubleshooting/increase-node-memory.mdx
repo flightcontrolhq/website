@@ -1,0 +1,13 @@
+---
+heading: Error handling
+title: Increase Node Memory - Reached heap limit Allocation failed - JavaScript heap out of memory
+---
+
+If the user is getting this error during build or Runtime:
+
+```
+Reached heap limit Allocation failed - JavaScript heap out of memory
+```
+
+1. This error means the Node application is running out of memory.
+2. Add the following environment variable `NODE_OPTIONS=--max-old-space-size=4096` which allocates 4GB of memory to the node process.

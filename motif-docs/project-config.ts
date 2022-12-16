@@ -212,6 +212,11 @@ export default {
             title: 'Fargate deployment error - No space left on device',
             href: '/troubleshooting/fargate-task-storage',
           },
+          {
+            title:
+              'Increase Node Memory - Reached heap limit Allocation failed - JavaScript heap out of memory',
+            href: '/troubleshooting/increase-node-memory',
+          },
         ],
       },
     ],
