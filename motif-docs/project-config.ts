@@ -217,6 +217,10 @@ export default {
               'Increase Node Memory - Reached heap limit Allocation failed - JavaScript heap out of memory',
             href: '/troubleshooting/increase-node-memory',
           },
+          {
+            title: 'Customize CodeBuild (CI) Environment CPU & Memory',
+            href: '/troubleshooting/configure-codebuild',
+          },
         ],
       },
     ],
