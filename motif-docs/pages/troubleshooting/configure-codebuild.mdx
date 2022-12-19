@@ -11,12 +11,12 @@ Flightcontrol provisions a CodeBuild project for every service that requires bui
 The standard provisioned project environment (7 GB memory, 4 vCPUs) should be suitable for almost all use cases. If however there is a need to change this configuration:
 
 1. Allocate the CodeBuild project, the easiest way is to click the **View Logs in AWS** button in any Build Logs dialogue.
-<Image className="rounded-primary mx-auto w-full max-w-[250px] border" src={buildLogsButtonImg} />
+<div className="max-w-[450px]"><Image className="rounded-primary mx-auto w-full border" src={buildLogsButtonImg} /></div>
 2. This will open the CodeBuild project, You will need to go one level up in the project breadcrumps.
 3. Find the project Edit button, then click **Edit Environment**
-<Image className="rounded-primary mx-auto w-full max-w-[250px] border" src={codeBuildEditEnv} />
+<div className="max-w-[350px]"><Image className="rounded-primary mx-auto w-full border" src={codeBuildEditEnv} /></div>
 4. Expand the **Additional configuration** section, which will allow you to choose the environment configuration required.
-<Image className="rounded-primary mx-auto w-full max-w-[250px] border" src={codeBuildEditEnvAdditionalConfig} />
+<div className="max-w-[650px]"><Image className="rounded-primary mx-auto w-full border" src={codeBuildEditEnvAdditionalConfig} /></div>
 5. Finally, click **Update Environment**
 
 Note: this configuration will be used going forward in all the deployments for this specific project and service.
