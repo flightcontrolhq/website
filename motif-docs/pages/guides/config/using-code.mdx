@@ -227,6 +227,14 @@ Besides the common properties above, each service will have specific properties,
     - Memory can be in GB or MB for each service instance
     - For more details, see [AWS’s fargate pricing page](https://aws.amazon.com/fargate/pricing/)
 
+    `storage: int`
+
+    - Example: `"storage": 20`
+    - Support values: `20-200`
+    - This is the emphemeral storage available to all containers running on your task. For example, this storage will be shared between your main application container and the DataDog agent container if you are using it.
+    - By default, AWS sets this value to 20GB.
+    - For more details, see [AWS’s Fargate task storage page](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-task-storage.html)
+
     `minInstances: int`
 
     - Example: `"minInstances": 1`
@@ -340,6 +348,15 @@ Besides the common properties above, each service will have specific properties,
         - With `cpu: 4` - `8...30` (int)
     - Memory can be in GB or MB for each service instance
     - For more details, see [AWS’s fargate pricing page](https://aws.amazon.com/fargate/pricing/)
+
+    `storage: int`
+
+    - Example: `"storage": 20`
+    - Support values: `20-200`
+    - This is the emphemeral storage available to all containers running on your task. For example, this storage will be shared between your main application container and the DataDog agent container if you are using it.
+    - By default, AWS sets this value to 20GB.
+    - For more details, see [AWS’s Fargate task storage page](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-task-storage.html)
+  
 
     `minInstances: int`
 

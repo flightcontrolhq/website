@@ -208,6 +208,19 @@ export default {
             title: 'Maximum Number of VPCs & Internet Gateways',
             href: '/troubleshooting/too-many-vpcs',
           },
+          {
+            title: 'Fargate deployment error - No space left on device',
+            href: '/troubleshooting/fargate-task-storage',
+          },
+          {
+            title:
+              'Increase Node Memory - Reached heap limit Allocation failed - JavaScript heap out of memory',
+            href: '/troubleshooting/increase-node-memory',
+          },
+          {
+            title: 'Customize CodeBuild (CI) Environment CPU & Memory',
+            href: '/troubleshooting/configure-codebuild',
+          },
         ],
       },
     ],
