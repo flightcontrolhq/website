@@ -11,3 +11,6 @@ Reached heap limit Allocation failed - JavaScript heap out of memory
 
 1. This error means the Node application is running out of memory.
 2. Add the following environment variable `NODE_OPTIONS=--max-old-space-size=4096` which allocates 4GB of memory to the node process.
+
+Note: by default, the standard provisioned project environment (7 GB memory, 4 vCPUs) should be suitable for almost all use cases.
+If however there is a need to change this configuration, please check the docs [here](/troubleshooting/configure-codebuild).
