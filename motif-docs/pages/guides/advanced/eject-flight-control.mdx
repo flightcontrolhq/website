@@ -1,0 +1,21 @@
+---
+heading: Disconnect your AWS Account
+title: Eject Flightcontrol
+description: Remove your AWS account from Flightcontrol
+noTOC: false
+---
+import { Collapse } from '@components/ui/collapse.mdx'
+import { Image } from '@components/ui/image.mdx'
+import { Note } from '@components/ui/note.mdx'
+
+## Ejecting Flightcontrol 
+
+This is the worst case scenario, and we're sorry to see you go. If you're sure you want to disconnect your AWS account from Flightcontrol, you can do so by following the steps below.
+
+Goto the "AWS Accounts" page and click Edit on the account you want to remove, then press the "Remove Account" button.
+
+You'll be asked to confirm your action, and if there are any projects associated with the account, you'll have an opportunity to delete them first. If you don't delete your projects before removing your AWS account, the services will still run on your AWS account **as is**, but you won't be able to manage them from Flightcontrol.
+
+<Note type="warning">
+  If you remove your AWS account without deleting your projects, it will remove them from the Flightcontrol dashboard but will still be running on AWS and will continue to incur charges from Amazon.
+</Note>

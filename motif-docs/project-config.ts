@@ -75,6 +75,10 @@ const mainSidebar = [
         title: 'Stale While Revalidate',
         href: '/guides/advanced/swr',
       },
+      {
+        title: 'Ejecting from Flightcontrol',
+        href: '/guides/advanced/eject-flight-control'
+      }
     ],
   },
   {
