@@ -13,10 +13,34 @@ import dashBoardPic from '../../../../public/dashboard-maintenance-window.png'
 
 To use your own file, you'll need to create a compatible JSON, YAML, or CUE file and add it to the path you indicated in the configuration.
 
-- Each git repo can have multiple `flightcontrol.json` files
-- Each `flightcontrol.json` corresponds to a single `Project` (as shown in the Flightcontrol dashboard)
-- Each `Project` can have multiple `Environment`'s
-- Each `Environment` can have multiple `Service`'s
+## How do `flightcontrol.json` files fit into Flightcontrol concepts?
+- Each git repo can have multiple `flightcontrol.json` files which corresponds to a single `Project`
+- A `Project` can have multiple `Environments`
+- An `Environment` can have multiple `Service`'s
+
+<table style="width:100%">
+  <tr>
+    <th colspan="16">GitHub</th>
+  </tr>
+  <tr>
+    <td colspan="8">flightcontrol.json</td>
+    <td colspan="8">flightcontrol.json</td>
+  </tr>
+  <tr>
+    <td colspan="8">Project</td>
+    <td colspan="8">Project</td>
+  </tr>
+  <tr>
+    <td colspan="2">Environment</td>
+    <td colspan="2">Environment</td>
+    <td colspan="6"> </td>
+  </tr>
+  <tr>
+    <td>Service</td>
+    <td>Service</td>
+    <td colspan="14"> </td>
+  </tr>
+</table>
 
 ## Top level `Project` Options
 
