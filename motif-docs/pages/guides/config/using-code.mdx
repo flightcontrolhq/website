@@ -11,12 +11,19 @@ import NextImage from 'next/image'
 
 import dashBoardPic from '../../../../public/dashboard-maintenance-window.png'
 
-To use your own file, you'll need to create a compatible JSON, YAML, or CUE file and add it to the path you indicated in the configuration.
+To use your own file, you'll need to create a compatible JSON file and add it to the path you indicated in the configuration.
+
+It can be useful to use our JSON schema for autocompletion: https://app.flightcontrol.dev/schema.json.
 
 - Each git repo can have multiple `flightcontrol.json` files
 - Each `flightcontrol.json` corresponds to a single `Project` (as shown in the Flightcontrol dashboard)
 - Each `Project` can have multiple `Environment`'s
 - Each `Environment` can have multiple `Service`'s
+
+<Note type="info">
+  💡 Tip: For autocompletion, you'll need to add `$schema` as a top-level property with our schema
+  as the value: `"https://app.flightcontrol.dev/schema.json"`.
+</Note>
 
 ## Top level `Project` Options
 
@@ -356,7 +363,7 @@ Besides the common properties above, each service will have specific properties,
     - This is the emphemeral storage available to all containers running on your task. For example, this storage will be shared between your main application container and the DataDog agent container if you are using it.
     - By default, AWS sets this value to 20GB.
     - For more details, see [AWS’s Fargate task storage page](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-task-storage.html)
-  
+
 
     `minInstances: int`
 
