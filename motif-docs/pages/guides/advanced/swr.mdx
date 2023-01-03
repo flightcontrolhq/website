@@ -17,9 +17,11 @@ You want to use stale while revalidate if you use any of the following:
 1. Next.js incremental static regeneration
 2. Manual use of the `stale-while-revalidate` cache-control header
 
-<Note type="info">Please note that using the CloudFront SWR feature will slightly increase your AWS usage & cost via lambda invocations. However, it will also decrease your server load, so the end cost should be roughly the same.</Note>
-
-- Some information on actual cost?
+<Note type="info">
+  Please note that using the CloudFront SWR feature will slightly increase your AWS usage & cost via
+  lambda invocations. However, it will also decrease your server load, so the end cost should be
+  roughly the same.
+</Note>
 
 ## Next.js Incremental Static Revalidation
 
