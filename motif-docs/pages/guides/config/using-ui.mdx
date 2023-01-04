@@ -3,20 +3,26 @@ heading: Configuration
 title: Using the Flightcontrol Dashboard
 ---
 
-If you don't want to maintain your own file, you can choose to configure your project using our GUI, where you'll have the options to:
+If you don't want to maintain your own file, configure your project using our dashboard.
 
-- Choose the **branch** to be used
-- The **AWS region** and **account**
-- Choose an **`Environment` name** from a fixed list of names
-- Optionally choose a framework preset, which will add the services and configuration needed
-- Add the `Services` you want
-  - For each service, you can select a builder type
+To get started using our dashboard:
+1. Connect your AWS account on the AWS Accounts page [here](https://app.flightcontrol.dev/aws-accounts)
+2. Start a new project with your GitHub account or a public GitHub repo
+3. Configure your deployment on the Prepare for Launch page:
+   - Edit project name and select **branch** to be used
+   - Select GUI as Config Type
+   - Select your deployment **`Environment`** from a fixed list of environment names
+   - Optionally choose a framework preset service 
+   - Add the **`Services`** you want
+     - Select builder type for each service
+     - More about services [here](./services)
+   - Select the **AWS account** and **AWS region** you want to use
+   - Optionally, edit environment variables
+ 4. Create project!
 
-Please note there are currently some limitations, such as:
+
+Current limitations:
 
 - You can only set up ONE `Environment` on creation, but you'll be able to add more once the project has been created.
 - You can't select manual trigger, so by default it will deploy every commit pushed to the selected **branch**
-
-When you first create a project, you will be able to create **one single `Environment`** and add services to it, as well as configure things like the AWS Region, AWS Account .
-After creation, you will be able to add more `Environment`s.
 
