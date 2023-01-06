@@ -13,12 +13,16 @@ import dashBoardPic from '../../../../public/dashboard-maintenance-window.png'
 
 To use your own file, you'll need to create a compatible JSON file and add it to the path you indicated in the configuration.
 
-It can be useful to use our JSON schema for autocompletion: https://app.flightcontrol.dev/schema.json.
+## How do `flightcontrol.json` files fit into Flightcontrol concepts?
+- A git repo can have multiple `flightcontrol.json` files each of which corresponds to a single `Project`
+- A `Project` can have multiple `Environments`
+- An `Environment` can have multiple `Service`'s
 
-- Each git repo can have multiple `flightcontrol.json` files
-- Each `flightcontrol.json` corresponds to a single `Project` (as shown in the Flightcontrol dashboard)
-- Each `Project` can have multiple `Environment`'s
-- Each `Environment` can have multiple `Service`'s
+|`flightcontrol.json A`|                   |`flightcontrol.json B`|                   |
+|---------------------|-------------------|---------------------|-------------------|
+|`Project A`          |                   |`Project B`          |                   |
+|`Environment A1`     | `Environment A2`  |`Environment B1`     |`Environment B2`   |
+|`Service A1.a` `Service A1.b`| `Service A2.a`|`Service B1.a`|`Service B2.a` `Service B2.b` `Service B2.c`|
 
 <Note type="info">
   💡 Tip: For autocompletion, you'll need to add `$schema` as a top-level property with our schema
