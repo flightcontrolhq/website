@@ -1,6 +1,7 @@
 export type SidebarContent = SidebarSection[];
 
 export interface SidebarSection {
-  title?: string;
-  pages: (string | string[])[];
+  title: string;
+  href?: string;
+  pages?: SidebarSection[];
 }

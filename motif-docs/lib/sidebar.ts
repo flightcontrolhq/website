@@ -14,35 +14,6 @@ const normalizePath = (path: string) => {
   return path.toLowerCase().replace(/\s+/g, "-");
 };
 
-const getPagePathString = (titleInfo: string | string[]) => {
-  if (typeof titleInfo === "string") {
-    return titleInfo;
-  } else if (titleInfo.length > 1) {
-    return titleInfo[1];
-  }
-  return "";
-};
-
-const getPageTitleString = (titleInfo: string | string[]) => {
-  if (typeof titleInfo === "string") {
-    return titleInfo;
-  } else if (titleInfo.length > 1) {
-    return titleInfo[0];
-  }
-  return "";
-};
-
-export const makeSlug = (
-  section: string | undefined,
-  title: string | string[],
-  basePath: string
-) => {
-  const path = getPagePathString(title);
-  return normalizePath(
-    `${basePath}/${section ? section + "/" : ""}${path}`
-  ).replace(/\/$/, "");
-};
-
 export const getSection = (
   sections: SidebarSection[],
   path: string
@@ -60,24 +31,6 @@ export const getSectionTitle = (
   return getSection(sections, path)?.title;
 };
 
-export const getPageLink = (
-  sections: SidebarSection[],
-  sectionIndex: number,
-  pageIndex: number,
-  basePath: string
-) => {
-  const section = sections[sectionIndex];
-  if (!section) {
-    return undefined;
-  }
-  const page = section.pages[pageIndex];
-  const pageTitle = getPageTitleString(page);
-  return {
-    title: pageTitle,
-    slug: makeSlug(section.title, page, basePath),
-  };
-};
-
 export const getPrevNext = (
   sections: SidebarSection[],
   path: string,
@@ -87,38 +40,55 @@ export const getPrevNext = (
     p = 0;
   let prev = undefined,
     next = undefined;
-  let found = false;
+  search:
   for (const section of sections) {
+    p = null;
+    if (section.href === path) {
+      break search;
+    }
     p = 0;
     for (const page of section.pages) {
-      if (makeSlug(section.title, page, basePath) === path) {
-        found = true;
-      }
-      if (found) {
-        break;
+      if (page.href === path) {
+        break search;
       }
       p++;
-    }
-    if (found) {
-      break;
     }
     s++;
   }
 
+  // If we go through all our sections without a match then we're on
+  // a parent for which the section is an index
+  // (e.g. /docs/guides for /docs/guides/getting-started)
+  if (s === sections.length) {
+    // Treat our "next" link as the section index itself.
+    s = 0;
+    p = null;
+  }
+
   if (p > 0) {
-    prev = getPageLink(sections, s, p - 1, basePath);
+    prev = sections[s].pages[p-1];
+  // if the section index has a page, go back there.
+  } else if (p === 0 && sections[s]?.href)  {
+    prev = { title: sections[s].title, href: sections[s].href }
   } else if (s > 0) {
     const sectionLength = sections[s - 1]?.pages?.length || 0;
     if (sectionLength > 0) {
-      prev = getPageLink(sections, s - 1, sectionLength - 1, basePath);
+      prev = sections[s-1].pages[sectionLength - 1];
     }
   }
 
   const sectionLength = sections[s]?.pages?.length || 0;
-  if (p < sectionLength - 1) {
-    next = getPageLink(sections, s, p + 1, basePath);
+  if (p === null) {
+    next = sections[s].pages[0];
+  } else if (p < sectionLength - 1) {
+    next = sections[s].pages[p+1];
   } else if (s < sections.length - 1) {
-    next = getPageLink(sections, s + 1, 0, basePath);
+    // If the section index has a page go there.
+    if (sections[s + 1].href) {
+      next = { title: sections[s + 1].title, href: sections[s + 1].href }
+    } else {
+      next = sections[s + 1].pages[0];
+    }
   }
 
   return { prev, next };
