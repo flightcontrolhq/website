@@ -18,11 +18,14 @@ To use your own file, you'll need to create a compatible JSON file and add it to
 - A `Project` can have multiple `Environments`
 - An `Environment` can have multiple `Service`'s
 
-|`flightcontrol.json A`|                   |`flightcontrol.json B`|                   |
-|---------------------|-------------------|---------------------|-------------------|
-|`Project A`          |                   |`Project B`          |                   |
-|`Environment A1`     | `Environment A2`  |`Environment B1`     |`Environment B2`   |
-|`Service A1.a` `Service A1.b`| `Service A2.a`|`Service B1.a`|`Service B2.a` `Service B2.b` `Service B2.c`|
+```mermaid
+graph TD;
+    flightcontrol.json-->Project;
+    Project-->Environment_A;
+   Project-->Environment_B;
+    Environment_A-->Service_1;
+   Environment_A-->Service_2;
+```
 
 It can be useful to use our JSON schema for autocompletion: https://app.flightcontrol.dev/schema.json.
 
