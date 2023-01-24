@@ -75,6 +75,8 @@ const mainSidebar = [
         title: 'Stale While Revalidate',
         href: '/guides/advanced/swr',
       },
+      { title: 'Build Types', href: '/guides/advanced/build-types' },
+      { title: 'Deploying Your Own Image', href: '/guides/advanced/deploying-own-image' },
     ],
   },
   {

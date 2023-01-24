@@ -1,0 +1,45 @@
+---
+heading: Beyond the basics
+title: Deploying Your Own Image
+description: Using Image Registries to deploy a pre-built image
+noTOC: false
+---
+import { Image } from '@components/ui/image.mdx'
+import imageRegistrySidebarPic from "@public/image-registry-sidebar"
+
+# Introduction
+
+Flightcontrol allows you to deploy your own pre-built image with an image registry, which allows you to use the platform as CD, instead of only CI/CD. To clarify our terminology, we use "registry" to refer to the host service that stores a collection of image repostorities, which we refer to as a "repository."
+The intended use of this feature is to support private repositories.
+Image registries store the credentials or details to a registry, which you can then reference later for using a pre-built image in a Fargate service.
+
+# Creating an Image Registry
+
+Open the Image Registry tab by clicking "Image Registries" in the sidebar, and then clicking "Add an Image Registry."
+
+<Image
+  rounded={true}
+  border={true}
+  src="/public/image-registry-sidebar.png"
+/>
+
+We support three different registry types, which require different inputs:
+
+- Docker: requires username & password
+- Red Hat Quay: requires username & password
+- ECR: registry URI, and then ensure that (something) has permisisons to this registry
+
+# Using an Image Registry
+
+If you are using code to configure your app, you can copy the “Registry ID” and paste into your config. See (using-code link) for details. If you are using the UI, you can directly select the registry under the “Build System” box, and then add your repository URI and tag in the appropriate text fields.
+
+(include picture of GUI)
+
+# Additional Information
+
+If you want to use an image registry, you must have a connected AWS account. We require this because we use Secrets Manager to store your credentials.
+
+- Please note that using secrets manager has a cost of X per month. To prevent you from having an AWS account that must be tied to your registry, we store these credentials in all your connected AWS accounts.
+
+- Include education section?
+  - It is important to understand the difference between a registry and a repository. A registry stores a collection of repositories, which are in turn collections of many different versions of the same image, and are versioned with tags.
