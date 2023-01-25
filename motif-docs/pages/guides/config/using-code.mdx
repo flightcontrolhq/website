@@ -8,7 +8,7 @@ import { Image } from '@components/ui/image.mdx'
 import { Note } from '@components/ui/note.mdx'
 import { Spacer } from '@components/ui/spacer.mdx'
 import NextImage from 'next/image'
-import {Link} from 'next/link'
+import { Link } from 'next/link'
 
 import dashBoardPic from '../../../../public/dashboard-maintenance-window.png'
 
@@ -303,7 +303,7 @@ Besides the common properties above, each service will have specific properties,
 {/* need to indent these values */}
 `registryId: string`
 
-      - Example: `"registryId": "docker-hub-e13j2"`
+      - Example: `"registryId": "ecr-9l03731"`
       - This is the ID of the registry that you have created in the UI.
 
       `repostory: string`
@@ -419,6 +419,35 @@ Besides the common properties above, each service will have specific properties,
     - Support values: `1+`
     - Optional with default: `1`
     - The maximum number of instances you want to be running. Fargate will autoscale the number of instances based on your traffic up to this maximum. This number effectively sets a limit on AWS cost you may incur.
+
+         `fromService: string`
+
+    - If using `buildType: fromService`, this is the ID of the service that you wish to use the image for.
+
+{/* formatting for this? */}
+    `containerImage: {`\
+      `registryId: string,`\
+      `repository: string,`\
+      `tag?: string,`\
+      `}`
+
+      - containerImage defines the parameters needed when using `buildType: fromRepository`
+
+`registryId: string`
+
+        - Example: `"registryId": "ecr-9l03731"`
+      - This is the ID of the registry that you have created in the UI.
+
+      - `repostory: string`
+
+      - Example: `"repository": "/something/whatever"`
+      - This is the URI of the image repository you wish to access
+
+      - `tag?: string`
+
+      - Example: `"tag": "latest"`
+      - Optional
+      - This is the tag of the image from the repository that you would like to use
 
     <Collapse title="Extra options for Nixpacks & Legacy Node.js">
         `installCommand: string`

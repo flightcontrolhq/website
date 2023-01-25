@@ -4,8 +4,11 @@ title: Deploying Your Own Image
 description: Using Image Registries to deploy a pre-built image
 noTOC: false
 ---
-import { Image } from '@components/ui/image.mdx'
-import imageRegistrySidebarPic from "@public/image-registry-sidebar"
+
+import Image from 'next/image'
+
+import imageRegistryGuiPic from '../../../public/img/image-registry-gui.png'
+import imageRegistryTablePic from '../../../public/img/image-registry-table.png'
 
 # Introduction
 
@@ -17,12 +20,6 @@ Image registries store the credentials or details to a registry, which you can t
 
 Open the Image Registry tab by clicking "Image Registries" in the sidebar, and then clicking "Add an Image Registry."
 
-<Image
-  rounded={true}
-  border={true}
-  src="/public/image-registry-sidebar.png"
-/>
-
 We support three different registry types, which require different inputs:
 
 - Docker: requires username & password
@@ -31,9 +28,18 @@ We support three different registry types, which require different inputs:
 
 # Using an Image Registry
 
-If you are using code to configure your app, you can copy the “Registry ID” and paste into your config. See (using-code link) for details. If you are using the UI, you can directly select the registry under the “Build System” box, and then add your repository URI and tag in the appropriate text fields.
+If you are using code to configure your app, you can copy the “Registry ID” and paste into your service config. See [Using Code](../config/using-code) for details. 
 
-(include picture of GUI)
+{/* add box around registryId? */}
+<div className="rounded-primary max-w-[450px]">
+  <Image src={imageRegistryTablePic} />
+</div>
+
+If you are using the UI, you can directly select the registry under the “Build System” box, and then add your repository URI and tag in the appropriate text fields.
+
+<div className="rounded-primary max-w-[450px]">
+  <Image src={imageRegistryGuiPic} />
+</div>
 
 # Additional Information
 
