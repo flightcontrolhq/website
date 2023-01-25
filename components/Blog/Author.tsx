@@ -1,4 +1,4 @@
-import Image from 'next/future/image'
+import Image from 'next/image'
 
 import { BlogAuthor, urlFor } from 'lib/sanity'
 import { useBlog } from 'lib/blog-context'
@@ -23,7 +23,7 @@ export function Author({ author, className, ...props }: Props) {
   )
 }
 
-export function BlogAuthor({className}:Pick<Props, 'className'>) {
+export function BlogAuthor({ className }: Pick<Props, 'className'>) {
   const { author } = useBlog()
-  return <Author author={author} className={className}/>
+  return <Author author={author} className={className} />
 }

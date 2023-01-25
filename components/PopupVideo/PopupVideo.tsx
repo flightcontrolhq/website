@@ -88,7 +88,7 @@ export const PopupVideo = forwardRef(function PopupVideo(
               layout="responsive"
               width={preview.dimensions.width}
               height={preview.dimensions.height}
-              alt={previewAltText}
+              alt={previewAltText || ''}
               priority={isAboveTheFold}
             />
             <PlayButton
