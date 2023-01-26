@@ -75,6 +75,7 @@ const mainSidebar = [
         title: 'Stale While Revalidate',
         href: '/guides/advanced/swr',
       },
+      { title: 'Deploying Your Own Image', href: '/guides/advanced/deploy-prebuilt-image' },
     ],
   },
   {

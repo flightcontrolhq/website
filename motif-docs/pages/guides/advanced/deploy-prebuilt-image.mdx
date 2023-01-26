@@ -1,0 +1,46 @@
+---
+heading: Beyond the basics
+title: Deploy a Prebuilt Container Image
+description: Using Image Registries to deploy a pre-built container image
+noTOC: false
+---
+
+import Image from 'next/image'
+
+import imageRegistryGuiPic from '../../../public/img/image-registry-gui.png'
+import imageRegistryTablePic from '../../../public/img/image-registry-table.png'
+
+# Introduction
+
+Flightcontrol allows you to deploy your own pre-built container image with an image registry, which allows you to use the platform as CD, instead of only CI/CD. To clarify our terminology, we use "registry" to refer to the host service that stores a collection of image repostorities, which we refer to as a "repository."
+The intended use of this feature is to support private repositories.
+
+# Adding an Image Registry to Flightcontrol
+
+Open the Image Registry tab by clicking "Image Registries" in the sidebar, and then click "Add an Image Registry."
+
+We support three different registry types, which require different inputs:
+
+- Docker: requires username & password
+- Red Hat Quay: requires username & password
+- ECR: registry URI, and then ensure your Fargate service has the required IAM permission to access it
+
+# Using an Image Registry
+
+If you are using infrastructure-as-code to configure your app, you can copy the “Registry ID” and paste into your service config. See [Using Code](../config/using-code) for details. 
+
+{/* add box around registryId? */}
+<div className="rounded-primary max-w-[450px]">
+  <Image src={imageRegistryTablePic} />
+</div>
+
+If you are using the UI, select the registry under the “Build System” box, and then add your repository URI and tag in the appropriate text fields.
+
+<div className="rounded-primary max-w-[450px]">
+  <Image src={imageRegistryGuiPic} />
+</div>
+
+# Additional Information
+
+You must have a connected AWS account because we store your registry credentials in AWS Secrets Manager. This costs $0.40 per registry per month per AWS account
+

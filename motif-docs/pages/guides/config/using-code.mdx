@@ -8,6 +8,7 @@ import { Image } from '@components/ui/image.mdx'
 import { Note } from '@components/ui/note.mdx'
 import { Spacer } from '@components/ui/spacer.mdx'
 import NextImage from 'next/image'
+import { Link } from 'next/link'
 
 import dashBoardPic from '../../../../public/dashboard-maintenance-window.png'
 
@@ -184,7 +185,7 @@ The following properties are common for all service types:
 - Example: `"name": "Production Web"`
 - This is the name we use to display your service in the Flightcontrol web dashboard
 
-`buildType: 'nixpacks' | 'nodejs' | 'docker'`
+`buildType: 'nixpacks' | 'nodejs' | 'docker' | 'fromService' | 'fromRepository'`
 
 - Example: `"buildType": "nixpacks"`
 - Default: `'nodejs'`
@@ -197,6 +198,14 @@ The following properties are common for all service types:
   - This will be deprecated in favor of Nixpacks
 - Docker:
   - Bring your own Dockerfile for full control
+  - This is only supported for container based services like `fargate` and `fargate-worker`
+- fromRepository:
+  - Allows you to use a pre-built image from a repository
+  - Requires you to create an [image registry](/guides/advanced/deploying-own-image) and add the `containerImage` parameter to your service config
+  - This is only supported for container based services like `fargate` and `fargate-worker`
+- fromService:
+  - Used for single-tenet architectures where you want to build once but deploy to many services
+  - Requires adding a `fromService: [serviceId]` parameter to your service config
   - This is only supported for container based services like `fargate` and `fargate-worker`
 
 `watchPaths?: string[]`
@@ -278,6 +287,31 @@ Besides the common properties above, each service will have specific properties,
     - Optional with default: `"/"`
     - HTTP status codes that signal healthy: `200-399`
     - This is used during deployment to ensure the server is healthy before traffic is routed to it. And during runtime, to automatically replace unhealthy servers. If you notice that your app is in a cycle of working and not working, it could be your health check path is returning an error causing the to keep restarting your server.
+
+     `fromService: string`
+
+    - If using `buildType: fromService`, this is the ID of the service that you wish to use the image for.
+
+    `containerImage: object`
+
+      - containerImage defines the parameters needed when using `buildType: fromRepository`
+
+        `registryId: string`
+
+        - Example: `"registryId": "ecr-9l03731"`
+        - Registry ID, you can find this on the Registries page in our dashboard
+
+        `repostory: string`
+
+        - Example: `"repository": "node:18-slim"`
+        - This is the URI of the image repository you wish to access
+
+        `tag?: string`
+
+        - Example: `"tag": "latest"`
+        - Optional
+        - This is the tag of the image from the repository that you would like to use
+
 
     <Collapse title="Extra options for Nixpacks & Legacy Node.js">
         `installCommand: string`
@@ -380,6 +414,30 @@ Besides the common properties above, each service will have specific properties,
     - Support values: `1+`
     - Optional with default: `1`
     - The maximum number of instances you want to be running. Fargate will autoscale the number of instances based on your traffic up to this maximum. This number effectively sets a limit on AWS cost you may incur.
+
+         `fromService: string`
+
+    - If using `buildType: fromService`, this is the ID of the service that you wish to use the image for.
+
+`containerImage: object`
+
+      - containerImage defines the parameters needed when using `buildType: fromRepository`
+
+        `registryId: string`
+
+        - Example: `"registryId": "ecr-9l03731"`
+        - Registry ID, you can find this on the Registries page in our dashboard
+
+        `repostory: string`
+
+        - Example: `"repository": "node:18-slim"`
+        - This is the URI of the image repository you wish to access
+
+        `tag?: string`
+
+        - Example: `"tag": "latest"`
+        - Optional
+        - This is the tag of the image from the repository that you would like to use
 
     <Collapse title="Extra options for Nixpacks & Legacy Node.js">
         `installCommand: string`
