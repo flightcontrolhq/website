@@ -199,13 +199,13 @@ The following properties are common for all service types:
 - Docker:
   - Bring your own Dockerfile for full control
   - This is only supported for container based services like `fargate` and `fargate-worker`
-- fromService:
-  - Allows you to use the built image from another service.
-  - Requires adding a `fromService: [serviceId]` parameter in your code
-  - This is only supported for container based services like `fargate` and `fargate-worker`
 - fromRepository:
   - Allows you to use a pre-built image from a repository
-  - Requires you to create an [image registry](/guides/advanced/deploying-own-image) and add the `containerImage` parameter.
+  - Requires you to create an [image registry](/guides/advanced/deploying-own-image) and add the `containerImage` parameter to your service config
+  - This is only supported for container based services like `fargate` and `fargate-worker`
+- fromService:
+  - Used for single-tenet architectures where you want to build once but deploy to many services
+  - Requires adding a `fromService: [serviceId]` parameter to your service config
   - This is only supported for container based services like `fargate` and `fargate-worker`
 
 `watchPaths?: string[]`
