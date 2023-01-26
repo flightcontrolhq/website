@@ -199,13 +199,13 @@ The following properties are common for all service types:
 - Docker:
   - Bring your own Dockerfile for full control
   - This is only supported for container based services like `fargate` and `fargate-worker`
-- fromService:
-  - Allows you to use the built image from another service.
-  - Requires adding a `fromService: [serviceId]` parameter in your code
-  - This is only supported for container based services like `fargate` and `fargate-worker`
 - fromRepository:
   - Allows you to use a pre-built image from a repository
-  - Requires you to create an [image registry](/guides/advanced/deploying-own-image) and add the `containerImage` parameter.
+  - Requires you to create an [image registry](/guides/advanced/deploying-own-image) and add the `containerImage` parameter to your service config
+  - This is only supported for container based services like `fargate` and `fargate-worker`
+- fromService:
+  - Used for single-tenet architectures where you want to build once but deploy to many services
+  - Requires adding a `fromService: [serviceId]` parameter to your service config
   - This is only supported for container based services like `fargate` and `fargate-worker`
 
 `watchPaths?: string[]`
@@ -292,11 +292,7 @@ Besides the common properties above, each service will have specific properties,
 
     - If using `buildType: fromService`, this is the ID of the service that you wish to use the image for.
 
-    `containerImage: {`\
-      `registryId: string,`\
-      `repository: string,`\
-      `tag?: string,`\
-      `}`
+    `containerImage: object`
 
       - containerImage defines the parameters needed when using `buildType: fromRepository`
 
@@ -304,11 +300,11 @@ Besides the common properties above, each service will have specific properties,
 `registryId: string`
 
       - Example: `"registryId": "ecr-9l03731"`
-      - This is the ID of the registry that you have created in the UI.
+      - Registry ID, you can find this on the Registries page in our dashboard
 
       `repostory: string`
 
-      - Example: `"repository": "/something/whatever"`
+      - Example: `"repository": "node:18-slim"`
       - This is the URI of the image repository you wish to access
 
       `tag?: string`
