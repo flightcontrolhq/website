@@ -76,7 +76,7 @@ const mainSidebar = [
         href: '/guides/advanced/swr',
       },
       { title: 'Build Types', href: '/guides/advanced/build-types' },
-      { title: 'Deploying Your Own Image', href: '/guides/advanced/deploying-own-image' },
+      { title: 'Deploy Prebuilt Image', href: '/guides/advanced/deploy-prebuilt-image' },
     ],
   },
   {
