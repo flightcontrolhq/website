@@ -107,7 +107,7 @@ export default function Page({
   })
 
   const { pathname } = useRouter()
-  const session = useSession()
+  const session = useSession({ suspense: false })
 
   useEffect(() => {
     if (pathname === '/' && !session.isLoading && session.userId) {
