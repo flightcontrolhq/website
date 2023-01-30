@@ -1,0 +1,20 @@
+---
+index: 1
+heading: API
+title: Deploy Hooks
+---
+
+import { Image } from '@components/ui/image.mdx'
+
+Deploy allow you to trigger a deployment for any environment via an HTTP `GET` request.
+
+1. Go to the environment settings page by clicking `Edit Environment`
+    <Image rounded={true} border={true} className="w-full max-w-[260px]" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165074/i448x132-1xpvO1Oe_clb_dfdluu.png" />
+2. Locate the Deploy Hooks form, enter a name to remember it by, then click `Create Deploy Hook`
+    <Image rounded={true} border={true} className="w-full" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165094/i1600x518-RjDe674AMVxY_lh4txx.png" />
+
+ To trigger a deployment with this hook, make a HTTP GET request at the generated url
+
+| **Method** | **Path**                         | **Payload** |
+| :--------- | :------------------------------- | --
+| **GET**   | `/api/deploy-hook/[envId]/[securerandomstring]` | None |

@@ -1,7 +1,7 @@
 import {
+  Makeswift,
   Page as MakeswiftPage,
   PageProps as MakeswiftPageProps,
-  getStaticProps as makeswiftGetStaticProps,
 } from '@makeswift/runtime/next'
 import dayjs from 'dayjs'
 import { GetStaticPropsContext } from 'next'
@@ -28,17 +28,21 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps(ctx: GetStaticPropsContext<{ slug: string }>) {
+export async function getStaticProps({
+  params,
+  previewData,
+  preview,
+}: GetStaticPropsContext<{ slug: string }, { makeswift: boolean }>) {
   const config = getConfig()
-  const makeswiftResult = await makeswiftGetStaticProps({
-    ...ctx,
-    params: {
-      ...ctx.params,
-      path: config.makeswift.blogTemplatePathname.replace(/^\//, '').split('/'),
-    },
+
+  const makeswift = new Makeswift(config.makeswift.siteApiKey)
+  const snapshot = await makeswift.getPageSnapshot(config.makeswift.blogTemplatePathname, {
+    preview: previewData?.makeswift == true,
   })
-  if (!('props' in makeswiftResult)) return makeswiftResult
-  const slug = ctx.params?.slug
+
+  if (snapshot == null) return { notFound: true }
+
+  const slug = params?.slug
 
   if (slug == null) throw new Error('"slug" URL parameter must be defined.')
   const blogPostSummaries = await getClient().fetch<BlogPostSummaries>(BLOG_SUMMARIES_QUERY)
@@ -46,11 +50,12 @@ export async function getStaticProps(ctx: GetStaticPropsContext<{ slug: string }
   if (blogPost == null) return { notFound: true }
 
   return {
-    ...makeswiftResult,
     props: {
+      snapshot,
       blogPostSummaries,
       blogPost,
-      ...makeswiftResult.props,
+      previewData: previewData?.makeswift == true,
+      preview: preview ?? false,
     },
     revalidate: 1,
   }
@@ -60,26 +65,38 @@ type PageProps = {
   blogPostSummaries: BlogPostSummaries
   blogPost: BlogPost
   preview: boolean
+  previewData: boolean
 } & MakeswiftPageProps
 
-export default function Page({ blogPostSummaries, blogPost, ...props }: PageProps) {
+export default function Page({
+  snapshot,
+  preview,
+  previewData,
+  blogPostSummaries,
+  blogPost,
+}: PageProps) {
+  console.log({
+    route: 'dynamic blog route',
+    preview,
+    previewData,
+  })
   const { data: previewBlogPostSummaries } = usePreviewSubscription<BlogPostSummaries>(
     BLOG_SUMMARIES_QUERY,
     {
       initialData: blogPostSummaries,
-      enabled: false,
+      enabled: preview,
     },
   )
   const { data: previewBlogPost } = usePreviewSubscription<BlogPost>(BLOG_BY_SLUG_QUERY, {
     params: { slug: blogPost?.slug },
+    enabled: preview,
     initialData: blogPost,
-    enabled: false,
   })
 
   return (
     <BlogSummaryContext.Provider value={previewBlogPostSummaries}>
       <BlogContext.Provider value={previewBlogPost}>
-        <MakeswiftPage {...props} />
+        <MakeswiftPage snapshot={snapshot} />
       </BlogContext.Provider>
     </BlogSummaryContext.Provider>
   )

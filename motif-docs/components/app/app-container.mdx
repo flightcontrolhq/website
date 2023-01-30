@@ -16,6 +16,7 @@ export const AppContainer = ({
   children,
 }) => {
   const showHeading = !noHeading && heading
+  const is404 = path === '/404'
   return (
     <div className={cn('mx-auto antialiased w-full md:pl-64')}>
       <div className="max-w-full px-8">
@@ -37,7 +38,7 @@ export const AppContainer = ({
                 {showHeading && (
                   <p className="not-prose text-sm font-semibold text-primary-600 mb-0">{heading}</p>
                 )}
-                {!noTitle && (
+                {(!noTitle && !is404) && (
                   <h1
                     className={cn(
                       'text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight dark:text-gray-200 mb-4',
@@ -60,7 +61,7 @@ export const AppContainer = ({
               </main>
               <Footer path={path} basePath={basePath} includeNav={!noFooterNav} />
             </div>
-            {(includeTOC || keepTOCSpace) && (
+            {(includeTOC || keepTOCSpace) || !is404 && (
               <div className="sticky z-20 top-24 overflow-y-auto hidden lg:block pt-8">
                 {includeTOC && (
                   <>

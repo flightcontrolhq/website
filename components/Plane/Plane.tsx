@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import { forwardRef, Ref, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react'
+import { forwardRef, Ref, useImperativeHandle, useRef, useState } from 'react'
+
+import { useIsomorphicLayoutEffect } from 'components/useIsomorphicLayoutEffect'
 
 type Props = {
   isAboveTheFold?: boolean
@@ -17,7 +19,7 @@ export const Plane = forwardRef(function Plane(
 
   const [width, setWidth] = useState(0)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     window.addEventListener('resize', resize)
     resize()
     return () => window.removeEventListener('resize', resize)

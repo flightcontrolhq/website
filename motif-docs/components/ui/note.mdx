@@ -12,7 +12,7 @@ export const getClassName = type => {
 }
 
 export const Note = ({ type, children }) => {
-  return <div className={`p-3 rounded-primary border ${getClassName(type)}`}>{children}</div>
+  return <div className={`note p-3 dark:text-primary-900 rounded-primary border ${getClassName(type)}`}>{children}</div>
 }
 
 <Note>

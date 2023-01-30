@@ -56,6 +56,14 @@ const mainSidebar = [
         href: '/guides/advanced/custom-domains',
       },
       {
+        title: 'Watch Paths',
+        href: '/guides/advanced/watch-paths',
+      },
+      {
+        title: 'Git Submodules',
+        href: '/guides/advanced/git-submodules',
+      },
+      {
         title: 'Fargate Port Change',
         href: '/guides/advanced/fargate-port-change',
       },
@@ -67,6 +75,7 @@ const mainSidebar = [
         title: 'Stale While Revalidate',
         href: '/guides/advanced/swr',
       },
+      { title: 'Deploying Your Own Image', href: '/guides/advanced/deploy-prebuilt-image' },
     ],
   },
   {
@@ -131,14 +140,17 @@ export default {
         title: 'API',
         href: '/http-api',
       },
-      { title: 'Troubleshooting', href: '/troubleshooting/concurrency-limit' },
+      { title: 'Troubleshooting', href: '/troubleshooting' },
       {
         title: 'Roadmap & Feedback',
         href: 'https://roadmap.flightcontrol.dev/',
         aProps: { target: '_blank', rel: 'noopener' },
       },
-      // Add roadmap
-      // { title: "Roadmap", href: "/roadmap" },
+      {
+        title: 'Changelog',
+        href: 'https://roadmap.flightcontrol.dev/changelog',
+        aProps: { target: '_blank', rel: 'noopener' },
+      },
     ],
   },
   sidebars: {
@@ -167,11 +179,28 @@ export default {
           },
         ],
       },
+      {
+        title: 'Deployments',
+        pages: [
+          {
+            title: 'Deploy Hooks',
+            href: '/http-api/deployments/deploy-hooks',
+          },
+        ],
+      },
     ],
     troubleshooting: [
       {
         title: 'Common Issues',
         pages: [
+          {
+            title: 'Deployment Errors',
+            href: '/troubleshooting/deployment-errors',
+          },
+          {
+            title: 'Reached Tasks Concurrency Limit',
+            href: '/troubleshooting/concurrency-limit',
+          },
           {
             title: 'Unusually Long Deploys',
             href: '/troubleshooting/long-deploys',
@@ -181,12 +210,17 @@ export default {
             href: '/troubleshooting/too-many-vpcs',
           },
           {
-            title: 'Deployment Errors',
-            href: '/troubleshooting/deployment-errors',
+            title: 'Fargate deployment error - No space left on device',
+            href: '/troubleshooting/fargate-task-storage',
           },
           {
-            title: 'Reached Tasks Concurrency Limit',
-            href: '/troubleshooting/concurrency-limit',
+            title:
+              'Increase Node Memory - Reached heap limit Allocation failed - JavaScript heap out of memory',
+            href: '/troubleshooting/increase-node-memory',
+          },
+          {
+            title: 'Customize CodeBuild (CI) Environment CPU & Memory',
+            href: '/troubleshooting/configure-codebuild',
           },
         ],
       },

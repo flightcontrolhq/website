@@ -27,11 +27,17 @@ Here is a complete example:
     "com.datadoghq.ad.check_names": "[\"DISPLAY_NAME\"]", // name that will show in datadog
     "com.datadoghq.ad.init_configs": "[{}]"
   },
-  "experimental": { // make sure the datadog object is added under experimental
+  "experimental": {
+    // make sure the datadog object is added under experimental
     "datadog": {
       "enabled": true,
       "datadogSite": "us5.datadoghq.com", //plaintext
-      "datadogApiKey": "<REFRENCE_TO_DD_API_KEY_IN_AWS>" //from parameter store, needs to be manually added
+      "datadogApiKey": "<REFRENCE_TO_DD_API_KEY_IN_AWS_PARAMETER_STORE>" //from parameter store, needs to be manually added
+      "envVariables": {
+        // Environment variables to pass to the datadog agent
+        // Similar to regular services variables
+        "DD_APM_ENABLED": true,
+      }
     }
   }
 }

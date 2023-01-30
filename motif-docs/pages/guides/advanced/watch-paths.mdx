@@ -1,0 +1,23 @@
+---
+heading: Watch Paths
+title: Watch Paths
+---
+
+import Image from 'next/image'
+import watchImg from '../../../public/img/watchpaths.png'
+
+
+Watch Paths are [glob patterns](https://github.com/micromatch/micromatch#matching-features) that can be used to filter which services are built and deployed.
+
+This is typically used in monorepos where you don't want all services to deploy just because of a tiny change to one of them.
+
+For example, if on your frontend service you set a watch path of `apps/frontend/**` then this service will only build & deploy if a changed file is detected in `apps/frontend/`. 
+                                                                                 
+We use a git diff from the last successful deployment to compute this.
+
+
+## Configuration
+
+- [In flightcontrol.json](../config/using-code)
+- In our dashboard, under the **Advanced** toggle:
+    <div className="rounded-primary max-w-[450px]"><Image src={watchImg}/></div>
