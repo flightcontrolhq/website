@@ -39,6 +39,7 @@
     "@types/node": "^18.8.4",
     "@types/react": "^18.0.21",
     "autoprefixer": "^10.4.12",
+    "eslint": "8.33.0",
     "fast-levenshtein": "^3.0.0",
     "glob": "^8.0.3",
     "minimatch": "^5.1.0",
