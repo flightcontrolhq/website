@@ -14,9 +14,7 @@ We cover a few cases below.
 
 ### Independent packages in a repo
 
-If you don't use any sort of monorepo tooling at the root of your repo, then likely your configuration will only need to indicate a `basePath`, like illustrated in the contrived config example below.
-
-If for some reason `nixpacks` cannot identify the `[install|build|start]Command`, you'll then need to manually add it.
+If you don't use any sort of monorepo tooling at the root of your repo, then you should indicate a `basePath` alongside the `[install|build|start]` commands, like illustrated in the contrived config example below.
 
 ```diff
 {
@@ -35,7 +33,10 @@ If for some reason `nixpacks` cannot identify the `[install|build|start]Command`
           "type": "fargate",
           "buildType": "nixpacks",
           "basePath": "./packages/api",
-          "healthCheckPath": "/graphql/health"
+          "healthCheckPath": "/graphql/health",
+          "installCommand": "pnpm i"
+          "buildCommand": "pnpm build",
+          "startCommand": "pnpm start",
         },
         {
           "id": "frontend",
@@ -43,6 +44,9 @@ If for some reason `nixpacks` cannot identify the `[install|build|start]Command`
           "type": "static",
           "singlePageApp": true,
           "basePath": "./packages/frontend",
+          "installCommand": "pnpm i"
+          "buildCommand": "pnpm build",
+          "startCommand": "pnpm start",
           "outputDirectory": "web/dist",
         }
       ]
@@ -107,12 +111,11 @@ If you have a nx package-based monorepo, then you'll need to specify the `nx` co
 
 If there are specific needs for building/installing a service, such as custom phases or specific OS packages, then you can use a `nixpacks.toml`.
 
-For that, you'll need to:
+The `.toml` file is specific to each package and should be placed in the package's folder.
 
-- Place the `nixpacks.toml` in the related package folder
-- Add a `NIXPACKS_CONFIG_FILE` environment variable to the service with the file path.
+If you're using `basePath` in your flightcontrol configuration, you don't need to do anything else and the file will be picked up.
 
-Note: The `.toml` file is individual for each package.
+If you're not using it, you'll need to set a `NIXPACKS_CONFIG_FILE` environment variable to the service's `nixpacks.toml` file path.
 
 ```json
 {
