@@ -37,11 +37,11 @@ Add a new environment to your environments array, with the following `source` ob
 - _Optional_:
   - `filter.toBranches: string[]`
     - Example: `"toBranches": ["main"]`
-    - Supports globs. We use [minimatch](https://github.com/micromatch/micromatch)
+    - Supports globs. We use [micromatch](https://github.com/micromatch/micromatch)
     - If set, only pull or merge requests to the specified branch(es) will be deployed as preview environments. If omitted, all to branches will pass the filter.
   - `filter.fromBranches: string[]`
     - Example: `"fromBranches": ["feature/**"]`
-    - Supports globs. We use [minimatch](https://github.com/micromatch/micromatch)
+    - Supports globs. We use [micromatch](https://github.com/micromatch/micromatch)
     - If set, only pull or merge requests from the specified branch(es) will be deployed as preview environments. If omitted, all from branches will pass the filter.
   - `filter.labels: string[]`
     - Example: `"labels": ["deploy-preview"]`

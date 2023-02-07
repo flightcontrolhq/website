@@ -134,12 +134,12 @@ Environment variables can be configured two ways
 - `filter.toBranches: string[] | undefined`
   - _Optional_, for configuring [Preview Environments](/guides/config/preview-environment)
   - Example: `"toBranches": ["main"]`
-    - Supports globs. We use [minimatch](https://github.com/micromatch/micromatch)
+    - Supports globs. We use [micromatch](https://github.com/micromatch/micromatch)
   - If set, only pull or merge requests to the specified branch(es) will be deployed as preview environments. If omitted, all to branches will pass the filter.
 - `filter.fromBranches: string[] | undefined`
   - _Optional_, for configuring [Preview Environments](/guides/config/preview-environment)
   - Example: `"fromBranches": ["feature/**"]`
-    - Supports globs. We use [minimatch](https://github.com/micromatch/micromatch)
+    - Supports globs. We use [micromatch](https://github.com/micromatch/micromatch)
   - If set, only pull or merge requests from the specified branch(es) will be deployed as preview environments. If omitted, all from branches will pass the filter.
 - `filter.labels: string[] | undefined`
   - _Optional_, for configuring [Preview Environments](/guides/config/preview-environment)
