@@ -190,6 +190,7 @@ The following properties are common for all service types:
 - Example: `"buildType": "nixpacks"`
 - Default: `'nodejs'`
 - Nixpacks:
+  - If you're using a monorepo, you'll likely want to pay attention to `basePath` and read [the guidance on monorepos](/guides/advanced/deploying-own-image)
   - Deploy almost any language without writing a Dockerfile!
   - Docs: [https://nixpacks.com/](https://nixpacks.com/)
   - You can customize native packages and such with [nixpacks.toml](https://nixpacks.com/docs/configuration/file)
@@ -314,6 +315,11 @@ Besides the common properties above, each service will have specific properties,
 
 
     <Collapse title="Extra options for Nixpacks & Legacy Node.js">
+        `basePath?: string` (only supported when `buildType: nixpacks`)
+
+        - Example: `"basePath": "./apps"`
+        - _Optional_, defaults to "./"
+
         `installCommand: string`
 
         - Example: `"installCommand": "./install.sh"`
@@ -419,7 +425,7 @@ Besides the common properties above, each service will have specific properties,
 
     - If using `buildType: fromService`, this is the ID of the service that you wish to use the image for.
 
-`containerImage: object`
+     `containerImage: object`
 
       - containerImage defines the parameters needed when using `buildType: fromRepository`
 
@@ -440,6 +446,11 @@ Besides the common properties above, each service will have specific properties,
         - This is the tag of the image from the repository that you would like to use
 
     <Collapse title="Extra options for Nixpacks & Legacy Node.js">
+        `basePath?: string` (only supported when `buildType: nixpacks`)
+
+        - Example: `"basePath": "./apps"`
+        - _Optional_, defaults to "./"
+
         `installCommand: string`
 
         - Example: `"installCommand": "./install.sh"`
@@ -611,6 +622,11 @@ Besides the common properties above, each service will have specific properties,
         - Mysql: `3306`
         - Mariadb: `3306`
 
+    `basePath?: string` (only supported when `buildType: nixpacks`)
+
+    - Example: `"basePath": "./apps"`
+    - _Optional_, defaults to "./"
+
 </Collapse>
 
 ### Redis
@@ -705,3 +721,8 @@ Note:
 ```
 
 </Collapse>
+
+## Config Example
+
+You can see an example config in this demo project:
+https://github.com/flightcontrolhq/demo-redwood/blob/main/flightcontrol.json
