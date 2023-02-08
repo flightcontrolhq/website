@@ -57,7 +57,7 @@ If you don't use any sort of monorepo tooling at the root of your repo, then you
 
 ### Packages managed with monorepo tooling
 
-For JS monorepo that use `npm` and/or require installation at the root, you'll likely need to manually specify the install/build command AND account for the right path by `cd`'ing to the corresponding package, like so:
+For a JS monorepo using `npm` or a monorepo that requires running command from the root, you'll need to manually specify the install/build command AND account for the right path depending on the command needed, like so:
 
 ```json
 {
@@ -69,12 +69,11 @@ For JS monorepo that use `npm` and/or require installation at the root, you'll l
           "id": "api",
           "buildType": "nixpacks",
 
-          "installCommand": "npm i && cd packages/api && npm i"
-          "buildCommand": "cd packages/api && npm run build",
-          "startCommand": "cd packages/api && npm run start",
 
-          "installCommand": "cd .. && npm ci"
           "basePath": "./packages/api",
+          "installCommand": "cd .. && npm ci"
+          "startCommand": "npm run start",
+          "buildCommand": "npm run build",
           ...
 
         },
@@ -85,7 +84,7 @@ For JS monorepo that use `npm` and/or require installation at the root, you'll l
 }
 ```
 
-If you have a nx package-based monorepo, then you'll need to specify the `nx` command, including the package name, but you should not change the `basePath`:
+If you have a nx package-based monorepo, then you'll need to specify the `nx` command, including the package name, but you should not include or change the `basePath`:
 
 ```json
 {
@@ -109,13 +108,12 @@ If you have a nx package-based monorepo, then you'll need to specify the `nx` co
 
 ### Further customization
 
-If there are specific needs for building/installing a service, such as custom phases or specific OS packages, then you can use a `nixpacks.toml`.
-
+If there are specific needs for building/installing your service, such as custom phases or specific OS packages, then you can use a `nixpacks.toml`.
 The `.toml` file is specific to each package and should be placed in the package's folder.
 
 If you're using `basePath` in your flightcontrol configuration, you don't need to do anything else and the file will be picked up.
 
-If you're not using it, you'll need to set a `NIXPACKS_CONFIG_FILE` environment variable to the service's `nixpacks.toml` file path.
+If you're not using it, you'll need to set a `NIXPACKS_CONFIG_FILE` environment variable to the service's `nixpacks.toml` file path, like so:
 
 ```json
 {
