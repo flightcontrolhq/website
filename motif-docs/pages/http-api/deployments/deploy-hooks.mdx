@@ -5,8 +5,9 @@ title: Deploy Hooks
 ---
 
 import { Image } from '@components/ui/image.mdx'
+import { Collapse } from '@components/ui/collapse.mdx'
 
-Deploy allow you to trigger a deployment for any environment via an HTTP `GET` request.
+Deploy allow you to trigger a deployment for any environment via an HTTP `GET` request, and then returns that deployment ID.
 
 1. Go to the environment settings page by clicking `Edit Environment`
     <Image rounded={true} border={true} className="w-full max-w-[260px]" src="https://res.cloudinary.com/djp21wtxm/image/upload/v1655165074/i448x132-1xpvO1Oe_clb_dfdluu.png" />
@@ -18,3 +19,41 @@ Deploy allow you to trigger a deployment for any environment via an HTTP `GET` r
 | **Method** | **Path**                         | **Payload** |
 | :--------- | :------------------------------- | --
 | **GET**   | `/api/deploy-hook/[envId]/[securerandomstring]` | None |
+
+#### Response Example
+
+```json
+{
+    "success": "true",
+	"deploymentId": "clcpcxekt000lc9ojqtgtc26y"
+}
+```
+
+### Response
+
+<Collapse title="Success">
+```
+HTTP/1.1 200 OK
+
+{
+	"success": "true",
+    "deploymentId": "cuid"
+}
+```
+</Collapse>
+
+<Collapse title="Errors">
+
+**Internal Server Error: Something Happened On Our End**
+
+```
+HTTP/1.1 500 Internal Error
+Content-Type: application/json
+
+{
+	"error": "[error]",
+	"message": "There was an unexpected error."
+}
+```
+
+</Collapse>

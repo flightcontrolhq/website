@@ -186,6 +186,10 @@ export default {
             title: 'Deploy Hooks',
             href: '/http-api/deployments/deploy-hooks',
           },
+          {
+            title: 'Get Deployment',
+            href: '/http-api/deployments/get-deployment',
+          },
         ],
       },
     ],

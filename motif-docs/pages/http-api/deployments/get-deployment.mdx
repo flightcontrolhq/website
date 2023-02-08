@@ -1,0 +1,153 @@
+---
+index: 1
+heading: API
+title: Get Deployment
+subtitle: Get information about a deployment
+---
+
+import { Collapse } from '@components/ui/collapse.mdx'
+
+| **Method** | **Path**                         |
+| :--------- | :------------------------------- |
+| **GET**   | `/deployments/{deploymentId}` |
+
+| **Headers**   |                            |
+| :------------ | :------------------------- |
+| Authorization | `[API key]` |
+
+{/* | **Body**      |                                                      |                                                                                                                  |
+| :------------ | :--------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------- |
+| **Parameter** | **Type**                                             | **Description**                                                                                                  |
+| `version`     | **number**                                           | This is the version ID of the API, currently at version 1.                                                       |
+| `params`      | **object**: `{ serviceId: string; paths: string[] }` | Type: This contains all the information necessary for your invalidation. See below for more info on this object. | */}
+
+#### Query Parameters
+
+| Parameter   | Type         | Description                                                                                                                                                                                                                                                                                                                                   |
+| :---------- | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `deploymentId` | **string**   | This the ID of the deployment you wish to get information on.                                                                                                                                         |
+{/* #### The `params` object
+
+| Parameter   | Type         | Description                                                                                                                                                                                                                                                                                                                                   |
+| :---------- | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `serviceId` | **string**   | This the ID of the service you wish to invalidate, available in the projects page by hovering over the information symbol next to the service name. Click the icon to copy the ID to your clipboard.                                                                                                                                          |
+| `paths`     | **string[]** | This is an array of the paths you wish to invalidate. Note: The constraints here are consistent with the AWS path constraints. Particularly, a wildcard symbol `*` can only be passed at the end of the path. See [AWS documentation](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html) for more details. | */}
+
+**Full Endpoint URL**
+`https://app.flightcontrol.dev/api/deployments/{deploymentId}`
+
+#### Response Example
+
+```json
+{
+	"deploymentId": "clcpcxekt000lc9ojqtgtc26y",
+	"createdAt": "2023-01-09 22:10:02.381",
+	"environmentGivenId": "production",
+	"environmentId": "clcpcxekw000mc9oj8cjfwd2f",
+	"repoUrl": "https://github.com/flightcontrolhq/flightcontrol/",
+	"gitCommit": "01e573f2198f120f66b08621fde0256874d0c24d",
+	"gitBranch": "main",
+	"status": "ERROR",
+	"serviceDeployments": [
+		{
+			"service": {
+				"serviceGivenId": "web-api",
+				"serviceName": "web-api",
+				"type": "fargate"
+			},
+			"status": "ERROR",
+			"error": [{"BUILD_ERROR": "Something broke"}]
+		}
+	]
+}
+```
+
+### Response
+
+<Collapse title="Success">
+```
+HTTP/1.1 200 OK
+
+{
+	"deploymentId": "cuid",
+	"createdAt": "date",
+	"environmentGivenId": "givendId",
+	"environmentId": "cuid",
+	"repoUrl": "https://",
+	"gitCommit": "SHA",
+	"gitBranch": "main",
+	"status": "ERROR",
+	"serviceDeployments": [
+		{
+			"service": {
+				"serviceGivenId": "cuid",
+				"serviceName": "web-api",
+				"type": "fargate"
+			},
+			"status": "ERROR",
+			"error": "error"
+		}
+	]
+}
+```
+</Collapse>
+
+<Collapse title="Errors">
+**Method Not Allowed: Requires GET Method**
+
+```
+HTTP/1.1 405 Method Not Allowed
+Content-Type: application/json
+
+{
+  "error": "Please use the GET method"
+}
+```
+
+**Unauthorized: No API Key**
+
+```
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+
+{
+  "error": "Please use an API key for this request"
+}
+```
+
+**Unauthorized: Invalid API Key**
+
+```
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+
+{
+  "error": "Invalid API key"
+}
+```
+
+**Bad Request: Not Found**
+
+```
+HTTP/1.1 404 Not Found
+Content-Type: application/json
+
+{
+  "error": "Deployment not found",
+}
+```
+- Occurs if the deployment ID provided does not match with any deployments in your organization. Double check that your ID is correct. If the problem persists, please contact support.
+
+**Internal Server Error: Something Happened On Our End**
+
+```
+HTTP/1.1 500 Internal Error
+Content-Type: application/json
+
+{
+	"error": "[error]",
+	"message": "There was an unexpected error."
+}
+```
+
+</Collapse>
