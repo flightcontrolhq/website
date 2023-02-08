@@ -37,7 +37,12 @@ Add a new environment to your environments array, with the following `source` ob
 - _Optional_:
   - `filter.toBranches: string[]`
     - Example: `"toBranches": ["main"]`
-    - If set, only pull or merge requests to the specified branch(es) will be deployed as preview environments. If omitted, all pull requests will be deployed.
+    - Supports globs. We use [micromatch](https://github.com/micromatch/micromatch)
+    - If set, only pull or merge requests to the specified branch(es) will be deployed as preview environments. If omitted, all to branches will pass the filter.
+  - `filter.fromBranches: string[]`
+    - Example: `"fromBranches": ["feature/**"]`
+    - Supports globs. We use [micromatch](https://github.com/micromatch/micromatch)
+    - If set, only pull or merge requests from the specified branch(es) will be deployed as preview environments. If omitted, all from branches will pass the filter.
   - `filter.labels: string[]`
     - Example: `"labels": ["deploy-preview"]`
     - If set, only pull or merge requests with at least one of the specified labels will be deployed. It will be deployed when the label is added, whether that’s during PR creation or some time after the PR is opened.
@@ -61,7 +66,10 @@ The service configuration schema is the same as the regular environment.
             // trigger a deploy in Flightcontrol
             "pr": true,
             "filter": {
+              // optional 
               "toBranches": ["main"],
+              // optional 
+              "fromBranches": ["feature/**"],
               // optional label filter:
     					"labels": ["deploy"]
             }
