@@ -229,7 +229,9 @@ const onKeyDown = useCallback(
       break
     case 'Enter': {
       dispatch({ type: 'SET_RESULTS', results: [] })
-      window.open(window.__NEXT_DATA__.assetPrefix + state.results[state.selectedIndex]?.path, '\_self')
+      if(state.results.length) {
+        window.open(window.__NEXT_DATA__.assetPrefix + state.results[state.selectedIndex]?.path, '\_self')
+      }
       break
     }
     default:
