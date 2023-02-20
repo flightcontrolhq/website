@@ -15,6 +15,7 @@ We use [Caddy](https://caddyserver.com/) as a reverse proxy in front of Prisma S
     }
 
     # Note: the urls use `http`, not `https` because `https` is added at a higher layer
+    # REPLACE WITH YOUR DOMAIN
     http://admin.yourproductiondomain.com {
       reverse_proxy 0.0.0.0:5555
       log
