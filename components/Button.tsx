@@ -54,7 +54,7 @@ export const Button = forwardRef(function Button(
   const cornerPosition = isTapped ? 0 - borderOffset : -6 - borderOffset
 
   return (
-    <Link passHref href={link?.href ?? '#'}>
+    <Link passHref href={link?.href ?? '#'} legacyBehavior>
       <motion.a
         ref={ref}
         target={link?.target ?? undefined}

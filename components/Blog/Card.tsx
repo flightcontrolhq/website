@@ -19,7 +19,7 @@ export function Card({ blogSummary, className, ...props }: Props) {
   const [isTapped, setTapped] = useState(false)
   const cornerPosition = isTapped ? -1 : isHovered ? -6 : -1
   return (
-    <Link passHref key={blogSummary._id} href={`/blog/${blogSummary.slug}`}>
+    <Link passHref key={blogSummary._id} href={`/blog/${blogSummary.slug}`} legacyBehavior>
       <motion.a
         {...props}
         onFocus={() => setHovered(true)}
