@@ -60,7 +60,7 @@ export const Navigation = forwardRef(function Navigation(
               <a className="flex justify-center items-center">
                 <Image
                   className="cursor-pointer"
-                  alt={logo.alt}
+                  alt={logo.alt ?? ''}
                   src={logo.image.url}
                   width={logo.image.dimensions.width}
                   height={logo.image.dimensions.height}
