@@ -17,7 +17,7 @@ type Props = BaseProps & Omit<ComponentPropsWithoutRef<'a'>, keyof BaseProps>
 
 export function TextButton({ link, className, ...props }: Props) {
   return (
-    <Link href={link?.href ?? '#'}>
+    <Link href={link?.href ?? '#'} legacyBehavior>
       <a
         {...props}
         target={link?.target ?? undefined}

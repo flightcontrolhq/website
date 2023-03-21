@@ -56,11 +56,12 @@ export const Navigation = forwardRef(function Navigation(
               passHref
               className="cursor-pointer outline-thick flex-shrink-0 rounded-primary"
               href={logo.link ?? ''}
+              legacyBehavior
             >
               <a className="flex justify-center items-center">
                 <Image
                   className="cursor-pointer"
-                  alt={logo.alt}
+                  alt={logo.alt ?? ''}
                   src={logo.image.url}
                   width={logo.image.dimensions.width}
                   height={logo.image.dimensions.height}

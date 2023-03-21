@@ -1,4 +1,4 @@
-import Image from 'next/future/image'
+import Image from 'next/image'
 
 import { BlogAuthor, urlFor } from 'lib/sanity'
 import { useBlog } from 'lib/blog-context'
