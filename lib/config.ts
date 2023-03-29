@@ -33,7 +33,7 @@ export function getPublicConfig(): PublicConfig {
     sanity: {
       dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
       projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-      blogTemplateSlug: 'next-js-preview-mode',
+      blogTemplateSlug: 'how-to-migrate-postgresql-from-heroku-to-aws-rds',
     },
   }
 }
