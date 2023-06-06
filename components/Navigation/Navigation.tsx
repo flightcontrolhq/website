@@ -50,7 +50,9 @@ export const Navigation = forwardRef(function Navigation(
           isOpen && 'touch-none',
         )}
       >
-        <div className={classNames('z-[99999] flex flex-row items-center justify-start ')}>
+        <div
+          className={classNames('z-[99999] flex flex-row items-center justify-start max-w-[190px]')}
+        >
           {logo.image ? (
             <Link
               passHref
