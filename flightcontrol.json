@@ -21,30 +21,8 @@
           "buildCommand": "npm run build",
           "startCommand": "npm run start",
           "enableCloudfrontSwr": true,
-          "envVariables": {
-            "DOCS_URL": {
-              "fromService": {
-                "id": "docs",
-                "value": "origin"
-              }
-            }
-          },
-          "healthCheckPath": "/health"
-        },
-        {
-          "id": "docs",
-          "name": "docs",
-          "type": "fargate",
-          "buildType": "nixpacks",
-          "cpu": 0.25,
-          "memory": 0.5,
-          "minInstances": 2,
-          "maxInstances": 2,
-          "installCommand": "cd motif-docs && yarn",
-          "buildCommand": "cd motif-docs && npm run build",
-          "startCommand": "cd motif-docs && npm run start",
           "envVariables": {},
-          "healthCheckPath": "/docs"
+          "healthCheckPath": "/health"
         }
       ]
     },
@@ -70,31 +48,7 @@
           "maxInstances": 1,
           "buildCommand": "npm run build",
           "startCommand": "npm run start",
-          "healthCheckPath": "/health",
-          "dependsOn": ["docs"],
-          "envVariables": {
-            "DOCS_URL": {
-              "fromService": {
-                "id": "docs",
-                "value": "origin"
-              }
-            }
-          }
-        },
-        {
-          "id": "docs",
-          "name": "docs",
-          "type": "fargate",
-          "buildType": "nixpacks",
-          "cpu": 0.25,
-          "memory": 0.5,
-          "minInstances": 1,
-          "maxInstances": 1,
-          "installCommand": "cd motif-docs && yarn",
-          "buildCommand": "cd motif-docs && yarn build",
-          "startCommand": "cd motif-docs && yarn start",
-          "envVariables": {},
-          "healthCheckPath": "/"
+          "healthCheckPath": "/health"
         }
       ]
     }
