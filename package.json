@@ -10,7 +10,7 @@
   "dependencies": {
     "@blitzjs/auth": "2.0.0-beta.22",
     "@blitzjs/next": "2.0.0-beta.22",
-    "@makeswift/runtime": "^0.7.6",
+    "@makeswift/runtime": "0.10.3",
     "@portabletext/react": "^1.0.6",
     "@sanity/image-url": "^1.0.1",
     "blitz": "2.0.0-beta.22",
@@ -18,7 +18,7 @@
     "dayjs": "^1.11.5",
     "framer-motion": "^7.3.5",
     "highlight.js": "^11.6.0",
-    "next": "13.2.4",
+    "next": "13.4.10",
     "next-sanity": "^0.8.5",
     "next-sitemap": "^3.1.32",
     "react": "^18.2.0",
