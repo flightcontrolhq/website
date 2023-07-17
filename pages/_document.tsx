@@ -11,12 +11,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <script
-            // fathom analytics
-            src="https://impressive-ziggy-stardust.flightcontrol.dev/script.js"
-            data-site="MJTFLQYZ"
-            defer
-          ></script>
+          <script src="https://cdn.usefathom.com/script.js" data-site="MJTFLQYZ" defer></script>
           <PreviewModeScript isPreview={this.props.__NEXT_DATA__.isPreview} />
         </Head>
         <body>
