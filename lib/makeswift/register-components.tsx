@@ -28,6 +28,7 @@ import {
   BlogPublishedAt,
   BlogTags,
   BlogContent,
+  HerokuComparisonTable
 } from 'components'
 
 ReactRuntime.registerComponent(Button, {
@@ -317,4 +318,9 @@ ReactRuntime.registerComponent(BlogContent, {
       properties: Style.All,
     }),
   },
+})
+
+ReactRuntime.registerComponent(HerokuComparisonTable, {
+  type: 'herokucomparisontable',
+  label: 'Heroku Comparison Table'
 })
