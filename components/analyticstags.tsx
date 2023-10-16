@@ -1,7 +1,6 @@
-"use client"
+import Script from 'next/script'
 
-import Script from "next/script"
-
+;('use client')
 
 const twitterTag = `
 !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
@@ -17,17 +16,15 @@ gtag('js', new Date());
 gtag('config', 'AW-11328012362');
 `
 
-export default function AnalyticsTags () {
-    return (
-        <>
-        <Script id='twitter-tag'>
-            {twitterTag}
-        </Script>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=AW-11328012362"/>
-        <Script id="google-analytics">
-            {googleTag}
-        </Script>
-        
-        </>
-    )
+export default function AnalyticsTags() {
+  return (
+    <>
+      <Script id="twitter-tag">{twitterTag}</Script>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=AW-11328012362" />
+      <Script id="google-analytics">{googleTag}</Script>
+
+      <Script id="hs-script-loader" src="//js-na1.hs-scripts.com/40210064.js"></Script>
+    </>
+  )
 }
+
