@@ -1,6 +1,6 @@
-import Script from 'next/script'
+'use client'
 
-;('use client')
+import Script from 'next/script'
 
 const twitterTag = `
 !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
@@ -27,4 +27,3 @@ export default function AnalyticsTags() {
     </>
   )
 }
-
