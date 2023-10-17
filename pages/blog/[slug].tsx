@@ -68,18 +68,7 @@ type PageProps = {
   previewData: boolean
 } & MakeswiftPageProps
 
-export default function Page({
-  snapshot,
-  preview,
-  previewData,
-  blogPostSummaries,
-  blogPost,
-}: PageProps) {
-  console.log({
-    route: 'dynamic blog route',
-    preview,
-    previewData,
-  })
+export default function Page({ snapshot, preview, blogPostSummaries, blogPost }: PageProps) {
   const { data: previewBlogPostSummaries } = usePreviewSubscription<BlogPostSummaries>(
     BLOG_SUMMARIES_QUERY,
     {

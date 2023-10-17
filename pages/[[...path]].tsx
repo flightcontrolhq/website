@@ -78,20 +78,7 @@ type PageProps = {
   nodeEnv: string
 } & MakeswiftPageProps
 
-export default function Page({
-  snapshot,
-  preview,
-  previewData,
-  blogPostSummaries,
-  blogPost,
-  nodeEnv,
-}: PageProps) {
-  console.log({
-    route: 'catchall',
-    preview,
-    previewData,
-    nodeEnv,
-  })
+export default function Page({ snapshot, preview, blogPostSummaries, blogPost }: PageProps) {
   const { data: previewBlogPostSummaries } = usePreviewSubscription<BlogPostSummaries>(
     BLOG_SUMMARIES_QUERY,
     {
