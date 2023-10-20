@@ -7,7 +7,7 @@
     "lint": "next lint",
     "postbuild": "next-sitemap --config next-sitemap.config.mjs"
   },
-  "packageManager": "yarn@1.22.19",
+  "packageManager": "yarn@3.6.4",
   "dependencies": {
     "@blitzjs/auth": "2.0.0-beta.22",
     "@blitzjs/next": "2.0.0-beta.22",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.7",
-    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
     "@types/node": "^18.7.18",
     "@types/react": "^18.0.21",
     "autoprefixer": "^10.4.12",
